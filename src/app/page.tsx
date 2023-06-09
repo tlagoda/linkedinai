@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@mui/material/Button';
+import '../styles/tailwind.css';
 
 export default function Home() {
   return (
