@@ -1,29 +1,13 @@
 import Image from "next/image";
+import Header from '../components/Header'
 import CallToAction from "../components/CallToAction";
 
 export default function Page() {
+  const menuItems = ["Product", "Example", "Pricing"]
   return (
     <div className="min-h-screen font-mono">
       <div className="h-screen w-screen bg-gray-900 pt-4">
-        <div className="flex items-center justify-between mx-16">
-          <h1 className="text-3xl text-slate-100 font-bold hover:cursor-pointer">
-            Sumariz.ai
-          </h1>
-          <ul className="text-slate-100 text-xl flex justify-evenly items-center w-4/12">
-            <li>|</li>
-            <li className="hover:underline hover:cursor-pointer hover:underline-offset-4">
-              Product
-            </li>
-            <li className="hover:underline hover:cursor-pointer hover:underline-offset-4">
-              Examples
-            </li>
-            <li className="hover:underline hover:cursor-pointer hover:underline-offset-4">
-              Pricing
-            </li>
-            <li>|</li>
-          </ul>
-          <CallToAction content="Get started" />
-        </div>
+        <Header title="Sumariz.ai" menuItems={menuItems}/>
         <div className="flex mt-20 mx-auto">
           <div className="w-6/12 px-8">
             <h2 className="text-8xl text-slate-100 text-center mb-10">
