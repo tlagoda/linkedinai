@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from './styles.module.css'
+import CallToAction from "../components/CallToAction";
 
 export default function Page() {
   return (
@@ -22,14 +22,7 @@ export default function Page() {
             </li>
             <li>|</li>
           </ul>
-          <button
-            type="button"
-            className="rounded border-2 border-neutral-50 px-[46px] pt-[14px] pb-[12px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200"
-            data-te-ripple-init
-            data-te-ripple-color="light"
-          >
-            Get started
-          </button>{" "}
+          <CallToAction content="Get started" />
         </div>
         <div className="flex mt-20 mx-auto">
           <div className="w-6/12 px-8">
@@ -60,14 +53,7 @@ export default function Page() {
           </div>
         </div>
         <div className="flex justify-center mt-20">
-          <button
-            type="button"
-            className="rounded border-2 border-neutral-50 px-[46px] pt-[14px] pb-[12px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200"
-            data-te-ripple-init
-            data-te-ripple-color="light"
-          >
-            Summariz
-          </button>{" "}
+          <CallToAction content="Summariz" />
         </div>
       </div>
       <div className="h-screen w-screen pt-4"></div>
