@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from './styles.module.css'
 
 export default function Page() {
   return (
@@ -9,6 +10,7 @@ export default function Page() {
             Sumariz.ai
           </h1>
           <ul className="text-slate-100 text-xl flex justify-evenly items-center w-4/12">
+            <li>|</li>
             <li className="hover:underline hover:cursor-pointer hover:underline-offset-4">
               Product
             </li>
@@ -18,6 +20,7 @@ export default function Page() {
             <li className="hover:underline hover:cursor-pointer hover:underline-offset-4">
               Pricing
             </li>
+            <li>|</li>
           </ul>
           <button
             type="button"
@@ -67,6 +70,7 @@ export default function Page() {
           </button>{" "}
         </div>
       </div>
+      <div className="h-screen w-screen pt-4"></div>
     </div>
   );
 }
