@@ -3,9 +3,14 @@ import CallToAction from "./CallToAction";
 interface HeaderProps {
   title: string;
   menuItems?: string[];
+  CTATitle?: string;
 }
 
-export default function Header({ title, menuItems }: HeaderProps) {
+export default function Header({
+  title,
+  menuItems = ["Product", "Examples", "Pricing"],
+  CTATitle = "Get started",
+}: HeaderProps) {
   return (
     <div className="flex items-center justify-between mx-16">
       <h1 className="text-3xl text-slate-100 font-bold hover:cursor-pointer">
@@ -18,7 +23,7 @@ export default function Header({ title, menuItems }: HeaderProps) {
         })}
         <li>|</li>
       </ul>
-      <CallToAction content="Get started" />
+      <CallToAction content={CTATitle} />
     </div>
   );
 }

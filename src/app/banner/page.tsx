@@ -1,13 +1,12 @@
 import Image from "next/image";
-import Header from '../components/Header'
+import Header from "../components/Header";
 import CallToAction from "../components/CallToAction";
 
 export default function Page() {
-  const menuItems = ["Product", "Example", "Pricing"]
   return (
     <div className="min-h-screen font-mono">
       <div className="h-screen w-screen bg-gray-900 pt-4">
-        <Header title="Sumariz.ai" menuItems={menuItems}/>
+        <Header title="Sumariz.ai" />
         <div className="flex mt-20 mx-auto">
           <div className="w-6/12 px-8">
             <h2 className="text-8xl text-slate-100 text-center mb-10">
