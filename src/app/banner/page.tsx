@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Header from "../components/Header";
-import CallToAction from "../components/CallToAction";
+import CallToActionLink from "../components/CallToActionLink";
 
 export default function Page() {
   return (
@@ -36,7 +36,7 @@ export default function Page() {
           </div>
         </div>
         <div className="flex justify-center mt-20">
-          <CallToAction content="Summariz" />
+          <CallToActionLink content="Summariz" href="/generate"/>
         </div>
       </div>
       <div className="h-screen w-screen pt-4"></div>

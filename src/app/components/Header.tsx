@@ -1,4 +1,4 @@
-import CallToAction from "./CallToAction";
+import CallToActionLink from "./CallToActionLink";
 
 interface HeaderProps {
   title: string;
@@ -16,14 +16,21 @@ export default function Header({
       <h1 className="text-3xl text-slate-100 font-bold hover:cursor-pointer">
         {title}
       </h1>
-      <ul className="text-slate-100 text-xl flex justify-evenly items-center w-4/12">
+      <ul className="text-slate-100 text-xl flex justify-evenly items-center w-6/12">
         <li>|</li>
         {menuItems.map((item, index) => {
-          return <li key={index}>{item}</li>;
+          return (
+            <li
+              className="hover:underline hover:cursor-pointer hover:underline-offset-4"
+              key={index}
+            >
+              {item}
+            </li>
+          );
         })}
         <li>|</li>
       </ul>
-      <CallToAction content={CTATitle} />
+      <CallToActionLink content={CTATitle} href="/generate"/>
     </div>
   );
 }
