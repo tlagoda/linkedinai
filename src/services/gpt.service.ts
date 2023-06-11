@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export class GptService {
-  static async getPost(prompt: string) {
+  static async generate(prompt: string) {
     try {
       const response = await axios.get("http://localhost:3000/posts/generate", {
         params: {

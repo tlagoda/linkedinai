@@ -8,6 +8,10 @@ import { useState } from "react";
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
 
+  const handleSendMessage = (newContent: string) => {
+    setContent(newContent);
+  };
+
   return (
     <div className="h-screen w-screen bg-gray-900 font-mono text-slate-100 flex">
       <div className="w-1/4 h-full bg-gray-800">wip</div>
@@ -17,7 +21,7 @@ export default function Page() {
             <LinkedInPost content={content} />
           </div>
           <div className="h-1/4 flex items-center">
-            <Prompt />
+            <Prompt handleSendMessage={handleSendMessage} />
           </div>
         </div>
       </div>

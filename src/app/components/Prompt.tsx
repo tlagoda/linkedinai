@@ -1,12 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import { GptService } from "@/services/gpt.service";
 
-export default function Prompt() {
+export default function Prompt({
+  handleSendMessage,
+}: {
+  handleSendMessage: any;
+}) {
   const [text, setText] = useState("");
 
-  const generate = () => {
+  const generatePost = async () => {
     setText("");
+    const linkedInPost = await GptService.generate(text);
+    handleSendMessage(linkedInPost)
   };
 
   return (
@@ -19,7 +26,7 @@ export default function Prompt() {
           onChange={(e) => setText(e.target.value)}
         />
         <button
-          onClick={generate}
+          onClick={generatePost}
           className="px-4 py-2 w-1/6 rounded-r bg-violet-500 text-white shadow hover:bg-violet-800"
         >
           Send
