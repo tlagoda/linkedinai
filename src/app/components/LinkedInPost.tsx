@@ -30,7 +30,9 @@ export default function LinkedInPost({
             <Loader />
           </div>
         ) : (
-          <p className="text-black whitespace-pre-line">{content}</p>
+          <p className="text-black whitespace-pre-line mt-4">
+            {content.replace(/^\n+/g, "")}
+          </p>
         )}
       </div>
     </div>
