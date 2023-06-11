@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
+  const [displayLoader, setDisplayLoader] = useState(false);
 
   const handleSendMessage = (newContent: string) => {
     setContent(newContent);
@@ -18,10 +19,13 @@ export default function Page() {
       <div className="w-3/4 h-full flex flex-col p-4">
         <div className="h-full flex flex-col">
           <div className="h-3/4 flex flex-col">
-            <LinkedInPost content={content} />
+            <LinkedInPost content={content} displayLoader={displayLoader} />
           </div>
           <div className="h-1/4 flex items-center">
-            <Prompt handleSendMessage={handleSendMessage} />
+            <Prompt
+              handleSendMessage={handleSendMessage}
+              setDisplayLoader={setDisplayLoader}
+            />
           </div>
         </div>
       </div>

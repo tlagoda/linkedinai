@@ -1,7 +1,14 @@
 import Image from "next/image";
+import Loader from "./Loader";
 
 /* eslint-disable @next/next/no-img-element */
-export default function LinkedInPost({ content }: { content: string }) {
+export default function LinkedInPost({
+  content,
+  displayLoader,
+}: {
+  content: string;
+  displayLoader: boolean;
+}) {
   return (
     <div className="h-full bg-white text-black rounded-lg w-1/2 overflow-auto shadow-md">
       <div className="p-4">
@@ -18,7 +25,13 @@ export default function LinkedInPost({ content }: { content: string }) {
             <p className="text-sm text-gray-600">2nd • 1h</p>
           </div>
         </div>
-        <p className="mt-4 text-black">{content}</p>
+        {displayLoader ? (
+          <div className="flex justify-center items-center h-full">
+            <Loader />
+          </div>
+        ) : (
+          <p className="text-black whitespace-pre-line">{content}</p>
+        )}
       </div>
     </div>
   );

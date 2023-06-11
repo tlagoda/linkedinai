@@ -5,15 +5,18 @@ import { GptService } from "@/services/gpt.service";
 
 export default function Prompt({
   handleSendMessage,
+  setDisplayLoader,
 }: {
   handleSendMessage: any;
+  setDisplayLoader: any;
 }) {
   const [text, setText] = useState("");
 
   const generatePost = async () => {
-    setText("");
+    setDisplayLoader(true);
     const linkedInPost = await GptService.generate(text);
-    handleSendMessage(linkedInPost)
+    setDisplayLoader(false);
+    handleSendMessage(linkedInPost);
   };
 
   return (
