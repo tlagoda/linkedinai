@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Loader from "./Loader";
 
-/* eslint-disable @next/next/no-img-element */
 export default function LinkedInPost({
   content,
   displayLoader,

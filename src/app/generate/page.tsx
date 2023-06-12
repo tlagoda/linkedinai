@@ -4,10 +4,17 @@ import LinkedInPost from "../components/LinkedInPost";
 import Prompt from "../components/Prompt";
 import { DEFAULT_LINKEDIN_CONTENT } from "./constants/constants";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
+
+  const notifyError = () =>
+    toast.error("Canno't generate content, an error occured!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
 
   const handleSendMessage = (newContent: string) => {
     setContent(newContent);
@@ -25,10 +32,12 @@ export default function Page() {
             <Prompt
               handleSendMessage={handleSendMessage}
               setDisplayLoader={setDisplayLoader}
+              notifyError={notifyError}
             />
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
