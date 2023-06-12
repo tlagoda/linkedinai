@@ -20,7 +20,7 @@ export default function Page() {
               written summaries that allow you to absorb the key points at your
               own pace.
               <br />
-              It's time to revolutionize how you digest information. Transform
+              It&apos;s time to revolutionize how you digest information. Transform
               videos into text summaries in an instant with our unique SaaS
               solution.
             </p>
