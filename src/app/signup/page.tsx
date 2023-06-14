@@ -3,9 +3,15 @@
 import Link from "next/link";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import app from "../../../firebase";
+import { useState } from "react";
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Please enter your email"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Please enter your email"),
   password: Yup.string()
     .min(8, "Too Short!")
     .max(40, "Too Long!")
@@ -16,6 +22,26 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
+  const [errorWhileSigningUp, setErrorWhileSigningUp] = useState(false);
+
+  const router = useRouter();
+
+  const onSubmit = async (values: { email: string; password: string }) => {
+    setErrorWhileSigningUp(false);
+    const auth = getAuth(app);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+      const user = userCredential.user;
+      router.push("/login");
+    } catch (error) {
+      setErrorWhileSigningUp(true);
+      console.error(error);
+    }
+  };
   return (
     <section className="bg-gray-900 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -34,10 +60,7 @@ export default function SignUp() {
               initialValues={{ email: "", password: "", confirmPassword: "" }}
               validationSchema={SignupSchema}
               validateOnChange={false}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
-                setSubmitting(false);
-              }}
+              onSubmit={onSubmit}
             >
               <Form className="space-y-4 md:space-y-6" action="#">
                 <div>
@@ -117,6 +140,7 @@ export default function SignUp() {
                 </p>
               </Form>
             </Formik>
+            {errorWhileSigningUp && <div className="text-red-500 text-sm mt-2">An error occured.</div>}
           </div>
         </div>
       </div>
