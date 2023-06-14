@@ -5,14 +5,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string().email("Invalid email").required("Please enter your email"),
   password: Yup.string()
     .min(8, "Too Short!")
     .max(40, "Too Long!")
-    .required("Required"),
+    .required("Please enter a password"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required("Required"),
+    .required("Please confirm your password"),
 });
 
 export default function SignUp() {
