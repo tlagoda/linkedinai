@@ -1,29 +1,19 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-const validate = (values: {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}) => {
-  const errors: any = {};
-
-  if (!values.email) {
-    errors.email = "Email is required";
-  }
-
-  if (!values.password) {
-    errors.password = "Password is required";
-  }
-
-  if (!values.confirmPassword) {
-    errors.confirmPassword = "Please confirm your password";
-  }
-
-  return errors;
-};
+const SignupSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .min(8, "Too Short!")
+    .max(40, "Too Long!")
+    .required("Required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Required"),
+});
 
 export default function SignUp() {
   return (
@@ -38,11 +28,12 @@ export default function SignUp() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Create an account
+              Create and account
             </h1>
             <Formik
               initialValues={{ email: "", password: "", confirmPassword: "" }}
-              validate={validate}
+              validationSchema={SignupSchema}
+              validateOnChange={false}
               onSubmit={(values, { setSubmitting }) => {
                 console.log(values);
                 setSubmitting(false);
@@ -63,7 +54,11 @@ export default function SignUp() {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Email"
                   />
-                  <ErrorMessage name="email" component="div" className="text-red-400"/>
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-400"
+                  />
                 </div>
                 <div>
                   <label
@@ -79,7 +74,11 @@ export default function SignUp() {
                     placeholder="Password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  <ErrorMessage name="password" component="div" className="text-red-400"/>
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="text-red-400"
+                  />
                 </div>
                 <div>
                   <label
@@ -95,7 +94,11 @@ export default function SignUp() {
                     placeholder="Confirm Password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  <ErrorMessage name="confirmPassword" component="div" className="text-red-400"/>
+                  <ErrorMessage
+                    name="confirmPassword"
+                    component="div"
+                    className="text-red-400"
+                  />
                 </div>
                 <button
                   type="submit"
