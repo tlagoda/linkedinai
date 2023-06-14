@@ -1,9 +1,13 @@
-'use client'
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { FormikHelpers } from "formik";
+import app from "../../../firebase";
+import { useRouter } from "next/navigation";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Please enter your emil"),
@@ -11,6 +15,33 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function LogIn() {
+  const [errorWhileLogingIn, setErrorWhileLoggingIn] = useState(false);
+  const router = useRouter();
+
+  const onSubmit = async (
+    values: {
+      email: string;
+      password: string;
+    },
+    {
+      setSubmitting,
+    }: FormikHelpers<{
+      email: string;
+      password: string;
+    }>
+  ) => {
+    setErrorWhileLoggingIn(false);
+    const auth = getAuth(app);
+    try {
+      await signInWithEmailAndPassword(auth, values.email, values.password);
+      router.push("/generate");
+    } catch (error) {
+      setErrorWhileLoggingIn(true);
+      console.error(error);
+    }
+    setSubmitting(false);
+  };
+
   return (
     <section className="bg-gray-900 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -28,10 +59,7 @@ export default function LogIn() {
             <Formik
               initialValues={{ email: "", password: "" }}
               validationSchema={LoginSchema}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
-                setSubmitting(false);
-              }}
+              onSubmit={onSubmit}
             >
               <Form className="space-y-4 md:space-y-6">
                 <div>
@@ -117,6 +145,7 @@ export default function LogIn() {
                 </p>
               </Form>
             </Formik>
+            {errorWhileLogingIn && <div className="text-red-500 text-sm mt-2">Unable to log in. Please try again.</div>}
           </div>
         </div>
       </div>
