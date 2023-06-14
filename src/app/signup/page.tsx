@@ -11,7 +11,7 @@ const SignupSchema = Yup.object().shape({
     .max(40, "Too Long!")
     .required("Please enter a password"),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .oneOf([Yup.ref("password")], "Passwords must match")
     .required("Please confirm your password"),
 });
 
