@@ -1,8 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import Header from "../components/Header";
 import CallToActionLink from "../components/CallToActionLink";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
 
 export default function Page() {
+  const { currentUser } = useContext(AuthContext);
+
+  const CTALink = currentUser ? "/generate" : "/login";
+
   return (
     <div className="min-h-screen font-mono">
       <div className="h-screen w-screen bg-gray-900 pt-4">
@@ -20,9 +28,9 @@ export default function Page() {
               written summaries that allow you to absorb the key points at your
               own pace.
               <br />
-              It&apos;s time to revolutionize how you digest information. Transform
-              videos into text summaries in an instant with our unique SaaS
-              solution.
+              It&apos;s time to revolutionize how you digest information.
+              Transform videos into text summaries in an instant with our unique
+              SaaS solution.
             </p>
           </div>
           <div className="w-6/12">
@@ -36,7 +44,7 @@ export default function Page() {
           </div>
         </div>
         <div className="flex justify-center mt-20">
-          <CallToActionLink content="Summariz" href="/generate"/>
+          <CallToActionLink content="Summariz" href={CTALink} />
         </div>
       </div>
       <div className="h-screen w-screen pt-4"></div>
