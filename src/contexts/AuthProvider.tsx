@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Loadingzzzzzz...</p>;
   }
 
   return (
