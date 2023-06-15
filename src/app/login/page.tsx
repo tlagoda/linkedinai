@@ -70,7 +70,7 @@ export default function LogIn() {
               Log in
             </h1>
             <Formik
-              initialValues={{ email: "", password: "" }}
+              initialValues={{ email: "", password: "", remember: true }}
               validationSchema={LoginSchema}
               onSubmit={onSubmit}
             >
