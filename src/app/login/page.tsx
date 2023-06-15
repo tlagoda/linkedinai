@@ -4,13 +4,20 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { FormikHelpers } from "formik";
 import app from "../../../firebase";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Please enter your emil"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Please enter your email"),
   password: Yup.string().required("Please enter your password"),
 });
 
@@ -22,17 +29,23 @@ export default function LogIn() {
     values: {
       email: string;
       password: string;
+      remember: boolean;
     },
     {
       setSubmitting,
     }: FormikHelpers<{
       email: string;
       password: string;
+      remember: boolean;
     }>
   ) => {
     setErrorWhileLoggingIn(false);
     const auth = getAuth(app);
+
     try {
+      if (values.remember) {
+        await setPersistence(auth, browserLocalPersistence);
+      }
       await signInWithEmailAndPassword(auth, values.email, values.password);
       router.push("/generate");
     } catch (error) {
@@ -54,7 +67,7 @@ export default function LogIn() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in to your account
+              Log in
             </h1>
             <Formik
               initialValues={{ email: "", password: "" }}
@@ -145,7 +158,11 @@ export default function LogIn() {
                 </p>
               </Form>
             </Formik>
-            {errorWhileLogingIn && <div className="text-red-500 text-sm mt-2">Unable to log in. Please try again.</div>}
+            {errorWhileLogingIn && (
+              <div className="text-red-500 text-sm mt-2">
+                Unable to log in. Please try again.
+              </div>
+            )}
           </div>
         </div>
       </div>
