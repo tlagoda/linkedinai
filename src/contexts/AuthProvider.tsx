@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect, ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
-import { User, getAuth, onAuthStateChanged } from "firebase/auth";
-import '../../firebase'
+import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import "../../firebase";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -23,6 +23,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  const logout = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+      setCurrentUser(null);
+    } catch (error) {
+      console.log("Error logging out:", error);
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -31,6 +41,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     <AuthContext.Provider
       value={{
         currentUser,
+        logout,
       }}
     >
       {children}

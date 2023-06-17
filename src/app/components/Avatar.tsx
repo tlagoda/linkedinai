@@ -1,15 +1,23 @@
-import React, { useEffect, createRef, useState } from "react";
+import React, { useEffect, createRef, useState, useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
 
 const Avatar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { logout } = useContext(AuthContext);
+
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const onLogout = () => {};
   const onSettings = () => {};
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   const menuRef = createRef<HTMLDivElement>();
 
@@ -40,7 +48,7 @@ const Avatar = () => {
           <ul className="text-gray-600">
             <li>
               <button
-                onClick={onLogout}
+                onClick={handleLogout}
                 className="py-2 px-4 block w-full text-left hover:underline hover:cursor-pointer hover:underline-offset-4"
               >
                 Logout
