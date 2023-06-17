@@ -1,7 +1,8 @@
 import React, { useEffect, createRef, useState, useContext } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import { FaSignOutAlt, FaCog, FaUser } from "react-icons/fa";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Avatar = ({
   setUserJustLoggedOut,
@@ -43,7 +44,13 @@ const Avatar = ({
   return (
     <div className="relative">
       <button onClick={toggleMenu}>
-        <FaUserCircle size={32} />
+        <Image
+          src="/pp-linkedin.jpeg"
+          alt="Avatar"
+          width={48}
+          height={48}
+          className="rounded-full"
+        />
       </button>
       {isMenuOpen && (
         <div
@@ -51,20 +58,31 @@ const Avatar = ({
           ref={menuRef}
         >
           <ul className="text-gray-600">
-            <li>
-              <button
-                onClick={handleLogout}
-                className="py-2 px-4 block w-full text-left hover:underline hover:cursor-pointer hover:underline-offset-4"
-              >
-                Logout
-              </button>
-            </li>
-            <li>
+            <li className="rounded-lg hover:bg-gray-200">
               <button
                 onClick={onSettings}
-                className="py-2 px-4 block w-full text-left hover:underline hover:cursor-pointer hover:underline-offset-4"
+                className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
               >
-                Settings
+                <FaUser className="mr-2" />
+                <span>Profil</span>
+              </button>
+            </li>
+            <li className="rounded-lg hover:bg-gray-200">
+              <button
+                onClick={onSettings}
+                className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
+              >
+                <FaCog className="mr-2" />
+                <span>Settings</span>
+              </button>
+            </li>
+            <li className="rounded-lg hover:bg-gray-200">
+              <button
+                onClick={handleLogout}
+                className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
+              >
+                <FaSignOutAlt className="mr-2" />
+                <span>Logout</span>
               </button>
             </li>
           </ul>
