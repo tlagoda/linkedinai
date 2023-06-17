@@ -15,7 +15,7 @@ export default function Header({
 }: HeaderProps) {
   const { currentUser } = useContext(AuthContext);
   
-  const CTALink = currentUser ? "/generate" : "/login";
+  const CTALink = currentUser ? "/generate" : "/signup";
 
   return (
     <div className="flex items-center justify-between mx-16">

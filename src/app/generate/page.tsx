@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Toggle from "../components/Toggle";
+import OptionsSelect from "../components/OptionsSelect";
 import { HorizontalDivider } from "../components/HorizontalDivider";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
@@ -42,6 +43,11 @@ export default function Page() {
       <div className="w-1/4 h-full bg-gray-800">
         <Toggle togglePrompt={setCustomPrompt} />
         <HorizontalDivider />
+        <OptionsSelect
+          options={["test1", "test2"]}
+          onSelect={() => {}}
+          label="Sujet"
+        />
       </div>
       <div className="w-3/4 h-full flex flex-col p-4">
         <div className="h-full flex flex-col">
