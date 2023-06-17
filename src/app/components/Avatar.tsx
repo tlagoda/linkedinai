@@ -3,7 +3,11 @@ import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
-const Avatar = () => {
+const Avatar = ({
+  setUserJustLoggedOut,
+}: {
+  setUserJustLoggedOut: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { logout } = useContext(AuthContext);
 
@@ -15,6 +19,7 @@ const Avatar = () => {
 
   const onSettings = () => {};
   const handleLogout = () => {
+    setUserJustLoggedOut(true);
     logout();
     router.push("/");
   };

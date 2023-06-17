@@ -17,15 +17,17 @@ export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(true);
+  const [userJustLoggedOut, setUserJustLoggedOut] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
-  const history = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
+    if (userJustLoggedOut) return;
     if (!currentUser) {
-      history.push("/login");
+      router.push("/login");
     }
-  }, [currentUser, history]);
+  }, [currentUser, router]);
 
   const notifyError = () =>
     toast.error("Canno't generate content, an error occured!", {
@@ -35,7 +37,7 @@ export default function Page() {
   return (
     <div className="h-screen w-screen bg-gray-900 font-mono text-slate-100 flex">
       <div className="absolute top-0 right-0 m-4">
-        <Avatar />
+        <Avatar setUserJustLoggedOut={setUserJustLoggedOut} />
       </div>
       <div className="w-1/4 h-full bg-gray-800">
         <Toggle togglePrompt={setCustomPrompt} />
