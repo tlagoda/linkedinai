@@ -13,7 +13,7 @@ function Toggle({
   };
 
   return (
-    <div className="flex items-center justify-center pt-5">
+    <div className="flex items-center justify-between pt-5 w-4/5 mx-auto">
       <label className="mr-3 text-xl" htmlFor="toggle">
         Prompt:
       </label>
