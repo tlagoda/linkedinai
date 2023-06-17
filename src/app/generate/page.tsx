@@ -3,16 +3,28 @@
 import LinkedInPost from "../components/LinkedInPost";
 import Prompt from "../components/Prompt";
 import { DEFAULT_LINKEDIN_CONTENT } from "./constants/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Toggle from "../components/Toggle";
 import { HorizontalDivider } from "../components/HorizontalDivider";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(true);
+
+  const { currentUser } = useContext(AuthContext);
+  const history = useRouter();
+
+  useEffect(() => {
+    if (!currentUser) {
+      history.push("/login");
+    }
+  }, [currentUser, history]);
 
   const notifyError = () =>
     toast.error("Canno't generate content, an error occured!", {
