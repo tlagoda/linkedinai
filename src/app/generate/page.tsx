@@ -11,6 +11,7 @@ import { HorizontalDivider } from "../components/HorizontalDivider";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import Avatar from "../components/Avatar";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -33,6 +34,9 @@ export default function Page() {
 
   return (
     <div className="h-screen w-screen bg-gray-900 font-mono text-slate-100 flex">
+      <div className="absolute top-0 right-0 m-4">
+        <Avatar />
+      </div>
       <div className="w-1/4 h-full bg-gray-800">
         <Toggle togglePrompt={setCustomPrompt} />
         <HorizontalDivider />
