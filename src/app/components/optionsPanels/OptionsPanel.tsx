@@ -1,22 +1,29 @@
+import React from "react";
 import OptionsSelect from "../OptionsSelect";
 
-const OptionsPanel = ({
-  optionsData,
-}: {
-  optionsData: { values: string[]; defaultValue: string }[];
-}) => {
+interface OptionData {
+  values: string[];
+  defaultValue: string;
+  label: string;
+}
+
+interface OptionsPanelProps {
+  optionsData: OptionData[];
+}
+
+const OptionsPanel: React.FC<OptionsPanelProps> = ({ optionsData }) => {
   return (
-    <div>
+    <>
       {optionsData.map((optionData, index) => (
         <OptionsSelect
           key={index}
           options={optionData.values}
+          onSelect={() => {}}
+          label={optionData.label}
           defaultValue={optionData.defaultValue}
-          onSelect={(value) => {}}
-          label={`Option ${index + 1}`}
         />
       ))}
-    </div>
+    </>
   );
 };
 
