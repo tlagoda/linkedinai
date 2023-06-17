@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -12,6 +12,7 @@ import {
 import { FormikHelpers } from "formik";
 import app from "../../../firebase";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,6 +24,14 @@ const LoginSchema = Yup.object().shape({
 export default function LogIn() {
   const [errorWhileLogingIn, setErrorWhileLoggingIn] = useState(false);
   const router = useRouter();
+
+  const { currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/generate");
+    }
+  }, [currentUser, router]);
 
   const onSubmit = async (
     values: {
@@ -125,10 +134,7 @@ export default function LogIn() {
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="remember"
-                        className="text-gray-500"
-                      >
+                      <label htmlFor="remember" className="text-gray-500">
                         Remember me
                       </label>
                     </div>

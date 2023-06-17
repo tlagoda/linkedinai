@@ -38,7 +38,7 @@ export default function Page() {
     });
 
   return (
-    <div className="h-screen w-screen bg-gray-900 font-mono text-slate-100 flex">
+    <div className="h-screen w-screen max-h-screen bg-gray-900 font-mono text-slate-100 flex">
       <div className="absolute top-0 right-0 m-4">
         <Avatar setUserJustLoggedOut={setUserJustLoggedOut} />
       </div>
@@ -60,7 +60,11 @@ export default function Page() {
                 notifyError={notifyError}
               />
             ) : (
-              <GenerateButton />
+              <GenerateButton
+                handleSendMessage={setContent}
+                setDisplayLoader={setDisplayLoader}
+                notifyError={notifyError}
+              />
             )}
           </div>
         </div>
