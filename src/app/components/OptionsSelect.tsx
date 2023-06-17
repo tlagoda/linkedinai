@@ -28,7 +28,7 @@ const OptionsSelect = ({
         id="options-select"
         value={selectedOption}
         onChange={handleOptionChange}
-        className="block py-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+        className="block text-lg py-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
         style={{ gridColumn: "2 / span 1" }}
       >
         {options.map((option) => (

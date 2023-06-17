@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import Avatar from "../components/Avatar";
 import OptionsPanel from "../components/optionsPanels/OptionsPanel";
 import { optionsData } from "../components/optionsPanels/data";
+import GenerateButton from "../components/GenerateButton";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -52,12 +53,14 @@ export default function Page() {
             <LinkedInPost content={content} displayLoader={displayLoader} />
           </div>
           <div className="h-1/4 flex items-center">
-            {customPrompt && (
+            {customPrompt ? (
               <Prompt
                 handleSendMessage={setContent}
                 setDisplayLoader={setDisplayLoader}
                 notifyError={notifyError}
               />
+            ) : (
+              <GenerateButton />
             )}
           </div>
         </div>
