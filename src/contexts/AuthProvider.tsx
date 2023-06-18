@@ -3,7 +3,7 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
 import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 
 interface AuthProviderProps {
@@ -35,14 +35,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setLoading(false);
       if (user) {
         const userData = await getUserData(user.uid);
-        if (userData && userData.linkedinEmail) {
+        if (userData?.linkedInEmail?.length ) {
           setHasConnectedLinkedIn(true);
+        } else {
+          setHasConnectedLinkedIn(false);
         }
       }
     });
-
+  
+    // Écouter les modifications du document de l'utilisateur
+    if (currentUser) {
+      const userRef = doc(db, "users", currentUser.uid);
+      const unsubscribeUserData = onSnapshot(userRef, (doc) => {
+        const updatedUserData = doc.data();
+        if (updatedUserData && updatedUserData.linkedinEmail) {
+          setHasConnectedLinkedIn(true);
+        } else {
+          setHasConnectedLinkedIn(false);
+        }
+      });
+  
+      return () => {
+        unsubscribeUserData();
+      };
+    }
+  
     return () => unsubscribe();
-  }, []);
+  }, [currentUser]);
+  
 
   const logout = async () => {
     try {
