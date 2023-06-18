@@ -32,7 +32,7 @@ export default function LogIn() {
     if (currentUser) {
       router.push("/generate");
     }
-  }, [currentUser, router]);
+  });
 
   const onSubmit = async (
     values: {

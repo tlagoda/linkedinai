@@ -7,6 +7,9 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import app from "../../../firebase";
 import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -35,7 +38,13 @@ export default function SignUp() {
         values.email,
         values.password
       );
+
       const user = userCredential.user;
+
+      await addDoc(collection(db, "users"), {
+        userId: user.uid,
+        email: user.email,
+      });
       router.push("/login");
     } catch (error) {
       setErrorWhileSigningUp(true);
