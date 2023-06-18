@@ -1,7 +1,8 @@
 import React, { useEffect, createRef, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { HorizontalDivider } from "./HorizontalDivider";
-import { Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const LinkedInConnectModal = ({
   setShowLinkedInModal,
@@ -28,6 +29,12 @@ const LinkedInConnectModal = ({
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
+  });
+
+  const validationSchema = Yup.object({
+    linkedinEmail: Yup.string()
+      .email("Invalid email address.")
+      .required("Please enter your LinkedIn email."),
   });
 
   return (
@@ -115,43 +122,44 @@ const LinkedInConnectModal = ({
                   </label>
                 </div>
               </div>
-              {selectedOption === "no" && (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    // votre logique de soumission de formulaire ici
-                  }}
-                >
-                  <div>
-                    <label htmlFor="linkedinEmail" className="mr-4">
-                      Your LinkedIn Email:
-                    </label>
-                    <input
-                      type="email"
-                      id="linkedinEmail"
-                      name="linkedinEmail"
-                      onChange={(e) => {
-                        // votre logique de gestion du changement ici
-                      }}
-                      onBlur={(e) => {
-                        // votre logique de gestion de la perte de focus ici
-                      }}
-                      className="mt-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    />
-                  </div>
-                </form>
-              )}
+              <Formik
+                initialValues={{ linkedinEmail: "" }}
+                validationSchema={validationSchema}
+                isInitialValid={selectedOption === "yes"}
+                onSubmit={(values) => {
+                  // Logique de soumission du formulaire ici
+                }}
+              >
+                {({ errors, touched }) => (
+                  <Form>
+                    {selectedOption === "no" && (
+                      <div>
+                        <label htmlFor="linkedinEmail" className="mr-4">
+                          Your LinkedIn Email:
+                        </label>
+                        <Field
+                          type="email"
+                          id="linkedinEmail"
+                          name="linkedinEmail"
+                          className="mt-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        />
+                        {errors.linkedinEmail && touched.linkedinEmail && (
+                          <div className="text-red-500 text-sm my-2">
+                            {errors.linkedinEmail}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    <button
+                      type="submit"
+                      className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+                    >
+                      Continue
+                    </button>
+                  </Form>
+                )}
+              </Formik>
             </div>
-          </div>
-          {/* Modal footer */}
-          <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <button
-              data-modal-hide="staticModal"
-              type="button"
-              className="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
-            >
-              Continue
-            </button>
           </div>
         </div>
       </div>

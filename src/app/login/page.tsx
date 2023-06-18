@@ -13,7 +13,6 @@ import { FormikHelpers } from "formik";
 import app from "../../../firebase";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/contexts/AuthContext";
-import dotenv from 'dotenv';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
