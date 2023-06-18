@@ -1,5 +1,5 @@
 import React, { useEffect, createRef, useState, useContext } from "react";
-import { FaSignOutAlt, FaCog, FaUser, FaLinkedin } from "react-icons/fa";
+import { FaSignOutAlt, FaCog, FaUser, FaLinkedin, FaMoneyCheckAlt } from "react-icons/fa";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -43,6 +43,11 @@ const Avatar = ({
     };
   }, [isMenuOpen, menuRef]);
 
+  const handleLinkedInClick = () => {
+    setShowLinkedInModal(true);
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="relative">
       <button onClick={toggleMenu}>
@@ -71,7 +76,16 @@ const Avatar = ({
             </li>
             <li className="rounded-lg hover:bg-gray-200">
               <button
-                onClick={() => setShowLinkedInModal(true)}
+                onClick={onSettings}
+                className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
+              >
+                <FaMoneyCheckAlt className="mr-2" />
+                <span>Billing</span>
+              </button>
+            </li>
+            <li className="rounded-lg hover:bg-gray-200">
+              <button
+                onClick={handleLinkedInClick}
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
               >
                 <FaLinkedin className="mr-2" />

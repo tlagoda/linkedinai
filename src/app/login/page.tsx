@@ -68,9 +68,9 @@ export default function LogIn() {
 
       const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
 
-      window.location.href = url;
+      // window.location.href = url;
 
-      // router.push("/generate");
+      router.push("/generate");
     } catch (error) {
       setErrorWhileLoggingIn(true);
       console.error(error);

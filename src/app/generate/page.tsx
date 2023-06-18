@@ -20,7 +20,7 @@ import LinkedInConnectModal from "../components/LinkedInConnectModal";
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
-  const [customPrompt, setCustomPrompt] = useState(true);
+  const [customPrompt, setCustomPrompt] = useState(false);
   const [userJustLoggedOut, setUserJustLoggedOut] = useState(false);
   const [showLinkedInModal, setShowLinkedInModal] = useState(false);
 

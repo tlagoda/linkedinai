@@ -5,7 +5,7 @@ function Toggle({
 }: {
   togglePrompt: (customPrompt: boolean) => void;
 }) {
-  const [isGeneric, setIsGeneric] = useState(false);
+  const [isGeneric, setIsGeneric] = useState(true);
 
   const toggle = (customPrompt: boolean) => {
     setIsGeneric(!customPrompt);
