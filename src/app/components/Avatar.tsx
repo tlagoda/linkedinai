@@ -12,7 +12,7 @@ const Avatar = ({
   setShowLinkedInModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { logout } = useContext(AuthContext);
+  const { logout, hasConnectedLinkedIn } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -83,7 +83,7 @@ const Avatar = ({
                 <span>Billing</span>
               </button>
             </li>
-            <li className="rounded-lg hover:bg-gray-200">
+            {!hasConnectedLinkedIn && <li className="rounded-lg hover:bg-gray-200">
               <button
                 onClick={handleLinkedInClick}
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
@@ -91,7 +91,7 @@ const Avatar = ({
                 <FaLinkedin className="mr-2" />
                 <span>Connect to LinkedIn</span>
               </button>
-            </li>
+            </li>}
             <li className="rounded-lg hover:bg-gray-200">
               <button
                 onClick={onSettings}
