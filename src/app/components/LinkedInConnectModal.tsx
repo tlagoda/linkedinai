@@ -65,7 +65,10 @@ const LinkedInConnectModal = ({
         const userDoc = querySnapshot.docs[0];
         const userRef = doc(db, "users", userDoc.id);
 
-        if (userDoc.data().linkedInEmail) {
+        if (
+          userDoc.data().hasOwnProperty("linkedInEmail") &&
+          userDoc.data().linkedInEmail !== ""
+        ) {
           await updateDoc(userRef, { linkedInEmail });
         } else {
           await setDoc(userRef, { linkedInEmail: email }, { merge: true });
@@ -168,7 +171,6 @@ const LinkedInConnectModal = ({
               <Formik
                 initialValues={{ linkedinEmail: "" }}
                 validationSchema={validationSchema}
-                isInitialValid={selectedOption === "yes"}
                 onSubmit={(values) => {
                   const { linkedinEmail } = values;
                   handleSubmit(linkedinEmail);
