@@ -46,6 +46,7 @@ export default function Page() {
         <Toggle togglePrompt={setCustomPrompt} />
         <HorizontalDivider />
         {!customPrompt && <OptionsPanel optionsData={optionsData} />}
+        
       </div>
       <div className="w-2/3 h-full flex flex-col p-4">
         <div className="h-full flex flex-col">

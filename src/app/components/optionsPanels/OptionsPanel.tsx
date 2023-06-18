@@ -1,9 +1,9 @@
 import React from "react";
-import OptionsSelect from "../OptionsSelect";
+import CustomSelect from "../CustomSelect";
 
 interface OptionData {
   values: string[];
-  defaultValue: string;
+  placeholder: string;
   label: string;
 }
 
@@ -15,12 +15,11 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ optionsData }) => {
   return (
     <>
       {optionsData.map((optionData, index) => (
-        <OptionsSelect
+        <CustomSelect
           key={index}
           options={optionData.values}
-          onSelect={() => {}}
           label={optionData.label}
-          defaultValue={optionData.defaultValue}
+          placeholder={optionData.placeholder}
         />
       ))}
     </>
