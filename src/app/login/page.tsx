@@ -13,6 +13,7 @@ import { FormikHelpers } from "formik";
 import app from "../../../firebase";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/contexts/AuthContext";
+import dotenv from 'dotenv';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -55,7 +56,21 @@ export default function LogIn() {
         await setPersistence(auth, browserLocalPersistence);
       }
       await signInWithEmailAndPassword(auth, values.email, values.password);
-      router.push("/generate");
+      const clientId = process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_ID;
+      const redirectUri = encodeURIComponent(
+        "http://localhost:8888/auth/linkedin/callback"
+      );
+      const state = "randomString";
+      const scope = encodeURIComponent(
+        "r_liteprofile r_emailaddress w_member_social"
+      );
+      const responseType = "code";
+
+      const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
+
+      window.location.href = url;
+
+      // router.push("/generate");
     } catch (error) {
       setErrorWhileLoggingIn(true);
       console.error(error);
