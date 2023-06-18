@@ -1,13 +1,15 @@
 import React, { useEffect, createRef, useState, useContext } from "react";
-import { FaSignOutAlt, FaCog, FaUser } from "react-icons/fa";
+import { FaSignOutAlt, FaCog, FaUser, FaLinkedin } from "react-icons/fa";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Avatar = ({
   setUserJustLoggedOut,
+  setShowLinkedInModal,
 }: {
   setUserJustLoggedOut: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowLinkedInModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { logout } = useContext(AuthContext);
@@ -65,6 +67,15 @@ const Avatar = ({
               >
                 <FaUser className="mr-2" />
                 <span>Profil</span>
+              </button>
+            </li>
+            <li className="rounded-lg hover:bg-gray-200">
+              <button
+                onClick={() => setShowLinkedInModal(true)}
+                className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
+              >
+                <FaLinkedin className="mr-2" />
+                <span>Connect to LinkedIn</span>
               </button>
             </li>
             <li className="rounded-lg hover:bg-gray-200">

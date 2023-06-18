@@ -45,7 +45,7 @@ export default function SignUp() {
         userId: user.uid,
         email: user.email,
       });
-      router.push("/login");
+      router.push("/generate");
     } catch (error) {
       setErrorWhileSigningUp(true);
       console.error(error);
