@@ -1,12 +1,19 @@
-import React, { useEffect, createRef } from "react";
+import React, { useEffect, createRef, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
-import LinkedInForm from "./LinkedInForm";
+import { HorizontalDivider } from "./HorizontalDivider";
+import { Form, Field, ErrorMessage } from "formik";
 
 const LinkedInConnectModal = ({
   setShowLinkedInModal,
 }: {
   setShowLinkedInModal: (showModal: boolean) => void;
 }) => {
+  const [selectedOption, setSelectedOption] = useState("no");
+
+  const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(e.target.value);
+  };
+
   const modalRef = createRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -68,7 +75,73 @@ const LinkedInConnectModal = ({
           </div>
           {/* Modal body */}
           <div className="p-6 space-y-6">
-            <LinkedInForm />
+            <div className="text-gray-900">
+              <p className="text-base leading-relaxed mb-10">
+                To enable automatic posting of the generated chat GPT content on
+                your LinkedIn profile, please provide us with your LinkedIn
+                email address. This information is necessary to link your two
+                accounts and authorize our application to publish on your
+                behalf. Rest assured that we value your privacy and will handle
+                your data securely.
+              </p>
+              <HorizontalDivider />
+              <div className="my-10">
+                <p className="text-gray-800 mb-2">
+                  Are the email addresses you used to sign up and your LinkedIn
+                  email the same?
+                </p>
+                <div className="flex flex-col">
+                  <label htmlFor="yesOption" className="mb-2">
+                    <input
+                      type="radio"
+                      id="yesOption"
+                      value="yes"
+                      checked={selectedOption === "yes"}
+                      onChange={handleOptionChange}
+                      className="mr-4"
+                    />
+                    The email addresses are the same.
+                  </label>
+                  <label htmlFor="noOption" className="mb-2">
+                    <input
+                      type="radio"
+                      id="noOption"
+                      value="no"
+                      checked={selectedOption === "no"}
+                      onChange={handleOptionChange}
+                      className="mr-4"
+                    />
+                    The email addresses are different.
+                  </label>
+                </div>
+              </div>
+              {selectedOption === "no" && (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    // votre logique de soumission de formulaire ici
+                  }}
+                >
+                  <div>
+                    <label htmlFor="linkedinEmail" className="mr-4">
+                      Your LinkedIn Email:
+                    </label>
+                    <input
+                      type="email"
+                      id="linkedinEmail"
+                      name="linkedinEmail"
+                      onChange={(e) => {
+                        // votre logique de gestion du changement ici
+                      }}
+                      onBlur={(e) => {
+                        // votre logique de gestion de la perte de focus ici
+                      }}
+                      className="mt-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    />
+                  </div>
+                </form>
+              )}
+            </div>
           </div>
           {/* Modal footer */}
           <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
