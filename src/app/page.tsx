@@ -21,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         const userData = {
           uid: user.uid,
           email: user.email,
@@ -34,7 +33,7 @@ export default function Home() {
     });
 
     return () => unsubscribe();
-  }, [auth]);
+  }, [auth, dispatch]);
 
   return (
     <main>

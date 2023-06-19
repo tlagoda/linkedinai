@@ -16,6 +16,7 @@ import LinkedInConnectModal from "../components/LinkedInConnectModal";
 import { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/features/auth/authSlice";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -44,41 +45,43 @@ export default function Page() {
     });
 
   return (
-    <div className="h-screen w-screen max-h-screen bg-gray-900 font-mono text-slate-100 flex">
-      <div className="absolute top-0 right-0 m-4">
-        <Avatar setShowLinkedInModal={setShowLinkedInModal} />
-      </div>
-      <div className="w-1/3 h-full bg-gray-800">
-        <Toggle togglePrompt={setCustomPrompt} />
-        <HorizontalDivider />
-        {!customPrompt && <OptionsPanel optionsData={optionsData} />}
-      </div>
-      <div className="w-2/3 h-full flex flex-col p-4">
-        <div className="h-full flex flex-col">
-          <div className="h-3/4 flex flex-col">
-            <LinkedInPost content={content} displayLoader={displayLoader} />
-          </div>
-          <div className="h-1/4 flex items-center">
-            {customPrompt ? (
-              <Prompt
-                handleSendMessage={setContent}
-                setDisplayLoader={setDisplayLoader}
-                notifyError={notifyError}
-              />
-            ) : (
-              <GenerateButton
-                handleSendMessage={setContent}
-                setDisplayLoader={setDisplayLoader}
-                notifyError={notifyError}
-              />
-            )}
+    <ProtectedRoute>
+      <div className="h-screen w-screen max-h-screen bg-gray-900 font-mono text-slate-100 flex">
+        <div className="absolute top-0 right-0 m-4">
+          <Avatar setShowLinkedInModal={setShowLinkedInModal} />
+        </div>
+        <div className="w-1/3 h-full bg-gray-800">
+          <Toggle togglePrompt={setCustomPrompt} />
+          <HorizontalDivider />
+          {!customPrompt && <OptionsPanel optionsData={optionsData} />}
+        </div>
+        <div className="w-2/3 h-full flex flex-col p-4">
+          <div className="h-full flex flex-col">
+            <div className="h-3/4 flex flex-col">
+              <LinkedInPost content={content} displayLoader={displayLoader} />
+            </div>
+            <div className="h-1/4 flex items-center">
+              {customPrompt ? (
+                <Prompt
+                  handleSendMessage={setContent}
+                  setDisplayLoader={setDisplayLoader}
+                  notifyError={notifyError}
+                />
+              ) : (
+                <GenerateButton
+                  handleSendMessage={setContent}
+                  setDisplayLoader={setDisplayLoader}
+                  notifyError={notifyError}
+                />
+              )}
+            </div>
           </div>
         </div>
+        {showLinkedInModal && (
+          <LinkedInConnectModal setShowLinkedInModal={setShowLinkedInModal} />
+        )}
+        <ToastContainer />
       </div>
-      {showLinkedInModal && (
-        <LinkedInConnectModal setShowLinkedInModal={setShowLinkedInModal} />
-      )}
-      <ToastContainer />
-    </div>
+    </ProtectedRoute>
   );
 }
