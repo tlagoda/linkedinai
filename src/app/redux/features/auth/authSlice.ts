@@ -1,11 +1,16 @@
 "use client";
 
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "firebase/auth";
 
 export interface AuthState {
-  user: any;
+  user: AuthenticatedUser | null;
 }
+
+export type AuthenticatedUser = {
+  uid: string;
+  email: string;
+  displayName: string;
+};
 
 const initialState: AuthState = {
   user: null,
