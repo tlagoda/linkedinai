@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
@@ -12,7 +12,8 @@ import {
 import { FormikHelpers } from "formik";
 import app from "../../../firebase";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/contexts/AuthContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -25,7 +26,7 @@ export default function LogIn() {
   const [errorWhileLogingIn, setErrorWhileLoggingIn] = useState(false);
   const router = useRouter();
 
-  const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
     if (currentUser) {

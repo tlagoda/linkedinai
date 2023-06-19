@@ -1,9 +1,8 @@
-import React, { useEffect, createRef, useState, useContext } from "react";
+import React, { useEffect, createRef, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { HorizontalDivider } from "./HorizontalDivider";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { AuthContext } from "@/contexts/AuthContext";
 import {
   query,
   where,
@@ -14,6 +13,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const LinkedInConnectModal = ({
   setShowLinkedInModal,
@@ -48,7 +49,7 @@ const LinkedInConnectModal = ({
       .required("Please enter your LinkedIn email."),
   });
 
-  const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
 
   const handleSubmit = async (email: string) => {
     if (!currentUser) return;
