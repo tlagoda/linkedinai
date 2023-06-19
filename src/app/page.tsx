@@ -4,12 +4,35 @@ import Image from "next/image";
 import Header from "./components/Header";
 import CallToActionLink from "./components/CallToActionLink";
 import { AuthContext } from "./../contexts/AuthContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { login, logout } from "./redux/features/auth/authSlice";
+import app from "../../firebase";
 
 export default function Home() {
   const { currentUser } = useContext(AuthContext);
-
   const CTALink = currentUser ? "/generate" : "/login";
+
+  const dispatch = useDispatch();
+  const auth = getAuth(app);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userData = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        };
+        dispatch(login(userData));
+      } else {
+        dispatch(logout());
+      }
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
 
   return (
     <main>

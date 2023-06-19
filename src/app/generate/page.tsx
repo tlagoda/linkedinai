@@ -16,6 +16,9 @@ import OptionsPanel from "../components/optionsPanels/OptionsPanel";
 import { optionsData } from "../components/optionsPanels/data";
 import GenerateButton from "../components/GenerateButton";
 import LinkedInConnectModal from "../components/LinkedInConnectModal";
+import { RootState } from "../redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../redux/features/auth/authSlice";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -23,6 +26,9 @@ export default function Page() {
   const [customPrompt, setCustomPrompt] = useState(false);
   const [userJustLoggedOut, setUserJustLoggedOut] = useState(false);
   const [showLinkedInModal, setShowLinkedInModal] = useState(false);
+
+  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch();
 
   const { currentUser } = useContext(AuthContext);
   const router = useRouter();
@@ -32,6 +38,7 @@ export default function Page() {
     if (!currentUser) {
       router.push("/login");
     }
+    dispatch(login(currentUser));
   }, [currentUser, router, userJustLoggedOut]);
 
   const notifyError = () =>

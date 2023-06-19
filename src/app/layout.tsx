@@ -1,6 +1,6 @@
 import React from "react";
-import { AuthProvider } from "../contexts/AuthProvider";
 import "./global.css";
+import { Providers } from "./redux/provider";
 
 export const metadata = {
   title: "Sumariz: Watch Less, Know More",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
