@@ -3,15 +3,16 @@
 import Image from "next/image";
 import Header from "./components/Header";
 import CallToActionLink from "./components/CallToActionLink";
-import { AuthContext } from "./../contexts/AuthContext";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { login, logout } from "./redux/features/auth/authSlice";
 import app from "../../firebase";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
 
 export default function Home() {
-  const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
   const CTALink = currentUser ? "/generate" : "/login";
 
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function Home() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user);
         const userData = {
           uid: user.uid,
           email: user.email,
@@ -32,13 +34,13 @@ export default function Home() {
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
+  }, [auth]);
 
   return (
     <main>
       <div className="min-h-screen font-mono">
         <div className="h-screen w-screen bg-gray-900 pt-4">
-          <Header title="Sumariz.ai" />
+          {currentUser && <Header title="Sumariz.ai" />}
           <div className="flex mt-20 mx-auto">
             <div className="w-6/12 px-8">
               <h2 className="text-8xl text-slate-100 text-center mb-10">

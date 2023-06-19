@@ -1,18 +1,25 @@
-import React, { useEffect, createRef, useState, useContext } from "react";
-import { FaSignOutAlt, FaCog, FaUser, FaLinkedin, FaMoneyCheckAlt } from "react-icons/fa";
-import { AuthContext } from "@/contexts/AuthContext";
+import React, { useEffect, createRef, useState } from "react";
+import {
+  FaSignOutAlt,
+  FaCog,
+  FaUser,
+  FaLinkedin,
+  FaMoneyCheckAlt,
+} from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { getAuth, signOut } from "firebase/auth";
+import { logout } from "../redux/features/auth/authSlice";
+import app from "../../../firebase";
 
 const Avatar = ({
-  setUserJustLoggedOut,
   setShowLinkedInModal,
 }: {
-  setUserJustLoggedOut: React.Dispatch<React.SetStateAction<boolean>>;
   setShowLinkedInModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { logout, hasConnectedLinkedIn } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const router = useRouter();
 
@@ -20,11 +27,17 @@ const Avatar = ({
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const auth = getAuth(app);
+
   const onSettings = () => {};
   const handleLogout = () => {
-    setUserJustLoggedOut(true);
-    logout();
-    router.push("/");
+    signOut(auth)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const menuRef = createRef<HTMLDivElement>();
@@ -83,7 +96,7 @@ const Avatar = ({
                 <span>Billing</span>
               </button>
             </li>
-            {!hasConnectedLinkedIn && <li className="rounded-lg hover:bg-gray-200">
+            <li className="rounded-lg hover:bg-gray-200">
               <button
                 onClick={handleLinkedInClick}
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
@@ -91,7 +104,7 @@ const Avatar = ({
                 <FaLinkedin className="mr-2" />
                 <span>Connect to LinkedIn</span>
               </button>
-            </li>}
+            </li>
             <li className="rounded-lg hover:bg-gray-200">
               <button
                 onClick={onSettings}

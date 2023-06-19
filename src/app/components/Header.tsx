@@ -1,6 +1,6 @@
-import { AuthContext } from "@/contexts/AuthContext";
 import CallToActionLink from "./CallToActionLink";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 interface HeaderProps {
   title: string;
@@ -13,7 +13,7 @@ export default function Header({
   menuItems = ["Product", "Examples", "Pricing"],
   CTATitle = "Get started",
 }: HeaderProps) {
-  const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
   
   const CTALink = currentUser ? "/generate" : "/signup";
 
