@@ -1,35 +1,39 @@
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import React, { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "../../../firebase";
+import { useRouter } from 'next/navigation';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const currentUser = useSelector((state: RootState) => state.auth.user);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
 
-  // Ajoute un nouvel état pour suivre si l'authentification de l'utilisateur est en cours de vérification
-  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const auth = getAuth(app);
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(user !== null);
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
-    if (!currentUser) {
-      router.push("/login");
-    } else {
-      // L'utilisateur est authentifié, donc arrête le chargement
-      setLoading(false);
+    if (!isLoading && !isAuthenticated) {
+      router.push('/login');
     }
-  }, [currentUser]);
+  }, [isLoading, isAuthenticated, router]);
 
-  // Ne rend rien tant que l'authentification de l'utilisateur est en cours de vérification
-  if (loading) {
-    return null;
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  // Une fois que l'authentification de l'utilisateur a été vérifiée, rend le composant enfant ou redirige vers la page de connexion
-  return currentUser ? <>{children}</> : null;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

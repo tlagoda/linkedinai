@@ -8,12 +8,12 @@ import {
   setPersistence,
   browserLocalPersistence,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { FormikHelpers } from "formik";
 import app from "../../../firebase";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { User } from "firebase/auth";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,13 +26,26 @@ export default function LogIn() {
   const [errorWhileLogingIn, setErrorWhileLoggingIn] = useState(false);
   const router = useRouter();
 
-  const currentUser = useSelector((state: RootState) => state.auth.user);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      if (!user) {
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (currentUser) {
       router.push("/generate");
     }
-  });
+  }, [currentUser, router]);
 
   const onSubmit = async (
     values: {
@@ -63,6 +76,10 @@ export default function LogIn() {
     }
     setSubmitting(false);
   };
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <section className="bg-gray-900">
