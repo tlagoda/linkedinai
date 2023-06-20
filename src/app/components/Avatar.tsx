@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../../firebase";
+import { UserService } from "@/services/user.service";
 
 const Avatar = ({
   setShowLinkedInModal,
@@ -53,8 +54,11 @@ const Avatar = ({
   }, [isMenuOpen, menuRef]);
 
   const handleLinkedInClick = () => {
-    setShowLinkedInModal(true);
-    setIsMenuOpen(false);
+    const url = UserService.getLinkedInAuthorizationUrl(auth.currentUser?.uid);
+    if (!url) {
+      return;
+    }
+    window.location.href = url;
   };
 
   return (

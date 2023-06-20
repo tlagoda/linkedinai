@@ -47,7 +47,6 @@ export default function Home() {
             <CallToActionLink content="Summariz" href={CTALink} />
           </div>
         </div>
-        <div className="h-screen w-screen pt-4"></div>
       </div>
     </main>
   );
