@@ -9,11 +9,13 @@ import {
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { getAuth, signOut } from "firebase/auth";
-import app from "../../../firebase";
+import app, { db } from "../../../firebase";
 import { UserService } from "@/services/user.service";
+import { doc, getDoc } from "firebase/firestore";
 
 const Avatar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hasAuthorizedLinkedIn, setHasAuthorizedLinkedIn] = useState(false);
   const router = useRouter();
 
   const toggleMenu = () => {
@@ -21,6 +23,22 @@ const Avatar = () => {
   };
 
   const auth = getAuth(app);
+
+  useEffect(() => {
+    const fetchLinkedInAuthorization = async () => {
+      if (!auth.currentUser) {
+        return;
+      }
+      const docRef: any = doc(db, "users", auth.currentUser.uid);
+      const myDoc: any = await getDoc(docRef);
+      if (myDoc.exists) {
+        setHasAuthorizedLinkedIn(myDoc.data().hasAuthorizedLinkedIn);
+      } else {
+        console.log("No such document!");
+      }
+    };
+    fetchLinkedInAuthorization();
+  }, []);
 
   const onSettings = () => {};
   const handleLogout = () => {
@@ -92,15 +110,17 @@ const Avatar = () => {
                 <span>Billing</span>
               </button>
             </li>
-            <li className="rounded-lg hover:bg-gray-200">
-              <button
-                onClick={handleLinkedInClick}
-                className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
-              >
-                <FaLinkedin className="mr-2" />
-                <span>Connect to LinkedIn</span>
-              </button>
-            </li>
+            {!hasAuthorizedLinkedIn && (
+              <li className="rounded-lg hover:bg-gray-200">
+                <button
+                  onClick={handleLinkedInClick}
+                  className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
+                >
+                  <FaLinkedin className="mr-2" />
+                  <span>Connect to LinkedIn</span>
+                </button>
+              </li>
+            )}
             <li className="rounded-lg hover:bg-gray-200">
               <button
                 onClick={onSettings}

@@ -7,7 +7,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import app from "../../../firebase";
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 
@@ -41,10 +41,10 @@ export default function SignUp() {
 
       const user = userCredential.user;
 
-      await addDoc(collection(db, "users"), {
-        userId: user.uid,
+      await setDoc(doc(db, "users", user.uid), {
         email: user.email,
       });
+
       router.push("/generate");
     } catch (error) {
       setErrorWhileSigningUp(true);
