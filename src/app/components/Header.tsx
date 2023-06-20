@@ -1,6 +1,4 @@
 import CallToActionLink from "./CallToActionLink";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 
 interface HeaderProps {
   title: string;
@@ -13,9 +11,8 @@ export default function Header({
   menuItems = ["Product", "Examples", "Pricing"],
   CTATitle = "Get started",
 }: HeaderProps) {
-  const currentUser = useSelector((state: RootState) => state.auth.user);
   
-  const CTALink = currentUser ? "/generate" : "/signup";
+  const CTALink = "/generate";
 
   return (
     <div className="flex items-center justify-between mx-16">
