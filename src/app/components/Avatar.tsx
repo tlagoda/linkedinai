@@ -8,9 +8,7 @@ import {
 } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
-import { logout } from "../redux/features/auth/authSlice";
 import app from "../../../firebase";
 
 const Avatar = ({
@@ -19,8 +17,6 @@ const Avatar = ({
   setShowLinkedInModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dispatch = useDispatch();
-
   const router = useRouter();
 
   const toggleMenu = () => {

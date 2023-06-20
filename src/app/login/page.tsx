@@ -14,6 +14,7 @@ import { FormikHelpers } from "formik";
 import app from "../../../firebase";
 import { useRouter } from "next/navigation";
 import { User } from "firebase/auth";
+import LoadingPage from "../components/LoadingPage";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()

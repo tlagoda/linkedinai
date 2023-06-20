@@ -19,7 +19,7 @@ import { RootState } from "../redux/store";
 const LinkedInConnectModal = ({
   setShowLinkedInModal,
 }: {
-  setShowLinkedInModal: (showModal: boolean) => void;
+  setShowLinkedInModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [selectedOption, setSelectedOption] = useState("no");
 

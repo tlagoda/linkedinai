@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Toggle({
   togglePrompt,
 }: {
-  togglePrompt: (customPrompt: boolean) => void;
+  togglePrompt: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [isGeneric, setIsGeneric] = useState(true);
 
