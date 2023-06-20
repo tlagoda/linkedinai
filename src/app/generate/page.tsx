@@ -12,7 +12,6 @@ import Avatar from "../components/Avatar";
 import OptionsPanel from "../components/optionsPanels/OptionsPanel";
 import { optionsData } from "../components/optionsPanels/data";
 import GenerateButton from "../components/GenerateButton";
-import LinkedInConnectModal from "../components/LinkedInConnectModal";
 import { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/features/auth/authSlice";
@@ -22,7 +21,6 @@ export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(false);
-  const [showLinkedInModal, setShowLinkedInModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -48,7 +46,7 @@ export default function Page() {
     <ProtectedRoute>
       <div className="h-screen w-screen max-h-screen bg-gray-900 font-mono text-slate-100 flex">
         <div className="absolute top-0 right-0 m-4">
-          <Avatar setShowLinkedInModal={setShowLinkedInModal} />
+          <Avatar />
         </div>
         <div className="w-1/3 h-full bg-gray-800">
           <Toggle togglePrompt={setCustomPrompt} />
@@ -77,9 +75,6 @@ export default function Page() {
             </div>
           </div>
         </div>
-        {showLinkedInModal && (
-          <LinkedInConnectModal setShowLinkedInModal={setShowLinkedInModal} />
-        )}
         <ToastContainer />
       </div>
     </ProtectedRoute>

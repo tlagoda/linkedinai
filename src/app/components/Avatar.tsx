@@ -12,11 +12,7 @@ import { getAuth, signOut } from "firebase/auth";
 import app from "../../../firebase";
 import { UserService } from "@/services/user.service";
 
-const Avatar = ({
-  setShowLinkedInModal,
-}: {
-  setShowLinkedInModal: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const Avatar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
