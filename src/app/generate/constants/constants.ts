@@ -3,11 +3,9 @@ choose from our predefined ones and watch as we create a professional
 and engaging post for your LinkedIn profile. Let's start crafting! 🚀`;
 
 export const promptTips = [
-  "Use clear and specific prompts to guide your AI in content generation.",
-  "Add a personal touch by including professional experiences or anecdotes.",
-  "Be authentic and engage with your audience by asking questions or encouraging comments.",
-  "Use relevant hashtags to increase the visibility of your post.",
-  "Optimize the length of your post for easy and concise reading.",
-  "Include visually appealing media such as images or videos to capture attention.",
-  "Proofread and edit your content to avoid spelling or grammar errors.",
+  "Provide clear instructions to our AI for generating content tailored to your LinkedIn audience.",
+  "Utilize the expertise of our AI to craft personalized and compelling LinkedIn posts.",
+  "Experiment with different prompts and input variations to explore diverse content possibilities.",
+  "Leverage the power of our AI to generate engaging introductions and captivating storytelling.",
+  "Customize the tone and style of our AI-generated posts to align with your professional brand.",
 ];
