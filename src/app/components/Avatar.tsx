@@ -34,7 +34,7 @@ const Avatar = () => {
       if (myDoc.exists) {
         setHasAuthorizedLinkedIn(myDoc.data().hasAuthorizedLinkedIn);
       } else {
-        console.log("No such document!");
+        setHasAuthorizedLinkedIn(false)
       }
     };
     fetchLinkedInAuthorization();
