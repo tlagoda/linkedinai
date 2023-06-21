@@ -2,7 +2,7 @@
 
 import LinkedInPost from "../components/LinkedInPost";
 import Prompt from "../components/Prompt";
-import { DEFAULT_LINKEDIN_CONTENT } from "./constants/constants";
+import { DEFAULT_LINKEDIN_CONTENT, promptTips } from "./constants/constants";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -49,8 +49,31 @@ export default function Page() {
           <Avatar />
         </div>
         <div className="w-1/3 h-full bg-gray-800">
-          <Toggle togglePrompt={setCustomPrompt} />
-          <HorizontalDivider />
+          <div>
+            <Toggle togglePrompt={setCustomPrompt} />
+            <HorizontalDivider />
+            <p className="mx-8 mt-4 text-justify">
+              Customize your posts, access brilliant LinkedIn content, and
+              elevate your online presence:
+            </p>
+            {customPrompt && (
+              <>
+                <HorizontalDivider />
+                <div className="mx-8">
+                  <h3 className="mb-4 text-center text-xl font-bold">
+                    Tips for custom prompts:
+                  </h3>
+                  <ul className="list-decimal ml-8">
+                    {promptTips.map((tip: string, index: number) => (
+                      <li key={index} className="mb-4">
+                        {tip}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
           {!customPrompt && <OptionsPanel optionsData={optionsData} />}
         </div>
         <div className="w-2/3 h-full flex flex-col p-4">
