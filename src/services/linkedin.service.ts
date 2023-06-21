@@ -1,4 +1,4 @@
-export class UserService {
+export class LinkedInService {
   static getLinkedInAuthorizationUrl(uid: string | undefined): string | null {
     if (!uid) return null;
     const clientId = process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_ID;
@@ -14,4 +14,6 @@ export class UserService {
     const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
     return url;
   }
+
+  
 }

@@ -1,9 +1,13 @@
-export default function Loader({ colorClass = "violet-500" }: { colorClass?: string }) {
+export default function Loader({
+  colorClass = "violet-500",
+}: {
+  colorClass?: string;
+}) {
   return (
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`inline w-52 h-52 mr-2 text-gray-200 animate-spin fill-${colorClass}`}
+        className={`w-52 h-52 mr-2 text-gray-200 animate-spin fill-${colorClass}`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

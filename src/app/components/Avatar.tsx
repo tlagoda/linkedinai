@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { getAuth, signOut } from "firebase/auth";
 import app, { db } from "../../../firebase";
-import { UserService } from "@/services/user.service";
+import { LinkedInService } from "@/services/linkedin.service";
 import { doc, getDoc } from "firebase/firestore";
 
 const Avatar = () => {
@@ -68,7 +68,7 @@ const Avatar = () => {
   }, [isMenuOpen, menuRef]);
 
   const handleLinkedInClick = () => {
-    const url = UserService.getLinkedInAuthorizationUrl(auth.currentUser?.uid);
+    const url = LinkedInService.getLinkedInAuthorizationUrl(auth.currentUser?.uid);
     if (!url) {
       return;
     }
