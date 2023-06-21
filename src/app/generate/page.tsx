@@ -60,12 +60,12 @@ export default function Page() {
               <>
                 <HorizontalDivider />
                 <div className="mx-8">
-                  <h3 className="mb-4 text-center text-xl font-bold">
+                  <h3 className="mb-4 text-center text-2xl font-bold text-violet-500">
                     Tips for custom prompts:
                   </h3>
                   <ul className="list-decimal ml-8">
                     {promptTips.map((tip: string, index: number) => (
-                      <li key={index} className="mb-4">
+                      <li key={index} className="mb-4 marker:text-violet-500 marker:text-lg">
                         {tip}
                       </li>
                     ))}

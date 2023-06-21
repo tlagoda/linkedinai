@@ -1,8 +1,4 @@
-export default function Loader({
-  colorClass = "violet-500",
-}: {
-  colorClass?: string;
-}) {
+export default function Loader() {
   return (
     <div role="status">
       <svg
