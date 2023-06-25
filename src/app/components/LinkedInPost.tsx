@@ -14,13 +14,13 @@ export default function LinkedInPost({
         <div className="flex items-center">
           <Image
             className="w-12 rounded-full mr-4"
-            src="/pp-linkedin.jpeg"
-            alt="Avatar of Thibaut Lagoda"
+            src="/pp-linkedin.png"
+            alt="LinkedIn Profile Picture"
             width={100}
             height={100}
           />
           <div>
-            <p className="font-bold">Thibaut Lagoda</p>
+            <p className="font-bold">John Doe</p>
             <p className="text-sm text-gray-600">2nd • 1h</p>
           </div>
         </div>

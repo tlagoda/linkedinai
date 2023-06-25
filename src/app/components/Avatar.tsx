@@ -79,7 +79,7 @@ const Avatar = () => {
     <div className="relative">
       <button onClick={toggleMenu}>
         <Image
-          src="/pp-linkedin.jpeg"
+          src="/pp-linkedin.png"
           alt="Avatar"
           width={48}
           height={48}
