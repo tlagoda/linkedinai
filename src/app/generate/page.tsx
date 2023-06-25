@@ -76,7 +76,7 @@ export default function Page() {
           </div>
           {!customPrompt && <OptionsPanel optionsData={optionsData} />}
         </div>
-        <div className="w-2/3 h-full flex flex-col p-4">
+        <div className="w-1/3 h-full flex flex-col p-4">
           <div className="h-full flex flex-col">
             <div className="h-3/4 flex flex-col">
               <LinkedInPost content={content} displayLoader={displayLoader} />
@@ -96,6 +96,11 @@ export default function Page() {
                 />
               )}
             </div>
+          </div>
+        </div>
+        <div className="w-1/3 h-full flex flex-col p-4 bg-gray-800">
+          <div className="h-full flex flex-col">
+            
           </div>
         </div>
         <ToastContainer />

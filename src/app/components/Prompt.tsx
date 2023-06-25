@@ -33,7 +33,7 @@ export default function Prompt({
 
   return (
     <>
-      <div className="mt-4 flex w-1/2 h-3/4 bg-black">
+      <div className="mt-4 flex w-full h-3/4 bg-black">
         <textarea
           className="resize-none w-5/6 px-4 py-2 rounded-l border shadow text-sm bg-white text-gray-900 focus:outline-none"
           placeholder="Enter your prompt here..."
