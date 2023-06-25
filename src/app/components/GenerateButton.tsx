@@ -33,7 +33,7 @@ const GenerateButton = ({
     >
       Generate!{" "}
       <span role="img" aria-label="Rocket" className="ml-2">
-        🚀
+        📝
       </span>
     </button>
   );

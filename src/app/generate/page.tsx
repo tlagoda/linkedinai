@@ -16,6 +16,7 @@ import { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/features/auth/authSlice";
 import ProtectedRoute from "../components/ProtectedRoute";
+import PublishSection from "../components/PublishSection";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -48,7 +49,7 @@ export default function Page() {
         <div className="absolute top-0 right-0 m-4">
           <Avatar />
         </div>
-        <div className="w-1/3 h-full bg-gray-800">
+        <div className="w-1/3 h-full bg-gray-800 pt-5">
           <div>
             <Toggle togglePrompt={setCustomPrompt} />
             <HorizontalDivider />
@@ -99,8 +100,8 @@ export default function Page() {
           </div>
         </div>
         <div className="w-1/3 h-full flex flex-col p-4 bg-gray-800">
-          <div className="h-full flex flex-col">
-            
+          <div className="h-full flex flex-col pt-5 mr-10">
+              <PublishSection />
           </div>
         </div>
         <ToastContainer />
