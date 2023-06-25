@@ -16,7 +16,7 @@ import { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/features/auth/authSlice";
 import ProtectedRoute from "../components/ProtectedRoute";
-import PublishSection from "../components/PublishSection";
+import PublishButton from "../components/PublishButton";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -66,7 +66,10 @@ export default function Page() {
                   </h3>
                   <ul className="list-decimal ml-8">
                     {promptTips.map((tip: string, index: number) => (
-                      <li key={index} className="mb-4 marker:text-violet-500 marker:text-lg">
+                      <li
+                        key={index}
+                        className="mb-4 marker:text-violet-500 marker:text-lg"
+                      >
                         {tip}
                       </li>
                     ))}
@@ -77,7 +80,7 @@ export default function Page() {
           </div>
           {!customPrompt && <OptionsPanel optionsData={optionsData} />}
         </div>
-        <div className="w-1/3 h-full flex flex-col p-4">
+        <div className="w-2/3 h-full flex flex-col py-4 px-20">
           <div className="h-full flex flex-col">
             <div className="h-3/4 flex flex-col">
               <LinkedInPost content={content} displayLoader={displayLoader} />
@@ -90,20 +93,23 @@ export default function Page() {
                   notifyError={notifyError}
                 />
               ) : (
-                <GenerateButton
-                  handleSendMessage={setContent}
-                  setDisplayLoader={setDisplayLoader}
-                  notifyError={notifyError}
-                />
+                <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
+                  <GenerateButton
+                    handleSendMessage={setContent}
+                    setDisplayLoader={setDisplayLoader}
+                    notifyError={notifyError}
+                  />
+                  <PublishButton />
+                </div>
               )}
             </div>
           </div>
         </div>
-        <div className="w-1/3 h-full flex flex-col p-4 bg-gray-800">
+        {/* <div className="w-1/3 h-full flex flex-col p-4 bg-gray-800">
           <div className="h-full flex flex-col pt-5 mr-10">
               <PublishSection />
           </div>
-        </div>
+        </div> */}
         <ToastContainer />
       </div>
     </ProtectedRoute>

@@ -9,7 +9,7 @@ export default function LinkedInPost({
   displayLoader: boolean;
 }) {
   return (
-    <div className="h-full bg-white text-black rounded-lg overflow-auto shadow-md">
+    <div className="h-full w-3/5 mx-auto bg-white text-black rounded-lg overflow-auto shadow-md">
       <div className="p-4">
         <div className="flex items-center">
           <Image
