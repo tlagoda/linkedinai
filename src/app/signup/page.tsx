@@ -46,6 +46,10 @@ export default function SignUp() {
         hasAuthorizedLinkedIn: false
       });
 
+      await setDoc(doc(db, "linkedin", user.uid), {
+        hasAuthorizedLinkedIn: false
+      });
+
       router.push("/generate");
     } catch (error) {
       setErrorWhileSigningUp(true);
