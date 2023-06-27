@@ -8,10 +8,12 @@ export default function Prompt({
   handleSendMessage,
   setDisplayLoader,
   notifyError,
+  content,
 }: {
   handleSendMessage: any;
   setDisplayLoader: any;
   notifyError: any;
+  content: string;
 }) {
   const [text, setText] = useState("");
 

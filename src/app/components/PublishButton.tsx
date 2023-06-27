@@ -1,10 +1,10 @@
 import { LinkedInService } from "@/services/linkedin.service";
 
-export default function PublishButton() {
+export default function PublishButton({ content }: { content: string }) {
   const share = async () => {
-    LinkedInService.shareOnLinkedIn("Pour");
+    LinkedInService.shareOnLinkedIn(content);
   };
-  
+
   return (
     <button
       onClick={share}

@@ -91,6 +91,7 @@ export default function Page() {
                   handleSendMessage={setContent}
                   setDisplayLoader={setDisplayLoader}
                   notifyError={notifyError}
+                  content={content}
                 />
               ) : (
                 <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
@@ -99,17 +100,12 @@ export default function Page() {
                     setDisplayLoader={setDisplayLoader}
                     notifyError={notifyError}
                   />
-                  <PublishButton />
+                  <PublishButton content={content} />
                 </div>
               )}
             </div>
           </div>
         </div>
-        {/* <div className="w-1/3 h-full flex flex-col p-4 bg-gray-800">
-          <div className="h-full flex flex-col pt-5 mr-10">
-              <PublishSection />
-          </div>
-        </div> */}
         <ToastContainer />
       </div>
     </ProtectedRoute>
