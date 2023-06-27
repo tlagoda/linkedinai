@@ -33,25 +33,27 @@ export default function Prompt({
 
   return (
     <>
-      <div className="mt-4 flex w-3/5 mx-auto h-3/4 bg-black">
-        <button
-          onClick={generatePost}
-          className="px-4 py-2 w-1/4 rounded-l bg-violet-500 text-white shadow hover:bg-violet-800 text-sm"
-        >
-          Publish 🚀
-        </button>
+      <div className="mt-4 flex w-3/5 mx-auto h-3/4">
         <textarea
-          className="resize-none w-1/2 px-4 py-2 rounded-l border shadow text-sm bg-white text-gray-900 focus:outline-none"
+          className="resize-none w-4/5 px-4 py-2 rounded-l border shadow text-sm bg-white text-gray-900 focus:outline-none"
           placeholder="Enter your prompt here..."
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button
-          onClick={generatePost}
-          className="px-4 py-2 w-1/4 rounded-r bg-violet-500 text-white shadow hover:bg-violet-800 text-sm"
-        >
-          Send 📝
-        </button>
+        <div className="flex flex-col">
+          <button
+            onClick={generatePost}
+            className="px-4 py-2 w-full h-1/2 rounded-t bg-violet-500 text-white shadow hover:bg-violet-800 text-sm"
+          >
+            Send 📝
+          </button>
+          <button
+            onClick={() => console.log("uu")}
+            className="px-4 py-2 w-full h-1/2 rounded-b bg-blue-500 text-white shadow hover:bg-blue-800 text-sm"
+          >
+            Publish 🚀
+          </button>
+        </div>
       </div>
     </>
   );

@@ -83,7 +83,7 @@ export default function Page() {
         <div className="w-2/3 h-full flex flex-col py-4 px-20">
           <div className="h-full flex flex-col">
             <div className="h-3/4 flex flex-col">
-              <LinkedInPost content={content} displayLoader={displayLoader} />
+              <LinkedInPost content={content} displayLoader={displayLoader} />{" "}
             </div>
             <div className="h-1/4 flex items-center">
               {customPrompt ? (
