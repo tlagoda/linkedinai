@@ -1,4 +1,6 @@
+import axios from "axios";
 import { config } from "./config/config";
+import { getAuth } from "firebase/auth";
 
 export class LinkedInService {
   static getLinkedInAuthorizationUrl(uid: string | undefined): string | null {
@@ -20,5 +22,33 @@ export class LinkedInService {
 
     const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
     return url;
+  }
+
+  static async shareOnLinkedIn(content: string) {
+    const baseApiUrl =
+      process.env.NODE_ENV === "production"
+        ? config.production.apiUrl
+        : config.development.apiUrl;
+    const apiUrl = `${baseApiUrl}/posts/share`;
+
+    const auth = getAuth();
+    const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
+
+    const response = await axios.post(
+      apiUrl,
+      {
+        content,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    try {
+    } catch (error) {
+      console.error(`Error while sharing post: ${error}`);
+    }
   }
 }
