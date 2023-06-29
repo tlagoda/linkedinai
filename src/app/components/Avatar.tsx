@@ -13,11 +13,13 @@ import app, { db } from "../../../firebase";
 import { LinkedInService } from "@/services/linkedin.service";
 import { doc, getDoc } from "firebase/firestore";
 
-const Avatar = () => {
+const Avatar = ({
+  linkedInProfilePicUrl,
+}: {
+  linkedInProfilePicUrl: string;
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasAuthorizedLinkedIn, setHasAuthorizedLinkedIn] = useState(false);
-  const [linkedInProfilePicUrl, setLinkedInProfilePicUrl] =
-    useState("/pp-linkedin.png"); // default image
   const router = useRouter();
 
   const toggleMenu = () => {
@@ -35,9 +37,6 @@ const Avatar = () => {
       const myDoc: any = await getDoc(docRef);
       if (myDoc.exists) {
         setHasAuthorizedLinkedIn(myDoc.data().hasAuthorizedLinkedIn);
-        if (myDoc.data().linkedInPP) {
-          setLinkedInProfilePicUrl(myDoc.data().linkedInPP);
-        }
       } else {
         setHasAuthorizedLinkedIn(false);
       }
