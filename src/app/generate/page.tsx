@@ -13,10 +13,10 @@ import OptionsPanel from "../components/optionsPanels/OptionsPanel";
 import { optionsData } from "../components/optionsPanels/data";
 import GenerateButton from "../components/GenerateButton";
 import { RootState } from "../redux/store";
-import { useSelector, useDispatch } from "react-redux";
-import { login } from "../redux/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "../components/ProtectedRoute";
 import PublishButton from "../components/PublishButton";
+import { fetchUserProfile } from "../redux/features/user/userSlice";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -24,19 +24,11 @@ export default function Page() {
   const [customPrompt, setCustomPrompt] = useState(false);
 
   const dispatch = useDispatch();
-
-  const currentUser = useSelector((state: RootState) => state.auth.user);
+  const user = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    if (currentUser) {
-      const userData = {
-        uid: currentUser.uid,
-        email: currentUser.email,
-        displayName: currentUser.displayName,
-      };
-      dispatch(login(userData));
-    }
-  }, [currentUser, dispatch]);
+    dispatch(fetchUserProfile());
+  }, [dispatch]);
 
   const notifyError = () =>
     toast.error("Cannot generate content, an error occured!", {
@@ -47,7 +39,7 @@ export default function Page() {
     <ProtectedRoute>
       <div className="h-screen w-screen max-h-screen bg-gray-900 font-mono text-slate-100 flex">
         <div className="absolute top-0 right-0 m-4">
-          <Avatar linkedInProfilePicUrl={''} />
+          <Avatar linkedInProfilePicUrl={user.linkedInProfilePicUrl} />
         </div>
         <div className="w-1/3 h-full bg-gray-800 pt-5">
           <div>
