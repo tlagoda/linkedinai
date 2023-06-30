@@ -4,9 +4,11 @@ import Loader from "./Loader";
 export default function LinkedInPost({
   content,
   displayLoader,
+  linkedInProfilePicUrl,
 }: {
   content: string;
   displayLoader: boolean;
+  linkedInProfilePicUrl: string;
 }) {
   return (
     <div className="h-full w-3/5 mx-auto bg-white text-black rounded-lg overflow-auto shadow-md">
@@ -14,7 +16,7 @@ export default function LinkedInPost({
         <div className="flex items-center">
           <Image
             className="w-12 rounded-full mr-4"
-            src="/pp-linkedin.png"
+            src={linkedInProfilePicUrl ? linkedInProfilePicUrl : "/pp-linkedin.png"}
             alt="LinkedIn Profile Picture"
             width={100}
             height={100}

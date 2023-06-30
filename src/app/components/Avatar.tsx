@@ -42,6 +42,7 @@ const Avatar = ({
       }
     };
     fetchLinkedInAuthorization();
+
   }, []);
 
   const onSettings = () => {};
@@ -91,6 +92,7 @@ const Avatar = ({
           height={48}
           className="rounded-full"
         />
+        
       </button>
       {isMenuOpen && (
         <div

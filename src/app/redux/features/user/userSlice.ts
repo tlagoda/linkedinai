@@ -1,11 +1,9 @@
-// userSlice.ts
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk } from "../../store";
 import { db } from "../../../../../firebase";
 import app from "../../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 interface UserState {
   uid: string;
@@ -41,10 +39,10 @@ const userSlice = createSlice({
   },
 });
 
-export const fetchUserProfile = (): AppThunk => async (dispatch) => {
-  try {
-    const auth = getAuth(app);
-    const user = auth.currentUser;
+export const initializeAuthListener = (): AppThunk => (dispatch) => {
+  const auth = getAuth(app);
+  
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
       const docRef: any = doc(db, "users", user.uid);
       const myDoc: any = await getDoc(docRef);
@@ -53,16 +51,16 @@ export const fetchUserProfile = (): AppThunk => async (dispatch) => {
         const userData = myDoc.data();
         const userProfileData = {
           hasAuthorizedLinkedIn: userData.hasAuthorizedLinkedIn,
-          linkedInProfilePictureUrl: userData.linkedInPP,
+          linkedInProfilePicUrl: userData.linkedInPP,
           uid: user.uid,
           email: userData.email,
         };
         dispatch(updateUser(userProfileData));
       }
+    } else {
+      dispatch(clearUser());
     }
-  } catch (error) {
-    console.error("Error fetching user profile:", error);
-  }
+  });
 };
 
 export const { setUser, updateUser, clearUser } = userSlice.actions;

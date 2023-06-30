@@ -12,22 +12,22 @@ import Avatar from "../components/Avatar";
 import OptionsPanel from "../components/optionsPanels/OptionsPanel";
 import { optionsData } from "../components/optionsPanels/data";
 import GenerateButton from "../components/GenerateButton";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "../components/ProtectedRoute";
 import PublishButton from "../components/PublishButton";
-import { fetchUserProfile } from "../redux/features/user/userSlice";
+import { initializeAuthListener } from "../redux/features/user/userSlice";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    dispatch(fetchUserProfile());
+    dispatch(initializeAuthListener());
   }, [dispatch]);
 
   const notifyError = () =>
@@ -75,7 +75,11 @@ export default function Page() {
         <div className="w-2/3 h-full flex flex-col py-4 px-20">
           <div className="h-full flex flex-col">
             <div className="h-3/4 flex flex-col">
-              <LinkedInPost content={content} displayLoader={displayLoader} />{" "}
+              <LinkedInPost
+                content={content}
+                displayLoader={displayLoader}
+                linkedInProfilePicUrl={user.linkedInProfilePicUrl}
+              />{" "}
             </div>
             <div className="h-1/4 flex items-center">
               {customPrompt ? (
