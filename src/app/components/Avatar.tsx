@@ -42,7 +42,6 @@ const Avatar = ({
       }
     };
     fetchLinkedInAuthorization();
-
   }, []);
 
   const onSettings = () => {};
@@ -86,13 +85,14 @@ const Avatar = ({
     <div className="relative">
       <button onClick={toggleMenu}>
         <Image
-          src={linkedInProfilePicUrl}
+          src={
+            linkedInProfilePicUrl ? linkedInProfilePicUrl : "/pp-linkedin.png"
+          }
           alt="Avatar"
           width={48}
           height={48}
           className="rounded-full"
         />
-        
       </button>
       {isMenuOpen && (
         <div
