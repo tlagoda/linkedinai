@@ -50,7 +50,7 @@ export default function Prompt({
             Send 📝
           </button>
           <button
-            onClick={() => console.log("uu")}
+            onClick={() => null}
             className="px-4 py-2 w-full h-1/2 rounded-b bg-blue-500 text-white shadow hover:bg-blue-800 text-sm"
           >
             Publish 🚀
