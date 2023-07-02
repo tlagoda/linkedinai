@@ -22,7 +22,7 @@ export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(false);
-  const [tailwindMd, setTailwindMd] = useState(window.innerWidth >= 768);
+  const [tailwindMd, setTailwindMd] = useState<boolean | undefined>(undefined);
 
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
@@ -36,6 +36,7 @@ export default function Page() {
       setTailwindMd(window.innerWidth >= 768);
     };
 
+    handleResize(); // Call the function once initially
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -86,7 +87,7 @@ export default function Page() {
         </div>
         <div className="w-screen md:w-2/3 h-full flex flex-col py-2 md:py-4 px-8 md:px-20">
           <div className="h-full flex flex-col">
-            {!tailwindMd && (
+            {!tailwindMd && tailwindMd !== undefined && (
               <div className="h-1/4 flex items-center">
                 {customPrompt ? (
                   <Prompt
@@ -113,7 +114,7 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
               />{" "}
             </div>
-            {!tailwindMd && !customPrompt && (
+            {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
                 <PublishButton content={content} />
               </div>
