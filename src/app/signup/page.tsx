@@ -10,7 +10,6 @@ import { useState } from "react";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
-
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
@@ -43,11 +42,11 @@ export default function SignUp() {
 
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
-        hasAuthorizedLinkedIn: false
+        hasAuthorizedLinkedIn: false,
       });
 
       await setDoc(doc(db, "linkedin", user.uid), {
-        hasAuthorizedLinkedIn: false
+        hasAuthorizedLinkedIn: false,
       });
 
       router.push("/generate");
@@ -57,13 +56,13 @@ export default function SignUp() {
     }
   };
   return (
-    <section className="bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className="bg-gray-900 h-screen flex">
+      <div className="flex flex-col md:w-3/5 items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-black text-slate-100"
         >
-          Sumariz.ai
+          l<span className="text-violet-500">AI</span>nkedIn
         </a>
         <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
