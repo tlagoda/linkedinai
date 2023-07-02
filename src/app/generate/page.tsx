@@ -114,7 +114,9 @@ export default function Page() {
               />{" "}
             </div>
             {!tailwindMd && !customPrompt && (
-              <PublishButton content={content} />
+              <div className="w-full h-1/4">
+                <PublishButton content={content} />
+              </div>
             )}
             {tailwindMd && (
               <div className="h-1/4 flex items-center">
