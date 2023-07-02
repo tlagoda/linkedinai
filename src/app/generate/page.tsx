@@ -54,7 +54,12 @@ export default function Page() {
         <div className="fixed md:absolute top-0 right-0 m-2 md:m-4 z-10">
           <Avatar linkedInProfilePicUrl={user.linkedInProfilePicUrl} />
         </div>
-        <div className="w-screen md:w-1/3 md:h-full bg-gray-800 pt-10 md:pt-5 pb-5 md:pb-0">
+        <div className="w-screen md:w-1/3 md:h-full bg-gray-800 pt-5 pb-5 md:pb-0">
+          {!tailwindMd && (
+            <h1 className="text-center text-3xl">
+              l<span className="font-bold text-violet-500">AI</span>nkedIn
+            </h1>
+          )}
           <div>
             <Toggle togglePrompt={setCustomPrompt} />
             <HorizontalDivider />
@@ -108,6 +113,11 @@ export default function Page() {
               </div>
             )}
             <div className="h-3/4 flex flex-col">
+              {tailwindMd && (
+                <h1 className="text-center text-3xl">
+                  l<span className="font-bold text-violet-500">AI</span>nkedIn
+                </h1>
+              )}
               <LinkedInPost
                 content={content}
                 displayLoader={displayLoader}

@@ -50,7 +50,7 @@ const CustomSelect = ({
       : placeholder;
 
   return (
-    <div className="flex items-center justify-between text-black w-4/5 pt-5 mx-auto h-20">
+    <div className="flex items-center justify-between text-black w-4/5 pt-5 mx-auto h-20 2xl:h-28">
       <label className="text-slate-100 w-2/5">{label}:</label>
       <div className="relative md:ml-2 w-3/5">
         <input
