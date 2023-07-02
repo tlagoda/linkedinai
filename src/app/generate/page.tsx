@@ -22,6 +22,7 @@ export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(false);
+  const [tailwindMd, setTailwindMd] = useState(window.innerWidth >= 768);
 
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
@@ -30,6 +31,17 @@ export default function Page() {
     dispatch(initializeAuthListener());
   }, [dispatch]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setTailwindMd(window.innerWidth >= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const notifyError = () =>
     toast.error("Cannot generate content, an error occured!", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -37,11 +49,11 @@ export default function Page() {
 
   return (
     <ProtectedRoute>
-      <div className="h-screen w-screen max-h-screen bg-gray-900 font-mono text-slate-100 flex">
-        <div className="absolute top-0 right-0 m-4">
+      <div className="md:h-screen w-screen md:max-h-screen bg-gray-900 font-mono text-slate-100 flex flex-col md:flex-row">
+        <div className="absolute top-0 right-0 m-2 md:m-4">
           <Avatar linkedInProfilePicUrl={user.linkedInProfilePicUrl} />
         </div>
-        <div className="w-1/3 h-full bg-gray-800 pt-5">
+        <div className="w-screen md:w-1/3 md:h-full bg-gray-800 pt-10 md:pt-5 pb-5 md:pb-0">
           <div>
             <Toggle togglePrompt={setCustomPrompt} />
             <HorizontalDivider />
@@ -72,8 +84,29 @@ export default function Page() {
           </div>
           {!customPrompt && <OptionsPanel optionsData={optionsData} />}
         </div>
-        <div className="w-2/3 h-full flex flex-col py-4 px-20">
+        <div className="w-screen md:w-2/3 h-full flex flex-col py-4 px-20">
           <div className="h-full flex flex-col">
+            {!tailwindMd && (
+              <div className="h-1/4 flex items-center">
+                {customPrompt ? (
+                  <Prompt
+                    handleSendMessage={setContent}
+                    setDisplayLoader={setDisplayLoader}
+                    notifyError={notifyError}
+                    content={content}
+                  />
+                ) : (
+                  <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
+                    <GenerateButton
+                      handleSendMessage={setContent}
+                      setDisplayLoader={setDisplayLoader}
+                      notifyError={notifyError}
+                    />
+                    
+                  </div>
+                )}
+              </div>
+            )}
             <div className="h-3/4 flex flex-col">
               <LinkedInPost
                 content={content}
@@ -81,25 +114,28 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
               />{" "}
             </div>
-            <div className="h-1/4 flex items-center">
-              {customPrompt ? (
-                <Prompt
-                  handleSendMessage={setContent}
-                  setDisplayLoader={setDisplayLoader}
-                  notifyError={notifyError}
-                  content={content}
-                />
-              ) : (
-                <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
-                  <GenerateButton
+            {(!tailwindMd && !customPrompt) && <PublishButton content={content} />}
+            {tailwindMd && (
+              <div className="h-1/4 flex items-center">
+                {customPrompt ? (
+                  <Prompt
                     handleSendMessage={setContent}
                     setDisplayLoader={setDisplayLoader}
                     notifyError={notifyError}
+                    content={content}
                   />
-                  <PublishButton content={content} />
-                </div>
-              )}
-            </div>
+                ) : (
+                  <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
+                    <GenerateButton
+                      handleSendMessage={setContent}
+                      setDisplayLoader={setDisplayLoader}
+                      notifyError={notifyError}
+                    />
+                    <PublishButton content={content} />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <ToastContainer />

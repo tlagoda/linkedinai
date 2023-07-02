@@ -144,7 +144,7 @@ const Avatar = ({
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
               >
                 <FaSignOutAlt className="mr-2" />
-                <span>Logout</span>
+                <span>Log out</span>
               </button>
             </li>
           </ul>
