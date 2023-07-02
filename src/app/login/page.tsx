@@ -83,13 +83,13 @@ export default function LogIn() {
   }
 
   return (
-    <section className="bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className="bg-gray-900 h-screen flex">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:w-2/5 md:h-screen lg:py-0">
         <a
           href="#"
           className="flex text-black items-center mb-6 text-2xl font-semibold text-slate-100"
         >
-          Sumariz.ai
+          l<span className="text-violet-500">AI</span>nkedIn
         </a>
         <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -142,7 +142,7 @@ export default function LogIn() {
                     className="text-red-500 text-sm"
                   />
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex md:items-center justify-between flex-col md:flex-row">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
                       <Field
@@ -160,7 +160,7 @@ export default function LogIn() {
                   </div>
                   <a
                     href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline"
+                    className="text-sm font-medium mt-2 md:mt-0 text-primary-600 hover:underline"
                   >
                     Forgot password?
                   </a>
