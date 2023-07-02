@@ -11,7 +11,7 @@ export default function LinkedInPost({
   linkedInProfilePicUrl: string;
 }) {
   return (
-    <div className="h-full w-full md:w-3/5 mx-auto my-4 bg-white text-black rounded-lg overflow-auto shadow-md">
+    <div className="h-full w-full md:w-3/5 mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md">
       <div className="p-4">
         <div className="flex items-center">
           <Image
