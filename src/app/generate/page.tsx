@@ -84,7 +84,7 @@ export default function Page() {
           </div>
           {!customPrompt && <OptionsPanel optionsData={optionsData} />}
         </div>
-        <div className="w-screen md:w-2/3 h-full flex flex-col py-4 px-20">
+        <div className="w-screen md:w-2/3 h-full flex flex-col py-2 md:py-4 px-8 md:px-20">
           <div className="h-full flex flex-col">
             {!tailwindMd && (
               <div className="h-1/4 flex items-center">
@@ -96,13 +96,12 @@ export default function Page() {
                     content={content}
                   />
                 ) : (
-                  <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
+                  <div className="w-full md:w-3/5 md:mx-auto md:flex h-1/4 md:justify-between md:align-center">
                     <GenerateButton
                       handleSendMessage={setContent}
                       setDisplayLoader={setDisplayLoader}
                       notifyError={notifyError}
                     />
-                    
                   </div>
                 )}
               </div>
@@ -114,7 +113,9 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
               />{" "}
             </div>
-            {(!tailwindMd && !customPrompt) && <PublishButton content={content} />}
+            {!tailwindMd && !customPrompt && (
+              <PublishButton content={content} />
+            )}
             {tailwindMd && (
               <div className="h-1/4 flex items-center">
                 {customPrompt ? (
