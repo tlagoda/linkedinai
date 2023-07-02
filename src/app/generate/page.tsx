@@ -50,7 +50,7 @@ export default function Page() {
   return (
     <ProtectedRoute>
       <div className="md:h-screen w-screen md:max-h-screen bg-gray-900 font-mono text-slate-100 flex flex-col md:flex-row">
-        <div className="absolute top-0 right-0 m-2 md:m-4">
+        <div className="fixed md:absolute top-0 right-0 m-2 md:m-4 z-10">
           <Avatar linkedInProfilePicUrl={user.linkedInProfilePicUrl} />
         </div>
         <div className="w-screen md:w-1/3 md:h-full bg-gray-800 pt-10 md:pt-5 pb-5 md:pb-0">
