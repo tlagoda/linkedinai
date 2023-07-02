@@ -51,14 +51,14 @@ const CustomSelect = ({
 
   return (
     <div className="flex items-center justify-between text-black w-4/5 pt-5 mx-auto h-20">
-      <label className="text-slate-100">{label}:</label>
-      <div className="relative ml-2">
+      <label className="text-slate-100 w-2/5">{label}:</label>
+      <div className="relative md:ml-2 w-3/5">
         <input
           type="text"
           value={customValue || selectedOption}
           onChange={handleInputChange}
           placeholder={truncatedPlaceholder}
-          className="rounded-md py-2 px-4 border border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+          className="rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
         />
         <div
           onClick={toggleMenu}
