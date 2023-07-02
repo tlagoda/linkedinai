@@ -106,7 +106,7 @@ const Avatar = ({
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
               >
                 <FaUser className="mr-2" />
-                <span>Profil</span>
+                <span>Profile</span>
               </button>
             </li>
             <li className="rounded-lg hover:bg-gray-200">
@@ -125,7 +125,7 @@ const Avatar = ({
                   className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
                 >
                   <FaLinkedin className="mr-2" />
-                  <span>Connect to LinkedIn</span>
+                  <span>Authorize LinkedIn</span>
                 </button>
               </li>
             )}
