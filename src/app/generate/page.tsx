@@ -48,6 +48,12 @@ export default function Page() {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
 
+  const notifySuccessPublish = () => {
+    toast.success("Your post has been shared on LinkedIn! 🚀", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
+
   return (
     <ProtectedRoute>
       <div className="md:h-screen w-screen md:max-h-screen bg-gray-900 font-mono text-slate-100 flex flex-col md:flex-row">
@@ -126,7 +132,10 @@ export default function Page() {
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
-                <PublishButton content={content} />
+                <PublishButton
+                  content={content}
+                  notifySuccessPublish={notifySuccessPublish}
+                />
               </div>
             )}
             {tailwindMd && (
@@ -145,7 +154,10 @@ export default function Page() {
                       setDisplayLoader={setDisplayLoader}
                       notifyError={notifyError}
                     />
-                    <PublishButton content={content} />
+                    <PublishButton
+                      content={content}
+                      notifySuccessPublish={notifySuccessPublish}
+                    />
                   </div>
                 )}
               </div>

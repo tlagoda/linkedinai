@@ -2,7 +2,13 @@ import { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
 import { LinkedInService } from "@/services/linkedin.service";
 
-export default function PublishButton({ content }: { content: string }) {
+export default function PublishButton({
+  content,
+  notifySuccessPublish,
+}: {
+  content: string;
+  notifySuccessPublish: any;
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handlePublish = () => {
@@ -11,6 +17,7 @@ export default function PublishButton({ content }: { content: string }) {
 
   const handleConfirm = async () => {
     await LinkedInService.shareOnLinkedIn(content);
+    notifySuccessPublish();
     setIsModalOpen(false);
   };
 
@@ -29,11 +36,11 @@ export default function PublishButton({ content }: { content: string }) {
           🚀
         </span>
       </button>
-      <ConfirmModal 
-        isOpen={isModalOpen} 
-        title="Publish on LinkedIn" 
-        message="Are you sure you want to publish this content on LinkedIn?" 
-        onConfirm={handleConfirm} 
+      <ConfirmModal
+        isOpen={isModalOpen}
+        title="Publish on LinkedIn"
+        message="Are you sure you want to publish this content on LinkedIn?"
+        onConfirm={handleConfirm}
         onCancel={handleCancel}
       />
     </>
