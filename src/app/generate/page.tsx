@@ -56,7 +56,7 @@ export default function Page() {
         </div>
         <div className="w-screen md:w-1/3 md:h-full bg-gray-800 pt-5 pb-5 md:pb-0">
           {!tailwindMd && (
-            <h1 className="text-center text-3xl">
+            <h1 className="text-center text-3xl animate-fadeIn2s">
               l<span className="font-bold text-violet-500">AI</span>nkedIn
             </h1>
           )}
@@ -114,7 +114,7 @@ export default function Page() {
             )}
             <div className="h-3/4 flex flex-col">
               {tailwindMd && (
-                <h1 className="text-center text-3xl">
+                <h1 className="text-center text-3xl animate-fadeIn2s">
                   l<span className="font-bold text-violet-500">AI</span>nkedIn
                 </h1>
               )}

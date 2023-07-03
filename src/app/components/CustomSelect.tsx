@@ -93,7 +93,7 @@ const CustomSelect = ({
         </div>
         {isOpen && (
           <ul
-            className="absolute mt-1 py-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10"
+            className="absolute mt-1 py-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 animate-fadeIn300ms"
             ref={menuRef}
           >
             {options.map((option) => (
