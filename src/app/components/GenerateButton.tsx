@@ -32,7 +32,7 @@ const GenerateButton = ({
       onClick={generatePost}
     >
       Generate!{" "}
-      <span role="img" aria-label="Rocket" className="ml-2">
+      <span role="img" aria-label="Rocket" className="ml-2 animate-bounce">
         📝
       </span>
     </button>
