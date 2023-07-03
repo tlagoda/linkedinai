@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const CustomSelect = ({
   options,
@@ -13,9 +13,22 @@ const CustomSelect = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [customValue, setCustomValue] = useState("");
+  const [tailwindMd, setTailwindMd] = useState<boolean | undefined>(undefined);
 
   const menuRef = useRef<HTMLUListElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setTailwindMd(window.innerWidth >= 768);
+    };
+
+    handleResize(); // Call the function once initially
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -50,10 +63,11 @@ const CustomSelect = ({
     };
   }, []);
 
-  const truncatedPlaceholder =
-    placeholder.length > 16
-      ? `${placeholder.substring(0, 16)}...`
-      : placeholder;
+  const getTruncated = (s: string): string => {
+    return s.length > (tailwindMd ? 16 : 10)
+      ? `${s.substring(0, tailwindMd ? 16 : 10)}...`
+      : s;
+  };
 
   return (
     <div className="flex items-center justify-between text-black w-4/5 pt-5 mx-auto h-20 2xl:h-28">
@@ -61,9 +75,9 @@ const CustomSelect = ({
       <div className="relative md:ml-2 w-3/5">
         <input
           type="text"
-          value={customValue || selectedOption}
+          value={getTruncated(customValue) || getTruncated(selectedOption)}
           onChange={handleInputChange}
-          placeholder={truncatedPlaceholder}
+          placeholder={getTruncated(placeholder)}
           className="rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
         />
         <div
@@ -71,7 +85,11 @@ const CustomSelect = ({
           onClick={toggleMenu}
           className="absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-violet-500 cursor-pointer"
         >
-          <FaChevronDown className="text-slate-100" />
+          <FaChevronDown
+            className={`text-slate-100 transition-transform duration-300 ${
+              isOpen ? "transform rotate-180" : ""
+            }`}
+          />
         </div>
         {isOpen && (
           <ul
