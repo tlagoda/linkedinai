@@ -115,7 +115,7 @@ const Avatar = ({
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
               >
                 <FaMoneyCheckAlt className="mr-2" />
-                <span>Billing</span>
+                <span>Tokens usage</span>
               </button>
             </li>
             {!hasAuthorizedLinkedIn && (

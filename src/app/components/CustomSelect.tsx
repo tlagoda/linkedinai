@@ -15,6 +15,7 @@ const CustomSelect = ({
   const [customValue, setCustomValue] = useState("");
 
   const menuRef = useRef<HTMLUListElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -32,7 +33,12 @@ const CustomSelect = ({
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target as Node) &&
+      iconRef.current &&
+      !iconRef.current.contains(event.target as Node)
+    ) {
       setIsOpen(false);
     }
   };
@@ -61,6 +67,7 @@ const CustomSelect = ({
           className="rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
         />
         <div
+          ref={iconRef}
           onClick={toggleMenu}
           className="absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-violet-500 cursor-pointer"
         >
