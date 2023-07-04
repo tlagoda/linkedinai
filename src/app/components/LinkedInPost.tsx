@@ -5,10 +5,12 @@ export default function LinkedInPost({
   content,
   displayLoader,
   linkedInProfilePicUrl,
+  nameOfUser,
 }: {
   content: string;
   displayLoader: boolean;
   linkedInProfilePicUrl: string;
+  nameOfUser: string;
 }) {
   return (
     <div className="h-full w-full md:w-3/5 mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md">
@@ -16,13 +18,15 @@ export default function LinkedInPost({
         <div className="flex items-center">
           <Image
             className="w-12 rounded-full mr-4"
-            src={linkedInProfilePicUrl ? linkedInProfilePicUrl : "/pp-linkedin.png"}
+            src={
+              linkedInProfilePicUrl ? linkedInProfilePicUrl : "/pp-linkedin.png"
+            }
             alt="LinkedIn Profile Picture"
             width={100}
             height={100}
           />
           <div>
-            <p className="font-bold">John Doe</p>
+            <p className="font-bold">{nameOfUser}</p>
             <p className="text-sm text-gray-600">2nd • 1h</p>
           </div>
         </div>

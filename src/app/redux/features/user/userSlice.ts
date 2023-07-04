@@ -10,6 +10,8 @@ interface UserState {
   email: string;
   hasAuthorizedLinkedIn: boolean;
   linkedInProfilePicUrl: string;
+  firstName: string;
+  lastName: string;
 }
 
 const initialState: UserState = {
@@ -17,6 +19,8 @@ const initialState: UserState = {
   email: "",
   hasAuthorizedLinkedIn: false,
   linkedInProfilePicUrl: "",
+  firstName: "John",
+  lastName: "Doe",
 };
 
 const userSlice = createSlice({
@@ -41,7 +45,7 @@ const userSlice = createSlice({
 
 export const initializeAuthListener = (): AppThunk => (dispatch) => {
   const auth = getAuth(app);
-  
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const docRef: any = doc(db, "users", user.uid);
@@ -54,6 +58,8 @@ export const initializeAuthListener = (): AppThunk => (dispatch) => {
           linkedInProfilePicUrl: userData.linkedInPP,
           uid: user.uid,
           email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
         };
         dispatch(updateUser(userProfileData));
       }

@@ -89,7 +89,7 @@ export default function LogIn() {
           href="#"
           className="flex text-black items-center mb-6 text-2xl font-semibold text-slate-100"
         >
-          l<span className="text-violet-500">AI</span>nkedIn
+          l<span className="text-blue-500">AI</span>nkedIn
         </a>
         <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

@@ -129,6 +129,7 @@ export default function Page() {
                 content={content}
                 displayLoader={displayLoader}
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
+                nameOfUser={`${user.firstName} ${user.lastName}`}
               />{" "}
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
