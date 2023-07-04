@@ -63,7 +63,7 @@ export default function Page() {
         <div className="w-screen md:w-1/3 md:h-full bg-slate-700 pt-5 pb-5 md:pb-0">
           {!tailwindMd && (
             <h1 className="text-center text-3xl animate-fadeIn2s">
-              l<span className="font-bold text-violet-500">AI</span>nkedIn
+              l<span className="font-bold text-blue-500">AI</span>nkedIn
             </h1>
           )}
           <div>
@@ -77,14 +77,14 @@ export default function Page() {
               <>
                 <HorizontalDivider />
                 <div className="mx-8">
-                  <h3 className="mb-4 text-center text-2xl font-bold text-violet-500">
+                  <h3 className="mb-4 text-center text-2xl font-bold text-blue-500">
                     Tips for custom prompts:
                   </h3>
                   <ul className="list-decimal ml-8">
                     {promptTips.map((tip: string, index: number) => (
                       <li
                         key={index}
-                        className="mb-4 marker:text-violet-500 marker:text-lg"
+                        className="mb-4 marker:text-blue-500 marker:text-lg"
                       >
                         {tip}
                       </li>
@@ -121,7 +121,7 @@ export default function Page() {
             <div className="h-3/4 flex flex-col">
               {tailwindMd && (
                 <h1 className="text-center text-3xl animate-fadeIn2s">
-                  l<span className="font-bold text-violet-500">AI</span>nkedIn
+                  l<span className="font-bold text-blue-500">AI</span>nkedIn
                 </h1>
               )}
               <LinkedInPost

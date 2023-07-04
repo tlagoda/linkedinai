@@ -45,13 +45,13 @@ export default function Prompt({
         <div className="flex flex-col w-4/12">
           <button
             onClick={generatePost}
-            className="px-4 py-2 w-full h-1/2 rounded-tr bg-violet-500 border-2 border-gray-800 text-white shadow hover:bg-violet-800 text-sm transition-colors duration-300 ease-in-out"
+            className="px-4 py-2 w-full h-1/2 rounded-tr bg-blue-500 border-2 border-gray-800 text-white shadow hover:bg-blue-800 text-sm transition-colors duration-300 ease-in-out"
           >
             Generate
           </button>
           <button
             onClick={generatePost}
-            className="px-4 py-2 w-full h-1/2 rounded-br bg-violet-500 border-2 border-gray-800 text-white shadow hover:bg-violet-800 text-sm transition-colors duration-300 ease-in-out"
+            className="px-4 py-2 w-full h-1/2 rounded-br bg-blue-500 border-2 border-gray-800 text-white shadow hover:bg-blue-800 text-sm transition-colors duration-300 ease-in-out"
           >
             Publish
           </button>

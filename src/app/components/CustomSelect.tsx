@@ -83,7 +83,7 @@ const CustomSelect = ({
         <div
           ref={iconRef}
           onClick={toggleMenu}
-          className="absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-violet-500 cursor-pointer"
+          className="absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-blue-500 cursor-pointer"
         >
           <FaChevronDown
             className={`text-slate-100 transition-transform duration-300 ${
@@ -101,7 +101,7 @@ const CustomSelect = ({
                 key={option}
                 onClick={() => handleOptionClick(option)}
                 className={`px-4 py-2 cursor-pointer ${
-                  option === selectedOption ? "text-violet-500" : "text-black"
+                  option === selectedOption ? "text-blue-500 font-bold" : "text-black"
                 } hover:bg-gray-100`}
               >
                 {option}

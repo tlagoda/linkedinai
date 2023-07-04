@@ -20,7 +20,7 @@ function Toggle({
       <div id="toggle">
         <button
           className={`${
-            isGeneric ? "bg-violet-500 text-white" : "bg-gray-200 text-gray-800"
+            isGeneric ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
           } py-2 px-4 rounded-l-md transition-colors duration-200`}
           onClick={() => toggle(false)}
         >
@@ -29,7 +29,7 @@ function Toggle({
         <button
           className={`${
             !isGeneric
-              ? "bg-violet-500 text-white"
+              ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-800"
           } py-2 px-4 rounded-r-md transition-colors duration-200`}
           onClick={() => toggle(true)}
