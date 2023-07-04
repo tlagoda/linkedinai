@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "../components/ProtectedRoute";
 import PublishButton from "../components/PublishButton";
 import { initializeAuthListener } from "../redux/features/user/userSlice";
+import BackToTop from "../components/BackToTop";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -96,7 +97,7 @@ export default function Page() {
           </div>
           {!customPrompt && <OptionsPanel optionsData={optionsData} />}
         </div>
-        <div className="w-screen md:w-2/3 h-full flex flex-col py-2 md:py-4 px-8 md:px-20">
+        <div className="w-screen relative pb-16 md:w-2/3 h-full flex flex-col py-2 md:py-4 px-8 md:px-20">
           <div className="h-full flex flex-col">
             {!tailwindMd && tailwindMd !== undefined && (
               <div className="h-1/4 md:flex md:items-center">
@@ -163,6 +164,7 @@ export default function Page() {
               </div>
             )}
           </div>
+          {!tailwindMd && <BackToTop />}
         </div>
         <ToastContainer />
       </div>
