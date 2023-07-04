@@ -99,7 +99,7 @@ export default function Page() {
         <div className="w-screen md:w-2/3 h-full flex flex-col py-2 md:py-4 px-8 md:px-20">
           <div className="h-full flex flex-col">
             {!tailwindMd && tailwindMd !== undefined && (
-              <div className="h-1/4 flex items-center">
+              <div className="h-1/4 md:flex md:items-center">
                 {customPrompt ? (
                   <Prompt
                     handleSendMessage={setContent}
