@@ -5,8 +5,7 @@ export default function Pricing() {
         <div className="mb-16 space-y-4 text-center">
           <h1 className="text-4xl font-semibold leadi">Pricing</h1>
           <p className="px-4 sm:px-8 lg:px-24">
-            Sunt suscipit eaque qui iure unde labore numquam iusto alias
-            explicabo, pariatur ipsam, cupiditate aliquid modi?
+            Add great description
           </p>
           <div>
             <button className="px-4 py-1 font-semibold border rounded-l-lg bg-violet-400 border-violet-400 text-gray-900">
