@@ -28,7 +28,7 @@ const GenerateButton = ({
   };
   return (
     <button
-      className="text-xl font-bold w-full mt-2 md:mt-0 mb-8 md:mb-0 md:w-1/2 md:mr-4 mx-auto h-3/5 py-4 md:py-10 border-violet-500 border-4 text-slate-100 px-4 rounded-3xl transition-colors duration-200 flex items-center justify-center hover:bg-purple-800 hover:text-white hover:border-purple-800"
+      className="text-xl font-bold w-full mt-2 md:mt-0 mb-8 md:mb-0 md:w-1/2 md:mr-4 mx-auto h-3/5 py-4 md:py-10 border-teal-400 border-4 text-slate-100 px-4 rounded-3xl transition-colors duration-200 flex items-center justify-center hover:bg-teal-400 hover:text-black hover:border-teal-400"
       onClick={generatePost}
     >
       Generate!{" "}
