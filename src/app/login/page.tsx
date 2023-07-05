@@ -83,8 +83,8 @@ export default function LogIn() {
   }
 
   return (
-    <section className="bg-gray-900 h-screen flex">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:w-2/5 md:h-screen lg:py-0">
+    <section className="bg-gray-900 to-blue-600 h-screen flex">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto w-4/5 md:w-2/5 md:h-screen lg:py-0">
         <a
           href="#"
           className="flex text-black items-center mb-6 text-2xl font-semibold text-slate-100"
