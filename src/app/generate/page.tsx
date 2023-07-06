@@ -55,6 +55,13 @@ export default function Page() {
     });
   };
 
+  const getFormattedName = () => {
+    if (user.firstName && user.lastName) {
+      return `${user.firstName} ${user.lastName}`;
+    }
+    return "John Doe";
+  };
+
   return (
     <ProtectedRoute>
       <div className="md:h-screen w-screen md:max-h-screen bg-gray-800 font-mono text-slate-100 flex flex-col md:flex-row">
@@ -129,7 +136,7 @@ export default function Page() {
                 content={content}
                 displayLoader={displayLoader}
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
-                nameOfUser={`${user.firstName} ${user.lastName}`}
+                nameOfUser={getFormattedName()}
               />{" "}
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (

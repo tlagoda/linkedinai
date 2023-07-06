@@ -12,12 +12,12 @@ export default function Home() {
 
   return (
     <main>
-      <div className="min-h-screen font-mono">
+      <div className="min-h-screen font-mono w-screen">
         <div className="h-screen w-screen bg-gray-900 pt-4">
           <Header />
-          <div className="flex mt-20 mx-auto">
+          <div className="flex mt-20 mx-20">
             <div className="w-6/12 px-8">
-              <h2 className="text-8xl text-slate-100 text-center mb-10">
+              <h2 className="text-5xl md:text-8xl text-slate-100 text-center mb-10">
                 Worry Less, Inspire More
               </h2>
               <p className="text-l text-slate-300 text-center">
@@ -35,14 +35,14 @@ export default function Home() {
               <Image
                 className="mx-auto"
                 alt="screenshot"
-                src="/screen-banner-1.png"
-                width={600}
-                height={320}
+                src="/screen-banner.png"
+                width={700}
+                height={360}
               />
             </div>
           </div>
           <div className="flex justify-center mt-20">
-            <CallToActionLink content="Summariz" href={CTALink} />
+            <CallToActionLink content="Try it now!" href={CTALink} />
           </div>
         </div>
       </div>
