@@ -84,12 +84,12 @@ export default function LogIn() {
 
   return (
     <section className="bg-gray-900 to-blue-600 h-screen flex">
-      <a
-        href="#"
+      <Link
+        href="/"
         className="flex absolute top-4 left-4 text-black items-center mb-6 text-2xl font-semibold text-slate-100"
       >
         l<span className="text-blue-500">AI</span>nkedIn
-      </a>
+      </Link>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto w-4/5 md:w-2/5 md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
