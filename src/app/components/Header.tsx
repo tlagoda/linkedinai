@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CallToActionLink from "./CallToActionLink";
 import { FaBars } from "react-icons/fa";
+import Link from "next/link";
 
 interface HeaderProps {
   title?: string;
@@ -36,9 +37,9 @@ export default function Header({
         {!tailwindMd && <FaBars className="text-2xl text-emerald-400" />}
         <h1 className="text-2xl md:text-3xl text-slate-100 font-bold hover:cursor-pointer">
           {!title && (
-            <>
+            <Link href="/">
               l<span className="text-blue-500">AI</span>nkedIn
-            </>
+            </Link>
           )}
           {title && title}
         </h1>
@@ -49,7 +50,7 @@ export default function Header({
           {menuItems.map((item, index) => {
             return (
               <li
-                className="hover:underline hover:cursor-pointer hover:underline-offset-4"
+                className="hover:underline hover:cursor-pointer hover:underline-offset-4 hover:text-emerald-400"
                 key={index}
               >
                 {item}
