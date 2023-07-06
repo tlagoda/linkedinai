@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import CallToActionLink from "./CallToActionLink";
 import { FaBars, FaDollarSign, FaLightbulb, FaShoppingBag } from "react-icons/fa";
 import Link from "next/link";
-import { HorizontalDivider } from "../components/HorizontalDivider";
 
 interface HeaderProps {
   title?: string;
