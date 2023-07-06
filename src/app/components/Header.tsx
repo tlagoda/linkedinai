@@ -1,7 +1,7 @@
 import CallToActionLink from "./CallToActionLink";
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   menuItems?: string[];
   CTATitle?: string;
 }
@@ -11,13 +11,17 @@ export default function Header({
   menuItems = ["Product", "Examples", "Pricing"],
   CTATitle = "Get started",
 }: HeaderProps) {
-  
-  const CTALink = "/generate";
+  const CTALink = "/signup";
 
   return (
     <div className="flex items-center justify-between mx-16">
       <h1 className="text-3xl text-slate-100 font-bold hover:cursor-pointer">
-        {title}
+        {!title && (
+          <>
+            l<span className="text-blue-500">AI</span>nkedIn
+          </>
+        )}
+        {title && title}
       </h1>
       <ul className="text-slate-100 text-xl flex justify-evenly items-center w-6/12">
         <li>|</li>
