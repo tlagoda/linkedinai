@@ -1,18 +1,30 @@
 import { useState, useEffect } from "react";
 import CallToActionLink from "./CallToActionLink";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaDollarSign, FaLightbulb, FaShoppingBag } from "react-icons/fa";
 import Link from "next/link";
-import {HorizontalDivider} from "../components/HorizontalDivider"
+import { HorizontalDivider } from "../components/HorizontalDivider";
 
 interface HeaderProps {
   title?: string;
-  menuItems?: string[];
+  menuItems?: Record<string, any>[];
   CTATitle?: string;
 }
 
 export default function Header({
   title,
-  menuItems = ["Product", "Examples", "Pricing"],
+  menuItems = [
+    { title: "Product", icon: <FaShoppingBag className="text-slate-100" />, link: "/product" },
+    {
+      title: "Examples",
+      icon: <FaLightbulb className="text-slate-100" />,
+      link: "/examples",
+    },
+    {
+      title: "Pricing",
+      icon: <FaDollarSign className="text-slate-100" />,
+      link: "/pricing",
+    },
+  ],
   CTATitle = "Sign up",
 }: HeaderProps) {
   const CTALink = "/signup";
@@ -64,7 +76,7 @@ export default function Header({
                     className="hover:underline hover:cursor-pointer hover:underline-offset-4 hover:text-emerald-400"
                     key={index}
                   >
-                    {item}
+                    {item.title}
                   </li>
                 );
               })}
@@ -75,14 +87,16 @@ export default function Header({
         </div>
       </div>
       {!tailwindMd && showMenu && (
-        <div className="absolute bg-gray-900 top-14 left-0 w-screen p-4 text-emerald-400 z-20">
-          <HorizontalDivider />
+        <div className="absolute bg-gray-900 top-14 left-0 w-screen p-4 text-emerald-400 z-20 border-b border-emerald-400">
           {menuItems.map((item, index) => (
             <div
               key={index}
-              className="py-2 hover:text-emerald-400 cursor-pointer"
+              className="py-2 hover:text-emerald-400 cursor-pointer flex items-center"
             >
-              {item}
+              <div className="w-8 h-8 mr-2 border border-emerald-400 rounded-full flex justify-center items-center">
+                {item.icon}
+              </div>
+              {item.title}
             </div>
           ))}
         </div>
