@@ -18,6 +18,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import PublishButton from "../components/PublishButton";
 import { initializeAuthListener } from "../redux/features/user/userSlice";
 import BackToTop from "../components/BackToTop";
+import Link from "next/link";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -70,9 +71,11 @@ export default function Page() {
         </div>
         <div className="w-screen md:w-1/3 md:h-full bg-slate-700 pt-5 pb-5 md:pb-0">
           {!tailwindMd && (
-            <h1 className="text-center text-3xl animate-fadeIn2s">
-              l<span className="font-bold text-blue-500">AI</span>nkedIn
-            </h1>
+            <Link href="/">
+              <h1 className="text-center text-3xl animate-fadeIn2s">
+                l<span className="font-bold text-blue-500">AI</span>nkedIn
+              </h1>
+            </Link>
           )}
           <div>
             <Toggle togglePrompt={setCustomPrompt} />
@@ -128,9 +131,11 @@ export default function Page() {
             )}
             <div className="h-3/4 flex flex-col">
               {tailwindMd && (
-                <h1 className="text-center text-3xl animate-fadeIn2s">
-                  l<span className="font-bold text-blue-500">AI</span>nkedIn
-                </h1>
+                <Link href="/">
+                  <h1 className="text-center text-3xl animate-fadeIn2s">
+                    l<span className="font-bold text-blue-500">AI</span>nkedIn
+                  </h1>
+                </Link>
               )}
               <LinkedInPost
                 content={content}
