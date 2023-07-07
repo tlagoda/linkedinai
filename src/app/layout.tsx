@@ -3,8 +3,8 @@ import "./global.css";
 import { Providers } from "./redux/provider";
 
 export const metadata = {
-  title: "Sumariz: Watch Less, Know More",
-  description: "Watch Less, Know More",
+  title: "lAInkedIn: Worry Less, Inspire More",
+  description: "Worry Less, Inspire More",
 };
 
 export default function RootLayout({

@@ -19,6 +19,7 @@ import PublishButton from "../components/PublishButton";
 import { initializeAuthListener } from "../redux/features/user/userSlice";
 import BackToTop from "../components/BackToTop";
 import Link from "next/link";
+import AddMedia from "../components/AddMedia";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
@@ -153,7 +154,7 @@ export default function Page() {
               </div>
             )}
             {tailwindMd && (
-              <div className="h-1/4 flex items-center border-t border-emerald-400">
+              <div className="h-1/4 border-t border-emerald-400">
                 {customPrompt ? (
                   <Prompt
                     handleSendMessage={setContent}
@@ -162,16 +163,19 @@ export default function Page() {
                     content={content}
                   />
                 ) : (
-                  <div className="w-3/5 mx-auto flex h-1/4 justify-between align-center">
-                    <GenerateButton
-                      handleSendMessage={setContent}
-                      setDisplayLoader={setDisplayLoader}
-                      notifyError={notifyError}
-                    />
-                    <PublishButton
-                      content={content}
-                      notifySuccessPublish={notifySuccessPublish}
-                    />
+                  <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
+                    <AddMedia />
+                    <div className="flex justify-between items-end">
+                      <GenerateButton
+                        handleSendMessage={setContent}
+                        setDisplayLoader={setDisplayLoader}
+                        notifyError={notifyError}
+                      />
+                      <PublishButton
+                        content={content}
+                        notifySuccessPublish={notifySuccessPublish}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
