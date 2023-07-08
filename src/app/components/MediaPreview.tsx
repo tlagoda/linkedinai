@@ -1,49 +1,34 @@
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+
+enum MediaType {
+  Image = "image",
+  Video = "video",
+  MultipleImages = "multipleImages",
+}
 
 type MediaPreviewProps = {
-  media: File | null;
+  media: File[] | null;
 };
 
 export const MediaPreview: React.FC<MediaPreviewProps> = ({ media }) => {
-  const [objectUrl, setObjectUrl] = useState<string | null>(null);
-  const previousUrl = useRef<string | null>(null); // keep track of the previous blob URL
+  const [mediaType, setMediaType] = useState<MediaType | undefined>(undefined);
 
   useEffect(() => {
-    // If there's a new file, create a new blob URL
-    if (media) {
-      const url = URL.createObjectURL(media);
+    if (!media) return;
 
-      // If there's a previous blob URL, revoke it
-      if (previousUrl.current) {
-        URL.revokeObjectURL(previousUrl.current);
+    if (media.length === 1) {
+      const file = media[0];
+      if (file.type.startsWith("image/")) {
+        setMediaType(MediaType.Image);
+      } else if (file.type.startsWith("video/")) {
+        setMediaType(MediaType.Video);
+      } else {
+        setMediaType(undefined);
       }
-
-      previousUrl.current = url; // Update the previous blob URL
-      setObjectUrl(url);
     } else {
-      setObjectUrl(null);
+      setMediaType(MediaType.MultipleImages);
     }
-
-    // Cleanup function to release object URL when unmounting
-    return () => {
-      if (previousUrl.current) {
-        URL.revokeObjectURL(previousUrl.current);
-      }
-    };
   }, [media]);
 
-  return (
-    <div>
-      {objectUrl && media && media.type.startsWith('image/') && (
-        <Image src={objectUrl} alt="Uploaded media" width={200} height={200} layout="responsive" />
-      )}
-
-      {objectUrl && media && media.type.startsWith('video/') && (
-        <video src={objectUrl} controls width="320" height="240">
-          Your browser does not support the video tag.
-        </video>
-      )}
-    </div>
-  );
+  return null;
 };
