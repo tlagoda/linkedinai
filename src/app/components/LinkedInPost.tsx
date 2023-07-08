@@ -13,7 +13,7 @@ export default function LinkedInPost({
   nameOfUser: string;
 }) {
   return (
-    <div className="h-full w-full md:w-2/5 mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md">
+    <div className=" w-full md:min-h-[400px] md:w-2/5 mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md">
       <div className="p-4">
         <div className="flex items-center">
           <Image
