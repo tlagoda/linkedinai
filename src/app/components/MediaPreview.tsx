@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 enum MediaType {
   Image = "image",
   Video = "video",
-  MultipleImages = "multipleImages",
 }
 
 type MediaPreviewProps = {
@@ -26,7 +25,7 @@ export const MediaPreview: React.FC<MediaPreviewProps> = ({ media }) => {
         setMediaType(undefined);
       }
     } else {
-      setMediaType(MediaType.MultipleImages);
+      setMediaType(undefined);
     }
   }, [media]);
 
