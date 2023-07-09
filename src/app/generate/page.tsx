@@ -148,7 +148,7 @@ export default function Page() {
                 nameOfUser={getFormattedName()}
               />{" "}
               {(postImages || postVideo) && (
-                <MediaPreview video={postVideo} />
+                <MediaPreview video={postVideo} images={postImages} />
               )}
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
@@ -170,7 +170,10 @@ export default function Page() {
                   />
                 ) : (
                   <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
-                    <AddMedia setPostVideo={setPostVideo} />
+                    <AddMedia
+                      setPostVideo={setPostVideo}
+                      setPostImages={setPostImages}
+                    />
                     <div className="flex justify-between items-end">
                       <GenerateButton
                         handleSendMessage={setContent}

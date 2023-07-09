@@ -1,20 +1,32 @@
 import { useState } from "react";
 import { FaImage, FaVideo } from "react-icons/fa";
 
-export default function AddMedia({ setPostVideo }: { setPostVideo: any }) {
+export default function AddMedia({
+  setPostVideo,
+  setPostImages,
+}: {
+  setPostVideo: any;
+  setPostImages: any;
+}) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setSelectedImage(file || null);
-    // setMedia(file || null);
+    if (file) {
+      setPostVideo(null)
+      setPostImages((currentImages: File[] | undefined) =>
+        currentImages ? [...currentImages, file] : [file]
+      );
+    }
   };
 
   const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log(file?.type); 
+    console.log(file?.type);
     setSelectedVideo(file || null);
+    setPostImages(null)
     setPostVideo(file || null);
   };
 

@@ -1,26 +1,23 @@
 import React from 'react';
 import VideoPreview from './VideoPreview';
+import ImagePreview from './ImagePreview'; // Assurez-vous que le chemin d'importation est correct
 
 type MediaPreviewProps = {
   video: File | undefined;
+  images: File[] | undefined;
 };
 
-const MediaPreview: React.FC<MediaPreviewProps> = ({ video }) => {
-    if (!video) {
+const MediaPreview: React.FC<MediaPreviewProps> = ({ video, images }) => {
+    if (!video && (!images || images.length === 0)) {
         return null;
     }
 
-    if (Array.isArray(video)) {
-        // Ignorer le rendu des images pour le moment
-        return null;
-    }
-    console.log(video.type)
-    if (video.type.startsWith('video/')) {
-        return <VideoPreview video={video} />;
-    }
-
-    // Ignorer le rendu des images pour le moment
-    return null;
+    return (
+      <div>
+        {video && <VideoPreview video={video} />}
+        {images && images.length > 0 && <ImagePreview images={images} />}
+      </div>
+    );
 };
 
 export default MediaPreview;
