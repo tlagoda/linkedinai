@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import VideoPreview from "./VideoPreview";
 
 enum MediaType {
   Image = "image",
@@ -29,5 +30,9 @@ export const MediaPreview: React.FC<MediaPreviewProps> = ({ media }) => {
     }
   }, [media]);
 
-  return null;
+  return (
+    <>
+      {mediaType === MediaType.Video && <VideoPreview video={media}/>}
+    </>
+  );
 };

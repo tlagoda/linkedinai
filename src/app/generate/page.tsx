@@ -146,7 +146,7 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
                 nameOfUser={getFormattedName()}
               />{" "}
-              <MediaPreview media={media || null} />
+              {media && <MediaPreview media={[media]} />}
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
