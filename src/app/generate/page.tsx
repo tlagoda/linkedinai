@@ -147,9 +147,7 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
                 nameOfUser={getFormattedName()}
               />{" "}
-              {(postImages || postVideo) && (
-                <MediaPreview video={postVideo} images={postImages} />
-              )}
+              <MediaPreview video={postVideo} images={postImages} />
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
@@ -170,10 +168,12 @@ export default function Page() {
                   />
                 ) : (
                   <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
-                    <AddMedia
-                      setPostVideo={setPostVideo}
-                      setPostImages={setPostImages}
-                    />
+                    {tailwindMd && (
+                      <AddMedia
+                        setPostVideo={setPostVideo}
+                        setPostImages={setPostImages}
+                      />
+                    )}
                     <div className="flex justify-between items-end">
                       <GenerateButton
                         handleSendMessage={setContent}

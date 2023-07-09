@@ -19,5 +19,5 @@ export default function VideoPreview({ video }: { video: File }) {
     return null;
   }
 
-  return <video controls src={videoURL} className="w-2/5 rounded-lg mb-4 mx-auto"/>;
+  return <video controls src={videoURL} className="w-2/5 rounded-lg mb-10 mx-auto"/>;
 }
