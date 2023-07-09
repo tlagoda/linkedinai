@@ -11,7 +11,7 @@ const MediaPreview: React.FC<MediaPreviewProps> = ({ video, images }) => {
   if (!video && (!images || images.length === 0)) {
     return (
       <div className="text-center mt-4">
-        <p className="text-lg text-slate-100">You haven't added any media.</p>
+        <p className="text-lg text-slate-100">You haven&apos;t added any media.</p>
       </div>
     );
   }
