@@ -1,24 +1,23 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function VideoPreview({ video }: { video: File[] | null }) {
+export default function VideoPreview({ video }: { video: File }) {
+  const [videoURL, setVideoURL] = useState<string | null>(null);
+
   useEffect(() => {
-    if (!video) return;
-
-    const objectUrl = URL.createObjectURL(video[0]);
+    if (video) {
+      setVideoURL(URL.createObjectURL(video));
+    }
 
     return () => {
-      URL.revokeObjectURL(objectUrl);
+      if (videoURL) {
+        URL.revokeObjectURL(videoURL);
+      }
     };
   }, [video]);
 
-  if (!video) {
+  if (!videoURL) {
     return null;
   }
 
-  return (
-    <video controls>
-      <source src={URL.createObjectURL(video[0])} type={video[0].type} />
-      Your browser does not support the video tag.
-    </video>
-  );
+  return <video controls src={videoURL} className="w-2/5 rounded-lg mb-4 mx-auto"/>;
 }

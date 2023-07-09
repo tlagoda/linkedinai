@@ -20,14 +20,15 @@ import { initializeAuthListener } from "../redux/features/user/userSlice";
 import BackToTop from "../components/BackToTop";
 import Link from "next/link";
 import AddMedia from "../components/AddMedia";
-import { MediaPreview } from "../components/MediaPreview";
+import MediaPreview from "../components/MediaPreview";
 
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
   const [customPrompt, setCustomPrompt] = useState(false);
   const [tailwindMd, setTailwindMd] = useState<boolean | undefined>(undefined);
-  const [media, setMedia] = useState<File | undefined>(undefined);
+  const [postImages, setPostImages] = useState<File[] | undefined>(undefined);
+  const [postVideo, setPostVideo] = useState<File | undefined>(undefined);
 
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
@@ -146,7 +147,9 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
                 nameOfUser={getFormattedName()}
               />{" "}
-              {media && <MediaPreview media={[media]} />}
+              {(postImages || postVideo) && (
+                <MediaPreview video={postVideo} />
+              )}
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
@@ -167,7 +170,7 @@ export default function Page() {
                   />
                 ) : (
                   <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
-                    <AddMedia setMedia={setMedia} />
+                    <AddMedia setPostVideo={setPostVideo} />
                     <div className="flex justify-between items-end">
                       <GenerateButton
                         handleSendMessage={setContent}

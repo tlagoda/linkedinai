@@ -1,38 +1,26 @@
-import { useState, useEffect } from "react";
-import VideoPreview from "./VideoPreview";
-
-enum MediaType {
-  Image = "image",
-  Video = "video",
-}
+import React from 'react';
+import VideoPreview from './VideoPreview';
 
 type MediaPreviewProps = {
-  media: File[] | null;
+  video: File | undefined;
 };
 
-export const MediaPreview: React.FC<MediaPreviewProps> = ({ media }) => {
-  const [mediaType, setMediaType] = useState<MediaType | undefined>(undefined);
-
-  useEffect(() => {
-    if (!media) return;
-
-    if (media.length === 1) {
-      const file = media[0];
-      if (file.type.startsWith("image/")) {
-        setMediaType(MediaType.Image);
-      } else if (file.type.startsWith("video/")) {
-        setMediaType(MediaType.Video);
-      } else {
-        setMediaType(undefined);
-      }
-    } else {
-      setMediaType(undefined);
+const MediaPreview: React.FC<MediaPreviewProps> = ({ video }) => {
+    if (!video) {
+        return null;
     }
-  }, [media]);
 
-  return (
-    <>
-      {mediaType === MediaType.Video && <VideoPreview video={media}/>}
-    </>
-  );
+    if (Array.isArray(video)) {
+        // Ignorer le rendu des images pour le moment
+        return null;
+    }
+    console.log(video.type)
+    if (video.type.startsWith('video/')) {
+        return <VideoPreview video={video} />;
+    }
+
+    // Ignorer le rendu des images pour le moment
+    return null;
 };
+
+export default MediaPreview;
