@@ -35,7 +35,7 @@ export default function Prompt({
 
   return (
     <>
-      <div className="mt-4 flex flex-col md:flex-row md:w-3/5 mx-auto h-3/4 mb-4 md:mb-0">
+      <div className="mt-4 flex flex-col md:flex-row md:w-4/5 mx-auto h-3/4 mb-4 md:mb-0">
         <textarea
           className="resize-none w-full md:w-8/12 h-40 md:h-full px-4 py-2 rounded-t border-b-0 md:rounded-t-none md:rounded-l border-2 md:border-r-0 md:border-b-2 border-black shadow text-sm bg-slate-700 text-slate-100 focus:outline-none placeholder-slate-100"
           placeholder="Enter your prompt here..."

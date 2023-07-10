@@ -167,14 +167,20 @@ export default function Page() {
               </div>
             )}
             {tailwindMd && (
-              <div className="h-1/4 border-t border-emerald-400">
+              <div className="h-2/5 border-t border-emerald-400">
                 {customPrompt ? (
-                  <Prompt
-                    handleSendMessage={setContent}
-                    setDisplayLoader={setDisplayLoader}
-                    notifyError={notifyError}
-                    content={content}
-                  />
+                  <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
+                    <AddMedia
+                      setPostVideo={setPostVideo}
+                      setPostImages={setPostImages}
+                    />
+                    <Prompt
+                      handleSendMessage={setContent}
+                      setDisplayLoader={setDisplayLoader}
+                      notifyError={notifyError}
+                      content={content}
+                    />
+                  </div>
                 ) : (
                   <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
                     {tailwindMd && (
