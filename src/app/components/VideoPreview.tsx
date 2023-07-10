@@ -30,7 +30,7 @@ export default function VideoPreview({
   }
 
   return (
-    <div className="relative w-2/5 rounded-lg mb-10 mx-auto overflow-hidden">
+    <div className="relative w-full mt-4 md:mt-0 md:w-2/5 rounded-lg md:mb-10 mx-auto overflow-hidden">
       <div className="bg-emerald-400 rounded absolute top-1 right-1 cursor-pointer z-10">
         <FaTimes
           className="hover:text-black"

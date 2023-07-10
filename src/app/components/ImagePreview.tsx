@@ -62,8 +62,8 @@ export default function ImagePreview({
   };
 
   return (
-    <div className="w-3/5 mx-auto relative">
-      <div className="relative w-2/3 rounded-lg mb-10 mx-auto bg-white h-[300px] flex px-5 justify-center items-center overflow-hidden">
+    <div className="w-full md:w-3/5 mx-auto relative">
+      <div className="relative w-5/6 md:w-2/3 rounded-lg mb-10 mx-auto bg-white h-[300px] flex px-5 justify-center items-center overflow-hidden">
         {viewingImage && (
           <ImagePreviewDetail
             image={imageURLs[currentIndex]}
@@ -91,14 +91,14 @@ export default function ImagePreview({
       </div>
       {imageURLs.length > 1 && (
         <FaArrowLeft
-          className="absolute top-1/2 left-10 transform -translate-y-1/2 cursor-pointer text-emerald-400 z-10"
+          className="absolute top-1/2 left-0 md:left-10 transform -translate-y-1/2 cursor-pointer text-emerald-400 z-10"
           size={30}
           onClick={goPrev}
         />
       )}
       {imageURLs.length > 1 && (
         <FaArrowRight
-          className="absolute top-1/2 right-10 transform -translate-y-1/2 cursor-pointer text-emerald-400 z-10"
+          className="absolute top-1/2 right-0 md:right-10 transform -translate-y-1/2 cursor-pointer text-emerald-400 z-10"
           size={30}
           onClick={goNext}
         />

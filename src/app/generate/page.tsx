@@ -160,6 +160,10 @@ export default function Page() {
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
+                <AddMedia
+                  setPostVideo={setPostVideo}
+                  setPostImages={setPostImages}
+                />
                 <PublishButton
                   content={content}
                   notifySuccessPublish={notifySuccessPublish}

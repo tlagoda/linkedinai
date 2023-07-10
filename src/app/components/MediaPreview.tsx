@@ -32,9 +32,11 @@ const MediaPreview: React.FC<MediaPreviewProps> = ({
         <>
           <div className="text-center my-4">
             <p className="text-lg text-slate-100">
-              You have added {images.length} images.
+              You have added {images.length} image{images.length > 1 ? "s" : ""}
+              .
             </p>
           </div>
+
           <ImagePreview images={images} onImageRemove={onImageRemove} />
         </>
       )}
