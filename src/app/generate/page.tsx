@@ -157,6 +157,12 @@ export default function Page() {
                   );
                 }}
               />
+              {customPrompt && !tailwindMd && (
+                <AddMedia
+                  setPostVideo={setPostVideo}
+                  setPostImages={setPostImages}
+                />
+              )}
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">
