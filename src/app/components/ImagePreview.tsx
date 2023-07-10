@@ -62,7 +62,7 @@ export default function ImagePreview({
   };
 
   return (
-    <div className="w-full md:w-3/5 mx-auto relative">
+    <div className="w-full md:w-3/5 mx-auto relative px-2">
       <div className="relative w-5/6 md:w-2/3 rounded-lg mb-10 mx-auto bg-white h-[300px] flex px-5 justify-center items-center overflow-hidden">
         {viewingImage && (
           <ImagePreviewDetail
