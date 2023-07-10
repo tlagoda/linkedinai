@@ -28,7 +28,7 @@ export default function ImagePreviewDetail({
     >
       {hasMultipleImages && (
         <FaArrowLeft
-          className="absolute top-1/2 left-2 text-emerald-400 cursor-pointer z-30"
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 text-emerald-400 cursor-pointer z-30"
           size={50}
           onClick={(e) => {
             e.stopPropagation();
@@ -43,7 +43,7 @@ export default function ImagePreviewDetail({
       />
       {hasMultipleImages && (
         <FaArrowRight
-          className="absolute top-1/2 right-2 text-emerald-400 cursor-pointer z-30"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 text-emerald-400 cursor-pointer z-30"
           size={50}
           onClick={(e) => {
             e.stopPropagation();

@@ -62,40 +62,43 @@ export default function ImagePreview({
   };
 
   return (
-    <div className="relative w-2/5 rounded-lg mb-10 mx-auto bg-white h-[300px] flex px-5 justify-center items-center overflow-hidden">
-      {viewingImage && (
-        <ImagePreviewDetail
-          image={imageURLs[currentIndex]}
-          nextImage={goNext}
-          prevImage={goPrev}
-          hasMultipleImages={imageURLs.length > 1}
-          closeImage={closeImage}
-        />
-      )}
-      <div className="bg-emerald-400 rounded absolute top-1 right-1 cursor-pointer z-10">
-        <FaTimes
-          className="hover:text-black"
-          size={20}
-          onClick={() => deleteImage(currentIndex)}
-        />
+    <div className="w-3/5 mx-auto relative">
+      <div className="relative w-2/3 rounded-lg mb-10 mx-auto bg-white h-[300px] flex px-5 justify-center items-center overflow-hidden">
+        {viewingImage && (
+          <ImagePreviewDetail
+            image={imageURLs[currentIndex]}
+            nextImage={goNext}
+            prevImage={goPrev}
+            hasMultipleImages={imageURLs.length > 1}
+            closeImage={closeImage}
+          />
+        )}
+        <div className="bg-emerald-400 rounded absolute top-1 right-1 cursor-pointer z-10">
+          <FaTimes
+            className="hover:text-black"
+            size={20}
+            onClick={() => deleteImage(currentIndex)}
+          />
+        </div>
+
+        {imageURLs[currentIndex] && (
+          <div
+            className="absolute w-full h-full bg-center bg-no-repeat bg-cover cursor-pointer"
+            style={{ backgroundImage: `url(${imageURLs[currentIndex]})` }}
+            onClick={openImage}
+          />
+        )}
       </div>
       {imageURLs.length > 1 && (
         <FaArrowLeft
-          className="absolute top-1/2 left-0 cursor-pointer text-emerald-400 z-10"
+          className="absolute top-1/2 left-10 transform -translate-y-1/2 cursor-pointer text-emerald-400 z-10"
           size={30}
           onClick={goPrev}
         />
       )}
-      {imageURLs[currentIndex] && (
-        <div
-          className="absolute w-full h-full bg-center bg-no-repeat bg-cover cursor-pointer"
-          style={{ backgroundImage: `url(${imageURLs[currentIndex]})` }}
-          onClick={openImage}
-        />
-      )}
       {imageURLs.length > 1 && (
         <FaArrowRight
-          className="absolute top-1/2 right-0 cursor-pointer text-emerald-400 z-10"
+          className="absolute top-1/2 right-10 transform -translate-y-1/2 cursor-pointer text-emerald-400 z-10"
           size={30}
           onClick={goNext}
         />
