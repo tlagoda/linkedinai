@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaArrowLeft, FaTimes } from "react-icons/fa";
-import ImagePreviewDetail from './ImagePreviewDetail'; // Assurez-vous que le chemin est correct
+import ImagePreviewDetail from "./ImagePreviewDetail"; // Assurez-vous que le chemin est correct
 
 type ImagePreviewProps = {
   images: File[] | null;
+  onImageRemove: (imageIndex: number) => void; // nouvelle prop
 };
 
-export default function ImagePreview({ images }: ImagePreviewProps) {
+export default function ImagePreview({
+  images,
+  onImageRemove,
+}: ImagePreviewProps) {
   const [imageURLs, setImageURLs] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [viewingImage, setViewingImage] = useState<string | null>(null);
-  
 
   useEffect(() => {
     if (images) {
@@ -25,6 +28,7 @@ export default function ImagePreview({ images }: ImagePreviewProps) {
   }, [images]);
 
   const deleteImage = (index: number) => {
+    onImageRemove(index);
     setImageURLs((currentImages) => {
       const newImages = [...currentImages];
       newImages.splice(index, 1);
@@ -60,9 +64,9 @@ export default function ImagePreview({ images }: ImagePreviewProps) {
   return (
     <div className="relative w-2/5 rounded-lg mb-10 mx-auto bg-white h-[300px] flex px-5 justify-center items-center overflow-hidden">
       {viewingImage && (
-        <ImagePreviewDetail 
-          image={imageURLs[currentIndex]} 
-          nextImage={goNext} 
+        <ImagePreviewDetail
+          image={imageURLs[currentIndex]}
+          nextImage={goNext}
           prevImage={goPrev}
           hasMultipleImages={imageURLs.length > 1}
           closeImage={closeImage}

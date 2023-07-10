@@ -147,7 +147,16 @@ export default function Page() {
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
                 nameOfUser={getFormattedName()}
               />{" "}
-              <MediaPreview video={postVideo} images={postImages} />
+              <MediaPreview
+                video={postVideo}
+                images={postImages}
+                onVideoRemove={() => setPostVideo(undefined)}
+                onImageRemove={(imageIndex) => {
+                  setPostImages(
+                    postImages?.filter((_, index) => index !== imageIndex)
+                  );
+                }}
+              />
             </div>
             {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
               <div className="w-full h-1/4">

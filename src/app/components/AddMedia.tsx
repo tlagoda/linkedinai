@@ -8,12 +8,9 @@ export default function AddMedia({
   setPostVideo: any;
   setPostImages: any;
 }) {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    setSelectedImage(file || null);
     if (file) {
       setPostVideo(null)
       setPostImages((currentImages: File[] | undefined) =>
@@ -25,7 +22,6 @@ export default function AddMedia({
   const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     console.log(file?.type);
-    setSelectedVideo(file || null);
     setPostImages(null)
     setPostVideo(file || null);
   };
