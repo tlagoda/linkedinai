@@ -39,7 +39,7 @@ export default function ImagePreviewDetail({
       <img
         src={image}
         alt="Full-size preview"
-        style={{ maxWidth: "80%", maxHeight: "80%", objectFit: "contain" }}
+        style={{ maxWidth: "70%", maxHeight: "80%", objectFit: "contain" }}
       />
       {hasMultipleImages && (
         <FaArrowRight
