@@ -29,7 +29,14 @@ const MediaPreview: React.FC<MediaPreviewProps> = ({
     <div>
       {video && <VideoPreview video={video} onVideoRemove={onVideoRemove} />}
       {images && images.length > 0 && (
-        <ImagePreview images={images} onImageRemove={onImageRemove} />
+        <>
+          <div className="text-center my-4">
+            <p className="text-lg text-slate-100">
+              You have added {images.length} images.
+            </p>
+          </div>
+          <ImagePreview images={images} onImageRemove={onImageRemove} />
+        </>
       )}
     </div>
   );

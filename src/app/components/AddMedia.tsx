@@ -17,14 +17,18 @@ export default function AddMedia({
         currentImages ? [...currentImages, file] : [file]
       );
     }
+    e.target.value = '';
   };
-
+  
   const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log(file?.type);
-    setPostImages(null)
-    setPostVideo(file || null);
+    if (file) {
+      setPostImages(null)
+      setPostVideo(file || null);
+    }
+    e.target.value = '';
   };
+  
 
   return (
     <div className="flex flex-col justify-between">
