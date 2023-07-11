@@ -30,8 +30,8 @@ export default function Home() {
         <Header />
         <div className="flex flex-col md:flex-row items-center py-8 md:mx-20">
           <div className="w-11/12 md:w-6/12 px-8 flex flex-col items-center md:mt-20">
-            <h2 className="text-5xl md:text-8xl text-slate-100 text-center md:mb-10">
-              Worry Less, Inspire More
+            <h2 className="text-4xl md:text-7xl text-slate-100 text-center md:mb-10">
+              The Ultimate LinkedIn Post Generator
             </h2>
             {!tailwindMd && (
               <div className="w-full  ">

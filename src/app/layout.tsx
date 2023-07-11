@@ -3,8 +3,8 @@ import "./global.css";
 import { Providers } from "./redux/provider";
 
 export const metadata = {
-  title: "lAInkedIn: Worry Less, Inspire More",
-  description: "Worry Less, Inspire More",
+  title: "lAInkedIn: The Ultimate LinkedIn Post Generator",
+  description: "The Ultimate LinkedIn Post Generator",
 };
 
 export default function RootLayout({
