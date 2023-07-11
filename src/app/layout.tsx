@@ -3,7 +3,7 @@ import "./global.css";
 import { Providers } from "./redux/provider";
 
 export const metadata = {
-  title: "lAInkedIn: The Ultimate LinkedIn Post Generator",
+  title: "klouskAI: The Ultimate LinkedIn Post Generator",
   description: "The Ultimate LinkedIn Post Generator",
 };
 
