@@ -85,7 +85,7 @@ export default function Page() {
             <Toggle togglePrompt={setCustomPrompt} />
             <HorizontalDivider />
             <p className="mx-8 mt-4 text-justify">
-              Customize your posts, access brilliant LinkedIn content, and
+              With the Ultimate LinkedIn Post Generator, customize your posts, access brilliant LinkedIn content, and
               elevate your online presence:
             </p>
             {customPrompt && (
