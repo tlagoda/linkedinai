@@ -40,6 +40,7 @@ export default function ImagePreviewDetail({
         src={image}
         alt="Full-size preview"
         style={{ maxWidth: "70%", maxHeight: "80%", objectFit: "contain" }}
+        className="border-2 rounded-lg border-emerald-400"
       />
       {hasMultipleImages && (
         <FaArrowRight
