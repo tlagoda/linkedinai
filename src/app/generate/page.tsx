@@ -60,6 +60,21 @@ export default function Page() {
     });
   };
 
+  function convertToBinary(fileArray: File[]) {
+    const promises = fileArray.map((file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          resolve(e.target?.result);
+        };
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file);
+      });
+    });
+
+    return Promise.all(promises);
+  }
+
   const getFormattedName = () => {
     if (user.firstName && user.lastName) {
       return `${user.firstName} ${user.lastName}`;
@@ -85,8 +100,9 @@ export default function Page() {
             <Toggle togglePrompt={setCustomPrompt} />
             <HorizontalDivider />
             <p className="mx-8 mt-4 text-justify">
-              With the Ultimate LinkedIn Post Generator, customize your posts, access brilliant LinkedIn content, and
-              elevate your online presence:
+              With the Ultimate LinkedIn Post Generator, customize your posts,
+              access brilliant LinkedIn content, and elevate your online
+              presence:
             </p>
             {customPrompt && (
               <>
