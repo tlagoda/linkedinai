@@ -49,6 +49,11 @@ export default function Page() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("Images", postImages);
+    console.log("Video", postVideo);
+  }, [postImages, postVideo]);
+
   const notifyError = () =>
     toast.error("Cannot generate content, an error occured!", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -59,21 +64,6 @@ export default function Page() {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   };
-
-  function convertToBinary(fileArray: File[]) {
-    const promises = fileArray.map((file) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          resolve(e.target?.result);
-        };
-        reader.onerror = reject;
-        reader.readAsArrayBuffer(file);
-      });
-    });
-
-    return Promise.all(promises);
-  }
 
   const getFormattedName = () => {
     if (user.firstName && user.lastName) {
@@ -189,6 +179,8 @@ export default function Page() {
                 <PublishButton
                   content={content}
                   notifySuccessPublish={notifySuccessPublish}
+                  images={postImages}
+                  video={postVideo}
                 />
               </div>
             )}
@@ -224,6 +216,8 @@ export default function Page() {
                       <PublishButton
                         content={content}
                         notifySuccessPublish={notifySuccessPublish}
+                        images={postImages}
+                        video={postVideo}
                       />
                     </div>
                   </div>

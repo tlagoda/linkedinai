@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaImage, FaVideo } from "react-icons/fa";
 
 export default function AddMedia({

@@ -5,9 +5,13 @@ import { LinkedInService } from "@/services/linkedin.service";
 export default function PublishButton({
   content,
   notifySuccessPublish,
+  images,
+  video,
 }: {
   content: string;
   notifySuccessPublish: any;
+  images: File[] | undefined;
+  video: File | undefined;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,13 +20,36 @@ export default function PublishButton({
   };
 
   const handleConfirm = async () => {
-    // await LinkedInService.shareOnLinkedIn(content);
+    const binaryImages: (ArrayBuffer | undefined)[] = [];
+    let binaryVideo;
+
+    if (images && images.length) {
+      await Promise.all(
+        images.map(async (image) => {
+          const imageBinary = await convertToBinary(image);
+          binaryImages.push(imageBinary);
+        })
+      );
+    }
+
+    await LinkedInService.shareOnLinkedIn(content);
     notifySuccessPublish();
     setIsModalOpen(false);
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const convertToBinary = (file: File): Promise<ArrayBuffer> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        resolve(e.target?.result as ArrayBuffer);
+      };
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
   };
 
   return (
