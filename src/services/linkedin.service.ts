@@ -24,7 +24,11 @@ export class LinkedInService {
     return url;
   }
 
-  static async shareOnLinkedIn(content: string) {
+  static async shareOnLinkedIn(
+    content: string,
+    images?: (ArrayBuffer | undefined)[],
+    video?: ArrayBuffer
+  ) {
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl
@@ -34,17 +38,27 @@ export class LinkedInService {
     const auth = getAuth();
     const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
 
-    const response = await axios.post(
-      apiUrl,
-      {
-        content,
+    let formData = new FormData();
+    formData.append("content", content);
+
+    if (images) {
+      images.forEach((image, index) => {
+        if (image) {
+          formData.append(`images[${index}]`, new Blob([image]));
+        }
+      });
+    }
+
+    if (video) {
+      formData.append("video", new Blob([video]), "video");
+    }
+
+    const response = await axios.post(apiUrl, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
       },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    });
 
     try {
     } catch (error) {

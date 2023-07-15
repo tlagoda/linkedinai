@@ -32,7 +32,7 @@ export default function PublishButton({
       );
     }
 
-    await LinkedInService.shareOnLinkedIn(content);
+    await LinkedInService.shareOnLinkedIn(content, binaryImages, binaryVideo);
     notifySuccessPublish();
     setIsModalOpen(false);
   };
