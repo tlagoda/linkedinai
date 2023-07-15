@@ -6,7 +6,6 @@ export class LinkedInService {
   static getLinkedInAuthorizationUrl(uid: string | undefined): string | null {
     if (!uid) return null;
     const clientId = process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_ID;
-
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl

@@ -42,10 +42,10 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full text-black bg-black bg-opacity-80 flex items-center justify-center"
+      className="fixed top-0 left-0 w-full h-full text-black bg-black bg-opacity-80 flex items-center justify-center z-30"
       onClick={handleClose}
     >
-      <div className="bg-white p-5 rounded shadow-lg w-2/3 md:w-1/3 min-h-fit relative">
+      <div className="bg-white p-5 rounded shadow-lg w-2/3 md:w-1/3 min-h-fit relative z-30">
         <button className="absolute top-2 right-2" onClick={onCancel}>
           <FaTimes className="hover:text-red-500"/>
         </button>
