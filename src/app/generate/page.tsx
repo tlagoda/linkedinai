@@ -49,11 +49,6 @@ export default function Page() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("Images", postImages);
-    console.log("Video", postVideo);
-  }, [postImages, postVideo]);
-
   const notifyError = () =>
     toast.error("Cannot generate content, an error occured!", {
       position: toast.POSITION.BOTTOM_RIGHT,

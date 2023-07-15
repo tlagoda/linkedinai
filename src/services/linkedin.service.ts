@@ -29,6 +29,8 @@ export class LinkedInService {
     images?: (ArrayBuffer | undefined)[],
     video?: ArrayBuffer
   ) {
+    console.log(images);
+    console.log(video);
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl
@@ -36,33 +38,31 @@ export class LinkedInService {
     const apiUrl = `${baseApiUrl}/posts/share`;
 
     const auth = getAuth();
-    const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
+    const token = await auth.currentUser?.getIdToken(); // firebase auto manages cache
 
     let formData = new FormData();
     formData.append("content", content);
 
-    if (images) {
+    if (images && images.length && !video) {
       images.forEach((image, index) => {
         if (image) {
-          formData.append(`images[${index}]`, new Blob([image]));
+          formData.append(`files`, new Blob([image]), `image-${index}.jpeg`);
         }
       });
     }
-
-    if (video) {
-      formData.append("video", new Blob([video]), "video");
+    if (video && (!images || !images.length)) {
+      formData.append("files", new Blob([video]), "video.mp4");
     }
 
-    const response = await axios.post(apiUrl, formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
     try {
-    } catch (error) {
+      const response = axios.post(apiUrl, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error: any) {
       console.error(`Error while sharing post: ${error}`);
+      console.error(error.response);
     }
   }
 }
