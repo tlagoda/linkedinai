@@ -32,6 +32,10 @@ export default function PublishButton({
       );
     }
 
+    if (video) {
+      binaryVideo = await convertToBinary(video);
+    }
+
     await LinkedInService.shareOnLinkedIn(content, binaryImages, binaryVideo);
     notifySuccessPublish();
     setIsModalOpen(false);
