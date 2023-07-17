@@ -162,6 +162,7 @@ export default function Page() {
                 <AddMedia
                   setPostVideo={setPostVideo}
                   setPostImages={setPostImages}
+                  disableImages={postImages?.length === 9}
                 />
               )}
             </div>
@@ -170,6 +171,7 @@ export default function Page() {
                 <AddMedia
                   setPostVideo={setPostVideo}
                   setPostImages={setPostImages}
+                  disableImages={postImages?.length === 9}
                 />
                 <PublishButton
                   content={content}
@@ -186,6 +188,7 @@ export default function Page() {
                     <AddMedia
                       setPostVideo={setPostVideo}
                       setPostImages={setPostImages}
+                      disableImages={postImages?.length === 9}
                     />
                     <Prompt
                       handleSendMessage={setContent}
@@ -200,6 +203,7 @@ export default function Page() {
                       <AddMedia
                         setPostVideo={setPostVideo}
                         setPostImages={setPostImages}
+                        disableImages={postImages?.length === 9}
                       />
                     )}
                     <div className="flex justify-between items-end">
