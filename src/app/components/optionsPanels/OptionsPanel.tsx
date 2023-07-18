@@ -9,9 +9,15 @@ interface OptionData {
 
 interface OptionsPanelProps {
   optionsData: OptionData[];
+  updateOptions: React.Dispatch<
+    React.SetStateAction<Record<string, string | number>>
+  >;
 }
 
-const OptionsPanel: React.FC<OptionsPanelProps> = ({ optionsData }) => {
+const OptionsPanel: React.FC<OptionsPanelProps> = ({
+  optionsData,
+  updateOptions,
+}) => {
   return (
     <>
       {optionsData.map((optionData, index) => (
@@ -20,6 +26,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ optionsData }) => {
           options={optionData.values}
           label={optionData.label}
           placeholder={optionData.placeholder}
+          updateOptions={updateOptions}
         />
       ))}
     </>

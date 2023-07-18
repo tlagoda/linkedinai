@@ -25,10 +25,13 @@ import MediaPreview from "../components/MediaPreview";
 export default function Page() {
   const [content, setContent] = useState(DEFAULT_LINKEDIN_CONTENT);
   const [displayLoader, setDisplayLoader] = useState(false);
-  const [customPrompt, setCustomPrompt] = useState(false);
+  const [displayCustomPrompt, setDisplayCustomPrompt] = useState(false);
   const [tailwindMd, setTailwindMd] = useState<boolean | undefined>(undefined);
   const [postImages, setPostImages] = useState<File[] | undefined>(undefined);
   const [postVideo, setPostVideo] = useState<File | undefined>(undefined);
+  const [generationOptions, setGenerationOptions] = useState<
+    Record<string, string | number>
+  >({});
 
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
@@ -82,14 +85,14 @@ export default function Page() {
             </Link>
           )}
           <div>
-            <Toggle togglePrompt={setCustomPrompt} />
+            <Toggle togglePrompt={setDisplayCustomPrompt} />
             <HorizontalDivider />
             <p className="mx-8 mt-4 text-justify">
               With the Ultimate LinkedIn Post Generator, customize your posts,
               access brilliant LinkedIn content, and elevate your online
               presence:
             </p>
-            {customPrompt && (
+            {displayCustomPrompt && (
               <>
                 <HorizontalDivider />
                 <div className="mx-8">
@@ -110,13 +113,18 @@ export default function Page() {
               </>
             )}
           </div>
-          {!customPrompt && <OptionsPanel optionsData={optionsData} />}
+          {!displayCustomPrompt && (
+            <OptionsPanel
+              optionsData={optionsData}
+              updateOptions={setGenerationOptions}
+            />
+          )}
         </div>
         <div className="w-screen relative pb-16 md:w-2/3 h-full flex flex-col py-2 md:py-4 px-8 md:px-0">
           <div className="h-full flex flex-col">
             {!tailwindMd && tailwindMd !== undefined && (
               <div className="h-1/4 md:flex md:items-center">
-                {customPrompt ? (
+                {displayCustomPrompt ? (
                   <Prompt
                     handleSendMessage={setContent}
                     setDisplayLoader={setDisplayLoader}
@@ -158,7 +166,7 @@ export default function Page() {
                   );
                 }}
               />
-              {customPrompt && !tailwindMd && (
+              {displayCustomPrompt && !tailwindMd && (
                 <AddMedia
                   setPostVideo={setPostVideo}
                   setPostImages={setPostImages}
@@ -166,24 +174,26 @@ export default function Page() {
                 />
               )}
             </div>
-            {!tailwindMd && tailwindMd !== undefined && !customPrompt && (
-              <div className="w-full h-1/4">
-                <AddMedia
-                  setPostVideo={setPostVideo}
-                  setPostImages={setPostImages}
-                  disableImages={postImages?.length === 9}
-                />
-                <PublishButton
-                  content={content}
-                  notifySuccessPublish={notifySuccessPublish}
-                  images={postImages}
-                  video={postVideo}
-                />
-              </div>
-            )}
+            {!tailwindMd &&
+              tailwindMd !== undefined &&
+              !displayCustomPrompt && (
+                <div className="w-full h-1/4">
+                  <AddMedia
+                    setPostVideo={setPostVideo}
+                    setPostImages={setPostImages}
+                    disableImages={postImages?.length === 9}
+                  />
+                  <PublishButton
+                    content={content}
+                    notifySuccessPublish={notifySuccessPublish}
+                    images={postImages}
+                    video={postVideo}
+                  />
+                </div>
+              )}
             {tailwindMd && (
               <div className="h-2/5 border-t border-emerald-400">
-                {customPrompt ? (
+                {displayCustomPrompt ? (
                   <div className="w-3/5 mx-auto flex flex-col md:py-4 justify-between h-full">
                     <AddMedia
                       setPostVideo={setPostVideo}

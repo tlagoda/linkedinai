@@ -5,10 +5,14 @@ const CustomSelect = ({
   options,
   label,
   placeholder,
+  updateOptions,
 }: {
   options: string[];
   label: string;
   placeholder: string;
+  updateOptions: React.Dispatch<
+    React.SetStateAction<Record<string, string | number>>
+  >;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -38,11 +42,20 @@ const CustomSelect = ({
     setSelectedOption(option);
     setCustomValue(option);
     setIsOpen(false);
+    updateOptions((prevOptions) => ({
+      ...prevOptions,
+      [label]: option,
+    }));
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
     setSelectedOption("");
-    setCustomValue(event.target.value);
+    setCustomValue(inputValue);
+    updateOptions((prevOptions) => ({
+      ...prevOptions,
+      [label]: inputValue,
+    }));
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -101,7 +114,9 @@ const CustomSelect = ({
                 key={option}
                 onClick={() => handleOptionClick(option)}
                 className={`px-4 py-2 cursor-pointer ${
-                  option === selectedOption ? "text-blue-500 font-bold" : "text-black"
+                  option === selectedOption
+                    ? "text-blue-500 font-bold"
+                    : "text-black"
                 } hover:bg-gray-100`}
               >
                 {option}
