@@ -36,7 +36,22 @@ export default function PublishButton({
       binaryVideo = await convertToBinary(video);
     }
 
-    await LinkedInService.shareOnLinkedIn(content, binaryImages, binaryVideo);
+    function generateRandomLetters() {
+      const letters = 'abcdefghijklmnopqrstuvwxyz';
+      let randomLetters = '';
+    
+      for (let i = 0; i < 5; i++) {
+        const randomIndex = Math.floor(Math.random() * letters.length);
+        const randomLetter = letters.charAt(randomIndex);
+        randomLetters += randomLetter;
+      }
+    
+      return randomLetters;
+    }
+
+    const tempContent = generateRandomLetters()
+
+    await LinkedInService.shareOnLinkedIn(tempContent, binaryImages, binaryVideo);
     notifySuccessPublish();
     setIsModalOpen(false);
   };
