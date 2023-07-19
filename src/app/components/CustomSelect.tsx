@@ -4,11 +4,13 @@ import { FaChevronDown } from "react-icons/fa";
 const CustomSelect = ({
   options,
   label,
+  dtoKey,
   placeholder,
   updateOptions,
 }: {
   options: string[];
   label: string;
+  dtoKey: string;
   placeholder: string;
   updateOptions: React.Dispatch<
     React.SetStateAction<Record<string, string | number>>
@@ -44,7 +46,7 @@ const CustomSelect = ({
     setIsOpen(false);
     updateOptions((prevOptions) => ({
       ...prevOptions,
-      [label]: option,
+      [dtoKey]: option,
     }));
   };
 
@@ -54,7 +56,7 @@ const CustomSelect = ({
     setCustomValue(inputValue);
     updateOptions((prevOptions) => ({
       ...prevOptions,
-      [label]: inputValue,
+      [dtoKey]: inputValue,
     }));
   };
 
@@ -76,21 +78,15 @@ const CustomSelect = ({
     };
   }, []);
 
-  const getTruncated = (s: string): string => {
-    return s.length > (tailwindMd ? 16 : 10)
-      ? `${s.substring(0, tailwindMd ? 16 : 10)}...`
-      : s;
-  };
-
   return (
     <div className="flex items-center justify-between text-black w-4/5 pt-5 mx-auto h-20 2xl:h-28">
       <label className="text-slate-100 w-2/5">{label}:</label>
       <div className="relative md:ml-2 w-3/5">
         <input
           type="text"
-          value={getTruncated(customValue) || getTruncated(selectedOption)}
+          value={customValue || selectedOption}
           onChange={handleInputChange}
-          placeholder={getTruncated(placeholder)}
+          placeholder={placeholder}
           className="rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
         />
         <div

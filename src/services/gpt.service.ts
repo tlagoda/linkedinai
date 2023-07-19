@@ -13,16 +13,19 @@ export class GptService {
 
     const auth = getAuth();
     const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
-    console.log(options)
+    console.log(options);
     try {
-      const response = await axios.post(apiUrl, options, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      return response.data.message;
-      // return response.data.text;
+      const response = await axios.post(
+        apiUrl,
+        { options },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+        console.log(response)
+      return response.data.text;
     } catch (error) {
       console.error(`Error while generating post: ${error}`);
     }

@@ -5,6 +5,7 @@ interface OptionData {
   values: string[];
   placeholder: string;
   label: string;
+  dtoKey: string;
 }
 
 interface OptionsPanelProps {
@@ -25,6 +26,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           key={index}
           options={optionData.values}
           label={optionData.label}
+          dtoKey={optionData.dtoKey}
           placeholder={optionData.placeholder}
           updateOptions={updateOptions}
         />
