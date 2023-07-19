@@ -137,6 +137,7 @@ export default function Page() {
                       handleSendMessage={setContent}
                       setDisplayLoader={setDisplayLoader}
                       notifyError={notifyError}
+                      generationOptions={generationOptions}
                     />
                   </div>
                 )}
@@ -221,6 +222,7 @@ export default function Page() {
                         handleSendMessage={setContent}
                         setDisplayLoader={setDisplayLoader}
                         notifyError={notifyError}
+                        generationOptions={generationOptions}
                       />
                       <PublishButton
                         content={content}

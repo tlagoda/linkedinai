@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import "firebase/auth";
 
 export class GptService {
-  static async generate(prompt: string) {
+  static async generate(options: Record<string, string | number>) {
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl
@@ -13,12 +13,9 @@ export class GptService {
 
     const auth = getAuth();
     const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
-
+    console.log(options)
     try {
-      const response = await axios.get(apiUrl, {
-        params: {
-          prompt,
-        },
+      const response = await axios.post(apiUrl, options, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

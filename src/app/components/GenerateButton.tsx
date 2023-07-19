@@ -6,15 +6,17 @@ const GenerateButton = ({
   handleSendMessage,
   setDisplayLoader,
   notifyError,
+  generationOptions,
 }: {
   handleSendMessage: any;
   setDisplayLoader: any;
   notifyError: any;
+  generationOptions: Record<string, string | number>;
 }) => {
   const generatePost = async () => {
     setDisplayLoader(true);
     try {
-      const linkedInPost = await GptService.generate("TEST");
+      const linkedInPost = await GptService.generate(generationOptions);
       if (!linkedInPost) {
         throw new Error();
       }
