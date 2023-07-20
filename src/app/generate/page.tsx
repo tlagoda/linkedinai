@@ -85,7 +85,9 @@ export default function Page() {
             </Link>
           )}
           <div>
-            <Toggle togglePrompt={setDisplayCustomPrompt} />
+              <h2 className="text-center text-3xl pt-5 w-4/5 mx-auto">Design your post</h2>
+
+            {/* <Toggle togglePrompt={setDisplayCustomPrompt} /> */}
             <HorizontalDivider />
             <p className="mx-8 mt-4 text-justify">
               With the Ultimate LinkedIn Post Generator, customize your posts,

@@ -105,8 +105,8 @@ const CustomSelect = ({
             value={customValue || selectedOption}
             onChange={handleTextareaChange}
             placeholder={placeholder}
-            className="rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
-            style={{ paddingRight: "2rem", resize: "none" }}
+            className="text-s rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+            style={{ paddingRight: "2rem", resize: "none", minHeight: "7rem"}}
           />
         ) : (
           <input
