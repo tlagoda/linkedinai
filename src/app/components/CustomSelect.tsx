@@ -97,7 +97,11 @@ const CustomSelect = ({
   };
 
   return (
-    <div className="flex items-center justify-between text-black w-4/5 mx-auto h-20 2xl:h-24">
+    <div
+      className="flex items-center justify-between text-black w-4/5 mx-auto h-20 2xl:h-24"
+      style={dtoKey === "additionalInfo" ? { minHeight: "10rem" } : {}}
+    >
+      {" "}
       <label className="text-slate-100 w-2/5">{label}:</label>
       <div className="relative md:ml-2 w-3/5">
         {dtoKey === "additionalInfo" ? (
@@ -106,7 +110,7 @@ const CustomSelect = ({
             onChange={handleTextareaChange}
             placeholder={placeholder}
             className="text-s rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
-            style={{ paddingRight: "2rem", resize: "none", minHeight: "7rem"}}
+            style={{ paddingRight: "2rem", resize: "none", minHeight: "7rem" }}
           />
         ) : (
           <input
@@ -114,14 +118,16 @@ const CustomSelect = ({
             value={customValue || selectedOption}
             onChange={handleInputChange}
             placeholder={placeholder}
-            className="rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+            className="text-m rounded-md py-2 text-m px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
           />
         )}
         {dtoKey !== "additionalInfo" && (
           <div
             ref={iconRef}
             onClick={toggleMenu}
-            className="absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-blue-500 cursor-pointer"
+            className={`absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-blue-500 cursor-pointer ${
+              dtoKey === "additionalInfo" ? "hidden" : ""
+            }`}
           >
             <FaChevronDown
               className={`text-slate-100 transition-transform duration-300 ${
