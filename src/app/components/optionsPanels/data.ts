@@ -13,8 +13,8 @@ export const optionsData = [
   },
   {
     label: "Post Length",
-    values: ["Short (100-200 characters)", "Medium (200-300 characters)", "Long (300-500 characters)", "Variable"],
-    placeholder: "Short (100-200 characters)",
+    values: ["Short (< 200 words)", "Medium (200-500 words)", "Long (>500 words)", "Random"],
+    placeholder: "Less than 100 words",
     dtoKey: "postLength",
   },
   {
@@ -34,5 +34,11 @@ export const optionsData = [
     values: ["Pose a question at the end of the post", "Encourage comments and shares", "Invite to visit a link", "Ask for readers' opinions", "Encourage signing up for a newsletter", "Offer additional content", "Provide a personal reflection"],
     placeholder: "Pose a question at the end of the post",
     dtoKey: "callToAction",
+  },
+  {
+    label: "Additional Information",
+    values: [],
+    placeholder: "My company was founded in 2013 and has over 200 employees.",
+    dtoKey: "additionalInfo",
   },
 ];

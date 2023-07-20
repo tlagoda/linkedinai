@@ -24,7 +24,7 @@ export class GptService {
           },
         }
       );
-        console.log(response)
+
       return response.data.text;
     } catch (error) {
       console.error(`Error while generating post: ${error}`);

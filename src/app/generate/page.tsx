@@ -76,7 +76,7 @@ export default function Page() {
         <div className="fixed md:absolute top-0 right-0 m-2 md:m-4 z-10">
           <Avatar linkedInProfilePicUrl={user.linkedInProfilePicUrl} />
         </div>
-        <div className="w-screen md:w-1/3 md:h-full bg-slate-700 pt-5 pb-5 md:pb-0">
+        <div className="w-screen md:w-1/3 md:h-full bg-slate-700 pt-5 pb-5 md:pb-0 overflow-y-auto flex-grow">
           {!tailwindMd && (
             <Link href="/">
               <h1 className="text-center text-3xl animate-fadeIn2s">
