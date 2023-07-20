@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import "firebase/auth";
 
 export class GptService {
-  static async generate(options: Record<string, string | number>) {
+  static async generate(options: Record<string, string | number> | string) {
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl
