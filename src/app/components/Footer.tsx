@@ -1,6 +1,14 @@
 import { FaTwitter } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
+  const handleScrollTo = (event: any, direction: string) => {
+    event.preventDefault();
+    const faqSection = document.getElementById(`${direction}-section`);
+    if (!faqSection) return;
+    faqSection.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <footer className="h-[300px] bg-faq-500 py-10 text-slate-100">
       <div className="w-2/3 h-full mx-auto">
@@ -10,7 +18,7 @@ export default function Footer() {
             Excel!
           </h3>
           <button className="w-1/6 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-            Start now!
+            <Link href="/signup">Start now!</Link>
           </button>
         </div>
         <div className="h-1/2 w-full">
@@ -25,13 +33,19 @@ export default function Footer() {
                   size={20}
                 />
               </li>
-              <li className="mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer">
+              <li
+                onClick={(e) => handleScrollTo(e, "solution")}
+                className="mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer"
+              >
                 Solution
               </li>
               <li className="mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer">
                 Pricing
               </li>
-              <li className="hover:text-emerald-400 hover:underline hover:cursor-pointer">
+              <li
+                onClick={(e) => handleScrollTo(e, "faq")}
+                className="hover:text-emerald-400 hover:underline hover:cursor-pointer"
+              >
                 FAQ
               </li>
             </ul>

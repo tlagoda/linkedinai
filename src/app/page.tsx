@@ -5,6 +5,7 @@ import Image from "next/image";
 import OverlapingAvatars from "./components/OverlapingAvatars";
 import { FaCheckCircle } from "react-icons/fa";
 import Footer from "./components/Footer";
+import Link from "next/link";
 
 export default function Home() {
   const saasAdvantages = [
@@ -30,7 +31,7 @@ export default function Home() {
               publish on LinkedIn.
             </p>
             <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-              Try for free!
+              <Link href="/signup">Try it for free!</Link>
             </button>
           </div>
           <div className="w-1/2 flex justify-center items-center">
@@ -58,7 +59,7 @@ export default function Home() {
           <div className="w-1/2 flex justify-center items-center">
             <Image
               className="rounded-xl"
-              src="/creativity.png"
+              src="/lamp-creativity.png"
               alt="Landing Image"
               width={450}
               height={450}
@@ -76,7 +77,7 @@ export default function Home() {
               power of limitless creativity on LinkedIn!
             </p>
             <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-              Create!
+              <Link href="/signup">Create!</Link>
             </button>
           </div>
         </div>
@@ -107,7 +108,7 @@ export default function Home() {
               time. Join now and maximize your social media impact.
             </p>
             <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-              Save time!
+              <Link href="/signup">Save time!</Link>
             </button>
           </div>
           <div className="w-1/2 flex justify-center items-center">
