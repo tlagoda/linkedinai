@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="h-36 bg-myblue-500 text-slate-100 flex justify-between items-center px-20">
       <h2 className="text-2xl font-bold">
-        <span className="text-emerald-400">K</span>ouim.ai
+        <span className="text-emerald-400">A</span>ppName.ai
       </h2>
       <ul className="flex w-1/5 justify-around text-m">
         <li

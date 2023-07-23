@@ -19,7 +19,7 @@ export default function Home() {
     "Effortlessly create engaging LinkedIn posts",
     "Boost your online presence with professional content",
     "Save time by streamlining the post creation process",
-    "Maximize your LinkedIn potential with Kouim",
+    "Maximize your LinkedIn potential with AppName",
     "Post your polished and refined content directly to LinkedIn with ease",
   ];
 
@@ -51,10 +51,10 @@ export default function Home() {
         <div className="flex my-10 w-2/3 mx-auto">
           <div className="w-1/2 mx-10 mx-10 flex flex-col justify-center">
             <h3 className="text-6xl mb-10 font-bold">
-              Unlock Limitless LinkedIn Potential with Kouim
+              Unlock Limitless LinkedIn Potential with AppName
             </h3>
             <p className="mb-10">
-              Unlock your LinkedIn potential with Kouim, the AI-powered post
+              Unlock your LinkedIn potential with AppName, the AI-powered post
               generator. Create custom posts, add media, and effortlessly
               publish on LinkedIn.
             </p>
@@ -100,7 +100,7 @@ export default function Home() {
               Boost Creativity and Enhance Your Online Presence
             </h3>
             <p className="mb-10">
-              Kouim is your ultimate creative companion for LinkedIn. With this
+              AppName is your ultimate creative companion for LinkedIn. With this
               ultimate LinkedIn post generator, you will discover new ways to
               express yourself and captivate your audience. Elevate your online
               presence and stand out in the crowd. Join now and experience the
@@ -115,7 +115,7 @@ export default function Home() {
         </div>
         <div className="min-h-[35vh] py-10 bg-bonusSection-500 flex flex-col justify-center items-center">
           <h3 className="text-5xl font-bold text-center mb-10">
-            Level up with <span className="text-emerald-400">K</span>ouim:
+            Level up with <span className="text-emerald-400">A</span>ppName:
           </h3>
           <span className="mb-10 bg-myblue-500 py-4 px-8 rounded-3xl border border-emerald-400">
             AI powered
@@ -132,10 +132,10 @@ export default function Home() {
         <div className="flex my-10 w-2/3 mx-auto my-40">
           <div className="w-1/2 mx-10 flex flex-col justify-center">
             <h3 className="text-6xl mb-10 font-bold">
-              Achieve More in Less Time with Kouim{" "}
+              Achieve More in Less Time with AppName{" "}
             </h3>
             <p className="mb-10">
-              Unlock your productivity with Kouim! Our powerful SaaS platform
+              Unlock your productivity with AppName! Our powerful SaaS platform
               simplifies LinkedIn post creation and sharing, saving you valuable
               time. Join now and maximize your social media impact.
             </p>
