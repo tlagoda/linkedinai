@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Image from "next/image";
 import OverlapingAvatars from "./components/OverlapingAvatars";
 import { FaCheckCircle } from "react-icons/fa";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const saasAdvantages = [
@@ -197,6 +198,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

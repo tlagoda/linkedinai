@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
   const handleScrollTo = (event: any, direction: string) => {
     event.preventDefault();
@@ -16,7 +18,7 @@ export default function Header() {
           onClick={(e) => handleScrollTo(e, "solution")}
           className="hover:underline hover:cursor-pointer hover:text-emerald-400"
         >
-          Solutions
+          Solution
         </li>
         <li className="hover:underline hover:cursor-pointer hover:text-emerald-400">
           Pricing
@@ -30,10 +32,10 @@ export default function Header() {
       </ul>
       <div>
         <button className="rounded-full border-2 px-4 py-2 mr-2 min-w-[6rem] hover:text-emerald-400">
-          Sign up
+          <Link href="/signup">Sign up</Link>
         </button>
         <button className="rounded-full border-2 px-4 py-2 min-w-[6rem] hover:text-emerald-400">
-          Login
+          <Link href="/login">Login</Link>
         </button>
       </div>
     </header>
