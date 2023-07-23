@@ -6,8 +6,13 @@ import OverlapingAvatars from "./components/OverlapingAvatars";
 import { FaCheckCircle } from "react-icons/fa";
 import Footer from "./components/Footer";
 import Link from "next/link";
+import LinkedInPost from "./components/LinkedInPost";
+import { promptExamples } from "./data/landing/promptExamples";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [promptIndex, setPromptIndex] = useState(0);
+
   const saasAdvantages = [
     "Effortlessly create engaging LinkedIn posts",
     "Boost your online presence with professional content",
@@ -15,6 +20,21 @@ export default function Home() {
     "Maximize your LinkedIn potential with Kouim",
     "Post your polished and refined content directly to LinkedIn with ease",
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPromptIndex((prevState) => {
+        let randomIndex;
+        do {
+          randomIndex = Math.floor(Math.random() * promptExamples.length);
+        } while (randomIndex === prevState);
+
+        return randomIndex;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="bg-myblue-500">
@@ -37,12 +57,12 @@ export default function Home() {
             </Link>
           </div>
           <div className="w-1/2 flex justify-center items-center">
-            <Image
-              className="rounded-xl"
-              src="/landing-1.png"
-              alt="Landing Image"
-              width={450}
-              height={450}
+            <LinkedInPost
+              content={promptExamples[promptIndex]}
+              displayLoader={false}
+              linkedInProfilePicUrl="/pp-linkedin.png"
+              nameOfUser="John Doe"
+              width="w-4/5"
             />
           </div>
         </div>

@@ -6,14 +6,21 @@ export default function LinkedInPost({
   displayLoader,
   linkedInProfilePicUrl,
   nameOfUser,
+  width,
 }: {
   content: string;
   displayLoader: boolean;
   linkedInProfilePicUrl: string;
   nameOfUser: string;
+  width?: string;
 }) {
   return (
-    <div className=" w-full md:min-h-[400px] md:w-2/5 mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md">
+    <div
+      className={`w-full md:min-h-[400px] mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md ${
+        width ? `md:${width}` : "md:w-2/5"
+      }`}
+    >
+      {" "}
       <div className="p-4">
         <div className="flex items-center">
           <Image
