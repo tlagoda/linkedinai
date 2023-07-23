@@ -31,7 +31,7 @@ export default function Home() {
 
         return randomIndex;
       });
-    }, 4000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, []);

@@ -18,7 +18,7 @@ export default function Footer() {
             Excel!
           </h3>
           <Link href="/signup">
-            <button className="w-1/6 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
+            <button className="bg-emerald-400 rounded-full px-8 py-4 hover:bg-emerald-500">
               Start now!
             </button>
           </Link>
