@@ -31,12 +31,16 @@ export default function Header() {
         </li>
       </ul>
       <div>
-        <button className="rounded-full border-2 px-4 py-2 mr-2 min-w-[6rem] hover:text-emerald-400">
-          <Link href="/signup">Sign up</Link>
-        </button>
-        <button className="rounded-full border-2 px-4 py-2 min-w-[6rem] hover:text-emerald-400">
-          <Link href="/login">Login</Link>
-        </button>
+        <Link href="/signup">
+          <button className="rounded-full border-2 px-4 py-2 mr-2 min-w-[6rem] hover:text-emerald-400">
+            Sign up
+          </button>
+        </Link>
+        <Link href="/login">
+          <button className="rounded-full border-2 px-4 py-2 min-w-[6rem] hover:text-emerald-400">
+            Login
+          </button>
+        </Link>
       </div>
     </header>
   );

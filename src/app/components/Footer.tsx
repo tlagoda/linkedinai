@@ -17,9 +17,11 @@ export default function Footer() {
             <span className="text-emerald-400">K</span>ouim: Elevate, Engage,
             Excel!
           </h3>
-          <button className="w-1/6 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-            <Link href="/signup">Start now!</Link>
-          </button>
+          <Link href="/signup">
+            <button className="w-1/6 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
+              Start now!
+            </button>
+          </Link>
         </div>
         <div className="h-1/2 w-full">
           <div className="flex h-full justify-between items-end">

@@ -30,9 +30,11 @@ export default function Home() {
               generator. Create custom posts, add media, and effortlessly
               publish on LinkedIn.
             </p>
-            <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-              <Link href="/signup">Try it for free!</Link>
-            </button>
+            <Link href="/signup">
+              <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
+                Try it for free!
+              </button>
+            </Link>
           </div>
           <div className="w-1/2 flex justify-center items-center">
             <Image
@@ -46,7 +48,7 @@ export default function Home() {
         </div>
         <div
           id="solution-section"
-          className="w-full my-20 h-40 flex justify-center items-center"
+          className="w-full h-40 flex justify-center items-center"
         >
           <div className="flex items-center justify-between">
             <span className="mr-4">
@@ -55,7 +57,7 @@ export default function Home() {
             <OverlapingAvatars />
           </div>
         </div>
-        <div className="flex my-10 w-2/3 mx-auto">
+        <div className="flex mt-10 mb-40 w-2/3 mx-auto">
           <div className="w-1/2 flex justify-center items-center">
             <Image
               className="rounded-xl"
@@ -76,9 +78,11 @@ export default function Home() {
               presence and stand out in the crowd. Join now and experience the
               power of limitless creativity on LinkedIn!
             </p>
-            <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-              <Link href="/signup">Create!</Link>
-            </button>
+            <Link href="/signup">
+              <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
+                Create!
+              </button>
+            </Link>
           </div>
         </div>
         <div className="min-h-[35vh] py-10 bg-bonusSection-500 flex flex-col justify-center items-center">
@@ -107,9 +111,11 @@ export default function Home() {
               simplifies LinkedIn post creation and sharing, saving you valuable
               time. Join now and maximize your social media impact.
             </p>
-            <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-              <Link href="/signup">Save time!</Link>
-            </button>
+            <Link href="/signup">
+              <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
+                Save time!
+              </button>
+            </Link>
           </div>
           <div className="w-1/2 flex justify-center items-center">
             <Image
