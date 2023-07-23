@@ -42,7 +42,10 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="w-full my-20 h-40 flex justify-center items-center">
+        <div
+          id="solution-section"
+          className="w-full my-20 h-40 flex justify-center items-center"
+        >
           <div className="flex items-center justify-between">
             <span className="mr-4">
               Empower your network and inspire others!
@@ -62,7 +65,7 @@ export default function Home() {
           </div>
           <div className="w-1/2 mx-10 flex flex-col justify-center">
             <h3 className="text-6xl mb-10 font-bold">
-              Boost Creativity and Enhance Your Online Presence!
+              Boost Creativity and Enhance Your Online Presence
             </h3>
             <p className="mb-10">
               Kouim is your ultimate creative companion for LinkedIn. With this
@@ -116,7 +119,10 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex my-10 w-2/3 mx-auto flex flex-col justify-center items-center">
+        <div
+          id="faq-section"
+          className="flex my-10 w-2/3 mx-auto flex flex-col justify-center items-center"
+        >
           <span className="bg-myblue-500 py-4 px-8 rounded-3xl border border-emerald-400">
             FAQ
           </span>
