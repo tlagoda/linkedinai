@@ -7,6 +7,13 @@ module.exports = {
         myblue: {
           500: "#10172A",
         },
+        bonusSection: {
+          300: "#B7BBC3",
+          500: "#1B1F3F"
+        },
+        faq: {
+          500: "#1E293B"
+        }
       },
       keyframes: {
         fadeIn: {

@@ -3,8 +3,17 @@
 import Header from "./components/Header";
 import Image from "next/image";
 import OverlapingAvatars from "./components/OverlapingAvatars";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function Home() {
+  const saasAdvantages = [
+    "Effortlessly create engaging LinkedIn posts",
+    "Boost your online presence with professional content",
+    "Save time by streamlining the post creation process",
+    "Maximize your LinkedIn potential with Kouim",
+    "Post your polished and refined content directly to LinkedIn with ease",
+  ];
+
   return (
     <main className="bg-myblue-500">
       <Header />
@@ -25,7 +34,7 @@ export default function Home() {
           </div>
           <div className="w-1/2 flex justify-center items-center">
             <Image
-              className="rounded-xl border-2 border-emerald-400"
+              className="rounded-xl"
               src="/landing-1.png"
               alt="Landing Image"
               width={450}
@@ -44,7 +53,7 @@ export default function Home() {
         <div className="flex my-10 w-2/3 mx-auto">
           <div className="w-1/2 flex justify-center items-center">
             <Image
-              className="rounded-xl border-2 border-emerald-400"
+              className="rounded-xl"
               src="/creativity.png"
               alt="Landing Image"
               width={450}
@@ -67,8 +76,21 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="h-40 bg-blue-100">
-
+        <div className="min-h-[35vh] py-10 bg-bonusSection-500 flex flex-col justify-center items-center">
+          <h3 className="text-5xl font-bold text-center mb-10">
+            Level up with <span className="text-emerald-400">K</span>ouim:
+          </h3>
+          <span className="mb-10 bg-myblue-500 py-4 px-8 rounded-3xl border border-emerald-400">
+            AI powered
+          </span>
+          <ul>
+            {saasAdvantages.map((advantage, index) => (
+              <li key={index} className="flex items-center text-lg mb-4">
+                <FaCheckCircle size={20} className="text-emerald-400 mr-4" />
+                <span>{advantage}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="flex my-10 w-2/3 mx-auto my-40">
           <div className="w-1/2 mx-10 flex flex-col justify-center">
@@ -86,12 +108,86 @@ export default function Home() {
           </div>
           <div className="w-1/2 flex justify-center items-center">
             <Image
-              className="rounded-xl border-2 border-emerald-400"
+              className="rounded-xl"
               src="/time-saver.png"
               alt="Landing Image"
               width={450}
               height={450}
             />
+          </div>
+        </div>
+        <div className="flex my-10 w-2/3 mx-auto flex flex-col justify-center items-center">
+          <span className="bg-myblue-500 py-4 px-8 rounded-3xl border border-emerald-400">
+            FAQ
+          </span>
+          <h3 className="text-5xl my-10">Frequently asked questions</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
+              <h4 className="text-2xl font-bold mb-4">
+                <span className="text-emerald-400">#</span>How does the LinkedIn
+                Post Generator work?
+              </h4>
+              <p className="text-faq-300">
+                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
+                to generate engaging posts based on custom inputs provided by
+                users.
+              </p>
+            </div>
+            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
+              <h4 className="text-2xl font-bold mb-4">
+                <span className="text-emerald-400">#</span>How does the LinkedIn
+                Post Generator work?
+              </h4>
+              <p className="text-faq-300">
+                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
+                to generate engaging posts based on custom inputs provided by
+                users.
+              </p>
+            </div>
+            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
+              <h4 className="text-2xl font-bold mb-4">
+                <span className="text-emerald-400">#</span>How does the LinkedIn
+                Post Generator work?
+              </h4>
+              <p className="text-faq-300">
+                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
+                to generate engaging posts based on custom inputs provided by
+                users.
+              </p>
+            </div>
+            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
+              <h4 className="text-2xl font-bold mb-4">
+                <span className="text-emerald-400">#</span>How does the LinkedIn
+                Post Generator work?
+              </h4>
+              <p className="text-faq-300">
+                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
+                to generate engaging posts based on custom inputs provided by
+                users.
+              </p>
+            </div>
+            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
+              <h4 className="text-2xl font-bold mb-4">
+                <span className="text-emerald-400">#</span>How does the LinkedIn
+                Post Generator work?
+              </h4>
+              <p className="text-faq-300">
+                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
+                to generate engaging posts based on custom inputs provided by
+                users.
+              </p>
+            </div>
+            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
+              <h4 className="text-2xl font-bold mb-4">
+                <span className="text-emerald-400">#</span>How does the LinkedIn
+                Post Generator work?
+              </h4>
+              <p className="text-faq-300">
+                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
+                to generate engaging posts based on custom inputs provided by
+                users.
+              </p>
+            </div>
           </div>
         </div>
       </div>
