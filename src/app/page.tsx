@@ -7,11 +7,13 @@ import { FaCheckCircle } from "react-icons/fa";
 import Footer from "./components/Footer";
 import Link from "next/link";
 import LinkedInPost from "./components/LinkedInPost";
+import { faqQandA } from "./data/landing/faq";
 import { promptExamples } from "./data/landing/promptExamples";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [promptIndex, setPromptIndex] = useState(0);
+  const [showPromptLoader, setShowPromptLoader] = useState(false);
 
   const saasAdvantages = [
     "Effortlessly create engaging LinkedIn posts",
@@ -23,14 +25,20 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPromptIndex((prevState) => {
-        let randomIndex;
-        do {
-          randomIndex = Math.floor(Math.random() * promptExamples.length);
-        } while (randomIndex === prevState);
+      setShowPromptLoader(true);
 
-        return randomIndex;
-      });
+      setTimeout(() => {
+        setPromptIndex((prevState) => {
+          let randomIndex;
+          do {
+            randomIndex = Math.floor(Math.random() * promptExamples.length);
+          } while (randomIndex === prevState);
+
+          return randomIndex;
+        });
+
+        setShowPromptLoader(false);
+      }, 1000);
     }, 6000);
 
     return () => clearInterval(interval);
@@ -59,7 +67,7 @@ export default function Home() {
           <div className="w-1/2 flex justify-center items-center">
             <LinkedInPost
               content={promptExamples[promptIndex]}
-              displayLoader={false}
+              displayLoader={showPromptLoader}
               linkedInProfilePicUrl="/pp-linkedin.png"
               nameOfUser="John Doe"
               width="w-4/5"
@@ -156,72 +164,20 @@ export default function Home() {
           </span>
           <h3 className="text-5xl my-10">Frequently asked questions</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
-              <h4 className="text-2xl font-bold mb-4">
-                <span className="text-emerald-400">#</span>How does the LinkedIn
-                Post Generator work?
-              </h4>
-              <p className="text-faq-300">
-                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
-                to generate engaging posts based on custom inputs provided by
-                users.
-              </p>
-            </div>
-            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
-              <h4 className="text-2xl font-bold mb-4">
-                <span className="text-emerald-400">#</span>How does the LinkedIn
-                Post Generator work?
-              </h4>
-              <p className="text-faq-300">
-                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
-                to generate engaging posts based on custom inputs provided by
-                users.
-              </p>
-            </div>
-            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
-              <h4 className="text-2xl font-bold mb-4">
-                <span className="text-emerald-400">#</span>How does the LinkedIn
-                Post Generator work?
-              </h4>
-              <p className="text-faq-300">
-                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
-                to generate engaging posts based on custom inputs provided by
-                users.
-              </p>
-            </div>
-            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
-              <h4 className="text-2xl font-bold mb-4">
-                <span className="text-emerald-400">#</span>How does the LinkedIn
-                Post Generator work?
-              </h4>
-              <p className="text-faq-300">
-                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
-                to generate engaging posts based on custom inputs provided by
-                users.
-              </p>
-            </div>
-            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
-              <h4 className="text-2xl font-bold mb-4">
-                <span className="text-emerald-400">#</span>How does the LinkedIn
-                Post Generator work?
-              </h4>
-              <p className="text-faq-300">
-                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
-                to generate engaging posts based on custom inputs provided by
-                users.
-              </p>
-            </div>
-            <div className="rounded-xl bg-faq-500 rounded px-8 py-8">
-              <h4 className="text-2xl font-bold mb-4">
-                <span className="text-emerald-400">#</span>How does the LinkedIn
-                Post Generator work?
-              </h4>
-              <p className="text-faq-300">
-                Our LinkedIn Post Generator is powered by AI, which uses OpenAI
-                to generate engaging posts based on custom inputs provided by
-                users.
-              </p>
-            </div>
+            {faqQandA.map((item, index) => {
+              return (
+                <div
+                  className="rounded-xl bg-faq-500 rounded px-8 py-8"
+                  key={`faq-${index}`}
+                >
+                  <h4 className="text-2xl font-bold mb-4">
+                    <span className="text-emerald-400">#</span>
+                    {item.question}
+                  </h4>
+                  <p className="text-faq-300">{item.answer}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
