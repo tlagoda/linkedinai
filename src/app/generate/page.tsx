@@ -80,7 +80,7 @@ export default function Page() {
           {!tailwindMd && (
             <Link href="/">
               <h1 className="text-center text-3xl animate-fadeIn2s">
-                l<span className="font-bold text-blue-500">AI</span>nkedIn
+                <span className="font-bold text-emerald-400">A</span>ppName
               </h1>
             </Link>
           )}
@@ -150,7 +150,7 @@ export default function Page() {
               {tailwindMd && (
                 <Link href="/">
                   <h1 className="text-center text-3xl animate-fadeIn2s">
-                    l<span className="font-bold text-blue-500">AI</span>nkedIn
+                    <span className="font-bold text-emerald-400">A</span>ppName
                   </h1>
                 </Link>
               )}

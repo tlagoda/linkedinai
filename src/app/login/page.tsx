@@ -83,12 +83,12 @@ export default function LogIn() {
   }
 
   return (
-    <section className="bg-gray-900 to-blue-600 h-screen flex">
+    <section className="bg-myblue-500 to-blue-600 h-screen flex">
       <Link
         href="/"
         className="flex absolute top-4 left-4 text-black items-center mb-6 text-2xl font-semibold text-slate-100"
       >
-        l<span className="text-blue-500">AI</span>nkedIn
+        <span className="text-emerald-400">A</span>ppName
       </Link>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto w-4/5 md:w-2/5 md:h-screen lg:py-0">
         <div className="w-full bg-white border-4 border-emerald-400 rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
@@ -167,7 +167,7 @@ export default function LogIn() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-black text-emerald-400 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="w-full bg-black text-emerald-400 bg-myviolet-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   Sign in
                 </button>
