@@ -10,6 +10,7 @@ import LinkedInPost from "./components/LinkedInPost";
 import { faqQandA } from "./data/landing/faq";
 import { promptExamples } from "./data/landing/promptExamples";
 import { useEffect, useState } from "react";
+import LandingPageSection from "./components/LandingPageSection";
 
 export default function Home() {
   const [promptIndex, setPromptIndex] = useState(0);
@@ -47,24 +48,24 @@ export default function Home() {
   return (
     <main className="bg-myblue-500">
       <Header />
-      <div className="bg-myblue-500 text-slate-100 min-h-screen pb-20">
-        <div className="flex my-10 w-2/3 mx-auto">
-          <div className="w-1/2 mx-10 mx-10 flex flex-col justify-center">
-            <h3 className="text-6xl mb-10 font-bold">
+      <div className="bg-myblue-500 text-slate-100 min-h-screen max-w-screen overflow-hidden pb-20">
+        <div className="flex flex-col md:flex-row my-10 w-full md:w-2/3 mx-auto">
+          <div className="w-4:5 mx-4 md:w-1/2 md:mx-10 flex flex-col justify-center">
+            <h3 className="text-5xl md:text-6xl mb-10 font-bold text-center md:text-left">
               Unlock Limitless LinkedIn Potential with AppName
             </h3>
-            <p className="mb-10">
+            <p className="mb-10 text-justify md:text-left">
               Unlock your LinkedIn potential with AppName, the AI-powered post
               generator. Create custom posts, add media, and effortlessly
               publish on LinkedIn.
             </p>
-            <Link href="/signup">
-              <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
+            <Link href="/signup" className="mb-4 mx-auto md:mx-0 w-1/3">
+              <button className="w-full bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
                 Try it for free!
               </button>
             </Link>
           </div>
-          <div className="w-1/2 flex justify-center items-center">
+          <div className="w-4/5 mx-auto md:mx-0 md:w-1/2 flex justify-center items-center">
             <LinkedInPost
               content={promptExamples[promptIndex]}
               displayLoader={showPromptLoader}
@@ -85,34 +86,14 @@ export default function Home() {
             <OverlapingAvatars />
           </div>
         </div>
-        <div className="flex mt-10 mb-40 w-2/3 mx-auto">
-          <div className="w-1/2 flex justify-center items-center">
-            <Image
-              className="rounded-xl"
-              src="/lamp-creativity.png"
-              alt="Landing Image"
-              width={450}
-              height={450}
-            />
-          </div>
-          <div className="w-1/2 mx-10 flex flex-col justify-center">
-            <h3 className="text-6xl mb-10 font-bold">
-              Boost Creativity and Enhance Your Online Presence
-            </h3>
-            <p className="mb-10">
-              AppName is your ultimate creative companion for LinkedIn. With this
-              ultimate LinkedIn post generator, you will discover new ways to
-              express yourself and captivate your audience. Elevate your online
-              presence and stand out in the crowd. Join now and experience the
-              power of limitless creativity on LinkedIn!
-            </p>
-            <Link href="/signup">
-              <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-                Create!
-              </button>
-            </Link>
-          </div>
-        </div>
+        <LandingPageSection
+          headline="Boost Creativity and Enhance Your Online Presence"
+          paragraph="AppName is your ultimate creative companion for LinkedIn. With this ultimate LinkedIn post generator, you will discover new ways to express yourself and captivate your audience. Elevate your online presence and stand out in the crowd. Join now and experience the power of limitless creativity on LinkedIn!"
+          buttonText="Create!"
+          imageSrc="/lamp-creativity.png"
+          imageAlt="Landing Image"
+          isImageOnLeft={true}
+        />
         <div className="min-h-[35vh] py-10 bg-bonusSection-500 flex flex-col justify-center items-center">
           <h3 className="text-5xl font-bold text-center mb-10">
             Level up with <span className="text-emerald-400">A</span>ppName:
@@ -129,32 +110,14 @@ export default function Home() {
             ))}
           </ul>
         </div>
-        <div className="flex my-10 w-2/3 mx-auto my-40">
-          <div className="w-1/2 mx-10 flex flex-col justify-center">
-            <h3 className="text-6xl mb-10 font-bold">
-              Achieve More in Less Time with AppName{" "}
-            </h3>
-            <p className="mb-10">
-              Unlock your productivity with AppName! Our powerful SaaS platform
-              simplifies LinkedIn post creation and sharing, saving you valuable
-              time. Join now and maximize your social media impact.
-            </p>
-            <Link href="/signup">
-              <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
-                Save time!
-              </button>
-            </Link>
-          </div>
-          <div className="w-1/2 flex justify-center items-center">
-            <Image
-              className="rounded-xl"
-              src="/time-saver.png"
-              alt="Landing Image"
-              width={450}
-              height={450}
-            />
-          </div>
-        </div>
+        <LandingPageSection
+          headline="Achieve More in Less Time with AppName"
+          paragraph="Unlock your productivity with AppName! Our powerful SaaS platform simplifies LinkedIn post creation and sharing, saving you valuable time. Join now and maximize your social media impact."
+          buttonText="Save time!"
+          imageSrc="/time-saver.png"
+          imageAlt="Landing Image"
+          isImageOnLeft={false}
+        />
         <div
           id="faq-section"
           className="flex my-10 w-2/3 mx-auto flex flex-col justify-center items-center"
