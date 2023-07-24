@@ -10,15 +10,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="h-[300px] bg-faq-500 py-10 text-slate-100">
-      <div className="w-2/3 h-full mx-auto">
+    <footer className="h-[250px] md:h-[300px] bg-faq-500 py-4 md:py-10 text-slate-100">
+      <div className="w-4/5 md:w-2/3 h-full mx-auto">
         <div className="w-full h-1/2 flex justify-between items-start ">
-          <h3 className="font-bold text-5xl w-1/2">
+          <h3 className="font-bold text-2xl md:text-5xl w-1/2">
             <span className="text-emerald-400">A</span>ppName: Elevate, Engage,
             Excel!
           </h3>
           <Link href="/signup">
-            <button className="bg-emerald-400 rounded-full px-8 py-4 hover:bg-emerald-500">
+            <button className="bg-emerald-400 rounded-full px-4 md:px-8 py-2 md:py-4 hover:bg-emerald-500">
               Start now!
             </button>
           </Link>
@@ -28,7 +28,7 @@ export default function Footer() {
             <h2 className="text-2xl font-bold">
               <span className="text-emerald-400">A</span>ppName.ai
             </h2>
-            <ul className="flex flex-row items-center">
+            <ul className="flex flex-col md:flex-row items-end md:items-center">
               <li className="mr-2 text-emerald-400">
                 <FaTwitter
                   className="hover:text-slate-100 hover:cursor-pointer"
@@ -37,11 +37,11 @@ export default function Footer() {
               </li>
               <li
                 onClick={(e) => handleScrollTo(e, "solution")}
-                className="mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer"
+                className="md:mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer"
               >
                 Solution
               </li>
-              <li className="mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer">
+              <li className="md:mr-4 hover:text-emerald-400 hover:underline hover:cursor-pointer">
                 Pricing
               </li>
               <li

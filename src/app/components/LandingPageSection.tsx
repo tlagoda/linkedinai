@@ -32,7 +32,7 @@ const LandingPageSection = ({
   }, []);
 
   return (
-    <div className="w-full mx-auto flex flex-col md:flex-row mt-10 mb-40 md:w-2/3 md:mx-auto">
+    <div className="w-full mx-auto flex flex-col md:flex-row mt-10 mb-10 md:mb-40 md:w-2/3 md:mx-auto">
       {isImageOnLeft ? (
         <>
           <div className="md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
@@ -47,7 +47,10 @@ const LandingPageSection = ({
           <div className="md:w-1/2 mx-8 md:mx-10 flex flex-col justify-center">
             <h3 className="text-5xl md:text-6xl mb-10 font-bold">{headline}</h3>
             <p className="mb-10 text-justify md:text-left">{paragraph}</p>
-            <Link href="/signup" className="mb-4 md:mb-0">
+            <Link
+              href="/signup"
+              className="mb-4 md:mb-0 flex justify-center md:block"
+            >
               <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
                 {buttonText}
               </button>
@@ -59,7 +62,10 @@ const LandingPageSection = ({
           <div className="md:w-1/2 mx-8 md:mx-10 flex flex-col justify-center">
             <h3 className="text-5xl md:text-6xl mb-10 font-bold">{headline}</h3>
             <p className="mb-10 text-justify md:text-left">{paragraph}</p>
-            <Link href="/signup" className="mb-4 md:mb-0">
+            <Link
+              href="/signup"
+              className="mb-8 md:mb-0 flex justify-center md:block"
+            >
               <button className="w-1/3 bg-emerald-400 rounded-full py-4 hover:bg-emerald-500">
                 {buttonText}
               </button>
