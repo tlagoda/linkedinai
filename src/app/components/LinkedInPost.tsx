@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Loader from "./Loader";
+import { FaEdit } from "react-icons/fa";
 
 export default function LinkedInPost({
   content,
@@ -16,7 +17,7 @@ export default function LinkedInPost({
 }) {
   return (
     <div
-      className={`w-full md:min-h-[400px] mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md ${
+      className={`w-full relative md:min-h-[400px] mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md ${
         width ? `md:${width}` : "md:w-2/5"
       }`}
     >
@@ -35,6 +36,7 @@ export default function LinkedInPost({
           <div>
             <p className="font-bold">{nameOfUser}</p>
             <p className="text-sm text-gray-600">2nd • 1h</p>
+            <FaEdit size={20} className="absolute top-2 right-2 text-myviolet-400 cursor-pointer" />
           </div>
         </div>
         {displayLoader ? (
