@@ -113,7 +113,7 @@ export default function Home() {
           imageAlt="Landing Image"
           isImageOnLeft={true}
         />
-        <div className="min-h-[35vh] py-10 bg-bonusSection-500 flex flex-col justify-center items-center px-8 md:px-0">
+        <div className="min-h-[35vh] py-10 bg-myviolet-500 flex flex-col justify-center items-center px-8 md:px-0">
           <h3 className="text-5xl font-bold text-center mb-10">
             Level up with <span className="text-emerald-400">A</span>ppName:
           </h3>

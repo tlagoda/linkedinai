@@ -7,7 +7,7 @@ module.exports = {
         myblue: {
           500: "#10172A",
         },
-        bonusSection: {
+        myviolet: {
           300: "#B7BBC3",
           500: "#1B1F3F"
         },

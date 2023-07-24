@@ -125,7 +125,7 @@ const CustomSelect = ({
           <div
             ref={iconRef}
             onClick={toggleMenu}
-            className={`absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-blue-500 cursor-pointer ${
+            className={`absolute inset-y-0 w-1/6 right-0 flex items-center justify-center rounded-r-md bg-emerald-400 cursor-pointer ${
               dtoKey === "additionalInfo" ? "hidden" : ""
             }`}
           >
