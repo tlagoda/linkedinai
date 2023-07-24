@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  User,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useRouter } from "next/navigation";
 import app from "../../../firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
@@ -24,9 +29,25 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [errorWhileSigningUp, setErrorWhileSigningUp] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/generate");
+    }
+  }, [currentUser, router]);
 
   const onSubmit = async (values: { email: string; password: string }) => {
     setErrorWhileSigningUp(false);
