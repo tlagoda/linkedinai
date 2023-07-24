@@ -23,12 +23,12 @@ export default function ImagePreviewDetail({
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center items-center z-10"
+      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center items-center z-20"
       onClick={closeOnBackgroundClick}
     >
       {hasMultipleImages && (
         <FaArrowLeft
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 text-emerald-400 cursor-pointer z-20"
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 text-emerald-400 cursor-pointer z-30"
           size={50}
           onClick={(e) => {
             e.stopPropagation();
@@ -44,7 +44,7 @@ export default function ImagePreviewDetail({
       />
       {hasMultipleImages && (
         <FaArrowRight
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 text-emerald-400 cursor-pointer z-20"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 text-emerald-400 cursor-pointer z-30"
           size={50}
           onClick={(e) => {
             e.stopPropagation();

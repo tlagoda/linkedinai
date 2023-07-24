@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaArrowLeft, FaTimes } from "react-icons/fa";
-import ImagePreviewDetail from "./ImagePreviewDetail"; // Assurez-vous que le chemin est correct
+import ImagePreviewDetail from "./ImagePreviewDetail"; //
 
 type ImagePreviewProps = {
   images: File[] | null;
-  onImageRemove: (imageIndex: number) => void; // nouvelle prop
+  onImageRemove: (imageIndex: number) => void;
 };
 
 export default function ImagePreview({
