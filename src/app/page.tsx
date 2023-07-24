@@ -1,7 +1,6 @@
 "use client";
 
 import Header from "./components/Header";
-import Image from "next/image";
 import OverlapingAvatars from "./components/OverlapingAvatars";
 import { FaCheckCircle } from "react-icons/fa";
 import Footer from "./components/Footer";
@@ -15,6 +14,19 @@ import LandingPageSection from "./components/LandingPageSection";
 export default function Home() {
   const [promptIndex, setPromptIndex] = useState(0);
   const [showPromptLoader, setShowPromptLoader] = useState(false);
+  const [tailwindMd, setTailwindMd] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setTailwindMd(window.innerWidth >= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const saasAdvantages = [
     "Effortlessly create engaging LinkedIn posts",
@@ -79,11 +91,18 @@ export default function Home() {
           id="solution-section"
           className="w-full h-40 flex justify-center items-center"
         >
-          <div className="flex items-center justify-between">
-            <span className="mr-4">
-              Empower your network and inspire others!
-            </span>
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            {tailwindMd && (
+              <span className="mr-4">
+                Empower your network and inspire others!
+              </span>
+            )}
             <OverlapingAvatars />
+            {!tailwindMd && (
+              <span className="mt-4">
+                Empower your network and inspire others!
+              </span>
+            )}
           </div>
         </div>
         <LandingPageSection
