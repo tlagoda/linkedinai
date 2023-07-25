@@ -4,17 +4,23 @@ import { FaGlobeAmericas } from "react-icons/fa";
 
 export default function LinkedInPost({
   content,
+  setContent,
   displayLoader,
   linkedInProfilePicUrl,
   nameOfUser,
   width,
 }: {
   content: string;
+  setContent: any;
   displayLoader: boolean;
   linkedInProfilePicUrl: string;
   nameOfUser: string;
   width?: string;
 }) {
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+
   return (
     <div
       className={`md:min-h-[400px] font-inter-medium mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md ${
@@ -51,9 +57,11 @@ export default function LinkedInPost({
             <Loader />
           </div>
         ) : (
-          <textarea className="text-black resize-none whitespace-pre-line text-xs mt-4 w-full h-full focus:outline-none">
-            {content.replace(/^\n+/g, "")}
-          </textarea>
+          <textarea
+            className="text-black resize-none whitespace-pre-line text-xs mt-4 w-full h-full focus:outline-none"
+            value={content.replace(/^\n+/g, "")}
+            onChange={handleContentChange}
+          />
         )}
       </div>
     </div>

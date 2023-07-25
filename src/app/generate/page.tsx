@@ -155,6 +155,7 @@ export default function Page() {
               )}
               <LinkedInPost
                 content={content}
+                setContent={setContent}
                 displayLoader={displayLoader}
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
                 nameOfUser={getFormattedName()}
