@@ -6,7 +6,6 @@ import { DEFAULT_LINKEDIN_CONTENT, promptTips } from "./constants/constants";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Toggle from "../components/Toggle";
 import { HorizontalDivider } from "../components/HorizontalDivider";
 import Avatar from "../components/Avatar";
 import OptionsPanel from "../components/optionsPanels/OptionsPanel";

@@ -3,17 +3,20 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      fontFamily: {
+        "inter-medium": "var(--font-inter)",
+      },
       colors: {
         myblue: {
           500: "#10172A",
         },
         myviolet: {
           300: "#B7BBC3",
-          500: "#1B1F3F"
+          500: "#1B1F3F",
         },
         faq: {
-          500: "#1E293B"
-        }
+          500: "#1E293B",
+        },
       },
       keyframes: {
         fadeIn: {

@@ -1,27 +1,28 @@
 import Image from "next/image";
 import Loader from "./Loader";
-import { FaEdit } from "react-icons/fa";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 export default function LinkedInPost({
   content,
   displayLoader,
   linkedInProfilePicUrl,
   nameOfUser,
+  degreeOfConnection,
   width,
 }: {
   content: string;
   displayLoader: boolean;
   linkedInProfilePicUrl: string;
   nameOfUser: string;
+  degreeOfConnection: string;
   width?: string;
 }) {
   return (
     <div
-      className={`w-full relative md:min-h-[400px] mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md ${
-        width ? `md:${width}` : "md:w-2/5"
+      className={`md:min-h-[400px] font-inter-medium mx-auto md:my-4 bg-white text-black rounded-lg overflow-auto shadow-md ${
+        width ? `md:${width}` : "md:w-5/12"
       }`}
     >
-      {" "}
       <div className="p-4">
         <div className="flex items-center">
           <Image
@@ -33,10 +34,20 @@ export default function LinkedInPost({
             width={100}
             height={100}
           />
-          <div>
-            <p className="font-bold">{nameOfUser}</p>
-            <p className="text-sm text-gray-600">2nd • 1h</p>
-            <FaEdit size={20} className="absolute top-2 right-2 text-myviolet-400 cursor-pointer" />
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              <p className="text-black font-semibold">{nameOfUser}</p>
+              <div className="w-[3px] h-[3px] bg-gray-500 rounded-full mx-1"></div>
+              <p className="text-xs text-gray-500">
+                {degreeOfConnection ? degreeOfConnection : "2nd"}
+              </p>
+            </div>
+            <p className="text-xs text-gray-500">Founder, AppName</p>
+            <div className="flex items-center">
+              <p className="text-xs text-gray-500">17h</p>
+              <div className="w-[3px] h-[3px] bg-gray-500 rounded-full mx-1"></div>
+              <FaGlobeAmericas size={10} />
+            </div>
           </div>
         </div>
         {displayLoader ? (
@@ -44,7 +55,7 @@ export default function LinkedInPost({
             <Loader />
           </div>
         ) : (
-          <p className="text-black whitespace-pre-line mt-4">
+          <p className="text-black whitespace-pre-line text-xs mt-4">
             {content.replace(/^\n+/g, "")}
           </p>
         )}
