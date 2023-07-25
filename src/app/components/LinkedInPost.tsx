@@ -26,7 +26,7 @@ export default function LinkedInPost({
       <div className="p-4">
         <div className="flex items-center">
           <Image
-            className="w-12 rounded-full mr-4"
+            className="w-12 rounded-full mr-2"
             src={
               linkedInProfilePicUrl ? linkedInProfilePicUrl : "/pp-linkedin.png"
             }
@@ -42,7 +42,7 @@ export default function LinkedInPost({
                 {degreeOfConnection ? degreeOfConnection : "2nd"}
               </p>
             </div>
-            <p className="text-xs text-gray-500">Founder, AppName</p>
+            <p className="text-xs text-gray-500">Product Owner | AppName</p>
             <div className="flex items-center">
               <p className="text-xs text-gray-500">17h</p>
               <div className="w-[3px] h-[3px] bg-gray-500 rounded-full mx-1"></div>
