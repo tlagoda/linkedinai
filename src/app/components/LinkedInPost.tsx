@@ -7,14 +7,12 @@ export default function LinkedInPost({
   displayLoader,
   linkedInProfilePicUrl,
   nameOfUser,
-  degreeOfConnection,
   width,
 }: {
   content: string;
   displayLoader: boolean;
   linkedInProfilePicUrl: string;
   nameOfUser: string;
-  degreeOfConnection: string;
   width?: string;
 }) {
   return (
@@ -38,9 +36,7 @@ export default function LinkedInPost({
             <div className="flex items-center">
               <p className="text-black font-semibold">{nameOfUser}</p>
               <div className="w-[3px] h-[3px] bg-gray-500 rounded-full mx-1"></div>
-              <p className="text-xs text-gray-500">
-                {degreeOfConnection ? degreeOfConnection : "2nd"}
-              </p>
+              <p className="text-xs text-gray-500">2nd</p>
             </div>
             <p className="text-xs text-gray-500">Product Owner | AppName</p>
             <div className="flex items-center">
