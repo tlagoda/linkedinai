@@ -21,7 +21,7 @@ export default function LinkedInPost({
         width ? `md:${width}` : "md:w-5/12"
       }`}
     >
-      <div className="p-4">
+      <div className="p-4 h-full flex flex-col">
         <div className="flex items-center">
           <Image
             className="w-12 rounded-full mr-2"
@@ -51,9 +51,9 @@ export default function LinkedInPost({
             <Loader />
           </div>
         ) : (
-          <p className="text-black whitespace-pre-line text-xs mt-4">
+          <textarea className="text-black resize-none whitespace-pre-line text-xs mt-4 w-full h-full focus:outline-none">
             {content.replace(/^\n+/g, "")}
-          </p>
+          </textarea>
         )}
       </div>
     </div>
