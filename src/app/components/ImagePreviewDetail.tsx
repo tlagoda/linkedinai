@@ -1,4 +1,4 @@
-import { FaTimes, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 type ImagePreviewDetailProps = {
   image: string;

@@ -5,8 +5,8 @@ import ImagePreview from "./ImagePreview";
 type MediaPreviewProps = {
   video: File | undefined;
   images: File[] | undefined;
-  onVideoRemove: () => void; // Function to call when video is removed
-  onImageRemove: (imageIndex: number) => void; // Function to call when an image is removed
+  onVideoRemove: () => void; 
+  onImageRemove: () => void;
 };
 
 const MediaPreview: React.FC<MediaPreviewProps> = ({

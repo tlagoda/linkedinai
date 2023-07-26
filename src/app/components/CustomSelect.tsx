@@ -90,12 +90,6 @@ const CustomSelect = ({
     };
   }, []);
 
-  const getTruncated = (s: string): string => {
-    return s.length > (tailwindMd ? 16 : 10)
-      ? `${s.substring(0, tailwindMd ? 16 : 10)}...`
-      : s;
-  };
-
   return (
     <div
       className="flex items-center justify-between text-black w-4/5 mx-auto h-20 2xl:h-24"
