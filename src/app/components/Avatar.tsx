@@ -102,11 +102,11 @@ const Avatar = ({
           <ul className="text-gray-600">
             <li className="rounded-lg hover:bg-gray-200">
               <button
-                onClick={onSettings}
+                onClick={() => router.push("/account")}
                 className="py-2 px-4 flex items-center w-full text-left hover:cursor-pointer"
               >
                 <FaUser className="mr-2" />
-                <span>Profile</span>
+                <span>Account</span>
               </button>
             </li>
             <li className="rounded-lg hover:bg-gray-200">
