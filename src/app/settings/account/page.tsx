@@ -1,4 +1,8 @@
 export default function Page() {
   
-  return <h1>Account Page</h1>;
+  return (
+    <div className="w-4/5 h-full">
+      
+    </div>
+  );
 }
