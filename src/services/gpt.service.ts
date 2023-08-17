@@ -15,7 +15,7 @@ export class GptService {
     const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
 
     try {
-      const requestOptions = { ...options, free: true };
+      const requestOptions = { ...options, free: false };
 
       const response = await axios.post(
         apiUrl,
@@ -23,9 +23,6 @@ export class GptService {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-          },
-          params: {
-            free: true,
           },
         }
       );
