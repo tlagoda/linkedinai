@@ -31,12 +31,9 @@ export default function AddMedia({
 
   return (
     <div className="flex border-t-2 border-emerald-400 md:border-none mt-8 md:mt-0">
-      {/* <h3 className="text-center text-xl text-slate-100 mt-4 md:mt-0">
-        Add media:
-      </h3> */}
       <div className="w-3/5 flex  mx-auto mt-4">
         <label
-          className={`w-1/2 p-2 rounded-l flex border border-emerald-400 justify-center items-center hover:bg-emerald-400 hover:text-black ${
+          className={`w-1/2 p-2 rounded-l flex border border-emerald-400 justify-center items-center hover:bg-emerald-400 hover:text-black hover:cursor-pointer ${
             disableImages ? "line-through" : ""
           }`}
         >
@@ -50,7 +47,7 @@ export default function AddMedia({
             disabled={disableImages}
           />
         </label>
-        <label className="w-1/2 p-2 rounded-r flex border-y border-r border-emerald-400 justify-center items-center hover:bg-emerald-400 hover:text-black">
+        <label className="w-1/2 p-2 rounded-r flex border-y border-r border-emerald-400 justify-center items-center hover:bg-emerald-400 hover:text-black hover:cursor-pointer">
           Video <FaVideo className="ml-2" />
           <input
             type="file"

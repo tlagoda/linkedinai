@@ -84,6 +84,7 @@ export default function Home() {
               linkedInProfilePicUrl="/pp-linkedin.png"
               nameOfUser="John Doe"
               width="w-4/5"
+              setContent={() => null}
             />
           </div>
         </div>
