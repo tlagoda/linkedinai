@@ -1,7 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FaEnvelope, FaKey, FaUser, FaBuilding, FaToolbox } from "react-icons/fa";
+import { SetStateAction, useEffect, useState } from "react";
+import {
+  FaEnvelope,
+  FaKey,
+  FaUser,
+  FaBuilding,
+  FaToolbox,
+} from "react-icons/fa";
 import app, { db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -9,8 +15,9 @@ import { getAuth } from "firebase/auth";
 export default function Page() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [userCompany, setUserCompany] = useState('')
-  const [userJob, setUserJob] = useState("")
+  const [userCompany, setUserCompany] = useState("AppName");
+  const [userJob, setUserJob] = useState("Product Owner");
+  const [userApiKey, setUserApiKey] = useState("");
   const [userHasApiKey, setUserHasApiKey] = useState(false);
 
   const auth = getAuth(app);
@@ -22,7 +29,7 @@ export default function Page() {
       }
       const docRef: any = doc(db, "users", auth.currentUser.uid);
       const myDoc: any = await getDoc(docRef);
-      console.log(myDoc)
+      console.log(myDoc);
       if (myDoc.exists) {
         setUserName(
           myDoc.data().firstName
@@ -35,10 +42,14 @@ export default function Page() {
     fetchUserInformations();
   }, [auth]);
 
+  const handleApiKeyChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setUserApiKey(event.target.value);
+  };
+
   return (
     <div className="w-4/5 h-full text-slate-100 flex flex-col items-center">
       <h2 className="text-center font-bold text-3xl mt-4">Your informations</h2>
-      <div className="w-1/2 ml-4 mt-10 border border-emerald-400 rounded-xl min-h-[200px] p-6">
+      <div className="w-1/2 ml-4 mt-10 border border-emerald-400 rounded-xl min-h-[200px] p-6 flex flex-col justify-center">
         <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
           <div className="flex items-center ">
             <FaUser className="mr-2" />
@@ -91,17 +102,22 @@ export default function Page() {
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
-        <div className="flex items-center justify-between w-4/5 mx-auto">
+        <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
           <div className="flex items-center ">
             <FaKey className="mr-2" />
-            <label htmlFor="apiKey">OpenAI Api Key:</label>
+            <label htmlFor="apiKey">Api Key:</label>
           </div>
-          <div>
-            <button className="rounded-xl border border-emerald-400 px-2 py-1 hover:text-emerald-400">
-              Add key
-            </button>
-          </div>
+          <input
+            id="apiKey"
+            type="apiKey"
+            value={userApiKey}
+            onChange={handleApiKeyChange}
+            className="border rounded p-1 w-1/2 text-black"
+          />
         </div>
+        <button className="w-1/5 mx-auto mt-8 rounded-xl border border-emerald-400 px-2 py-1 hover:text-emerald-400">
+          Save
+        </button>{" "}
       </div>
     </div>
   );
