@@ -8,7 +8,10 @@ export default function SettingsNav() {
 
   return (
     <div className="w-1/5 h-full bg-myviolet-500 text-slate-100">
-      <h1 className="text-center text-3xl animate-fadeIn2s">
+      <h1
+        className="text-center text-3xl animate-fadeIn2s hover:cursor-pointer"
+        onClick={() => router.push("/generate")}
+      >
         <span className="font-bold text-emerald-400">A</span>ppName
       </h1>
       <div className="w-full my-8 flex flex-col justify-center items-center">

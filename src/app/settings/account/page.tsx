@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaEnvelope, FaKey, FaUser, FaBuilding } from "react-icons/fa";
+import { FaEnvelope, FaKey, FaUser, FaBuilding, FaToolbox } from "react-icons/fa";
 import app, { db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -10,6 +10,7 @@ export default function Page() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userCompany, setUserCompany] = useState('')
+  const [userJob, setUserJob] = useState("")
   const [userHasApiKey, setUserHasApiKey] = useState(false);
 
   const auth = getAuth(app);
@@ -73,6 +74,19 @@ export default function Page() {
             id="company"
             type="company"
             value={userCompany}
+            readOnly
+            className="border rounded p-1 w-1/2 text-black"
+          />
+        </div>
+        <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
+          <div className="flex items-center ">
+            <FaToolbox className="mr-2" />
+            <label htmlFor="job">Job:</label>
+          </div>
+          <input
+            id="job"
+            type="job"
+            value={userJob}
             readOnly
             className="border rounded p-1 w-1/2 text-black"
           />
