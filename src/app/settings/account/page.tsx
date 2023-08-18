@@ -12,6 +12,8 @@ import app, { db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { UsersService } from "@/services/users.service";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -35,8 +37,6 @@ export default function Page() {
       const docRef: any = doc(db, "users", auth.currentUser.uid);
       const myDoc: any = await getDoc(docRef);
 
-      console.log(myDoc);
-
       if (myDoc.exists) {
         setFormData({
           firstName: myDoc.data().firstName
@@ -47,7 +47,6 @@ export default function Page() {
           company: myDoc.data().company ? myDoc.data().company : "Unknown",
           job: myDoc.data().job ? myDoc.data().job : "Unknown",
           apiKey: myDoc.data().apiKey ? myDoc.data().apiKey : "Unknown",
-
         });
       }
     };
@@ -79,10 +78,20 @@ export default function Page() {
       lastName: formData.lastName,
       job: formData.job,
       company: formData.company,
-      useOwnApiKey
+      useOwnApiKey,
     };
 
-    await UsersService.updateUser(auth.currentUser?.uid, data);
+    try {
+      await UsersService.updateUser(auth.currentUser?.uid, data);
+
+      toast.success("Your informations have been saved! 🚀", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } catch (error) {
+      toast.error("Cannot save informations, an error occured!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
   };
 
   return (
@@ -192,6 +201,7 @@ export default function Page() {
           Save
         </button>{" "}
       </div>
+      <ToastContainer />
     </div>
   );
 }
