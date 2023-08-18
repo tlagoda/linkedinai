@@ -13,7 +13,7 @@ export default function DashboardLayout({
 
   return (
     <section className="h-screen w-screen bg-myblue-500 flex relative">
-      <SettingsNav />
+
       {children}
       <FaTimes
         size={20}

@@ -28,8 +28,6 @@ export class LinkedInService {
     images?: (ArrayBuffer | undefined)[],
     video?: ArrayBuffer
   ) {
-    console.log(images);
-    console.log(video);
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl
@@ -54,7 +52,7 @@ export class LinkedInService {
     }
 
     try {
-      const response = axios.post(apiUrl, formData, {
+      axios.post(apiUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -11,9 +11,11 @@ import {
 import app, { db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { UsersService } from "@/services/users.service";
 
 export default function Page() {
-  const [userName, setUserName] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userCompany, setUserCompany] = useState("AppName");
   const [userJob, setUserJob] = useState("Product Owner");
@@ -31,10 +33,11 @@ export default function Page() {
       const myDoc: any = await getDoc(docRef);
       console.log(myDoc);
       if (myDoc.exists) {
-        setUserName(
-          myDoc.data().firstName
-            ? `${myDoc.data().firstName + myDoc.data().lastName}`
-            : "Unknown"
+        setUserFirstName(
+          myDoc.data().firstName ? myDoc.data().firstName : "Unknown"
+        );
+        setUserLastName(
+          myDoc.data().firstName ? myDoc.data().lastName : "Unknown"
         );
         setUserEmail(myDoc.data().email);
       }
@@ -42,24 +45,53 @@ export default function Page() {
     fetchUserInformations();
   }, [auth]);
 
-  const handleApiKeyChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+  const handleApiKeyChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setUserApiKey(event.target.value);
   };
 
+  const handleSubmit = async () => {
+    if (!auth.currentUser?.uid) {
+      return;
+    }
+
+    const data = {
+      apiKey: userApiKey,
+      firstName: userFirstName,
+      lastName: userLastName,
+      job: userJob,
+      company: userCompany,
+    };
+
+    await UsersService.updateUser(auth.currentUser?.uid, data);
+  };
+
   return (
-    <div className="w-4/5 h-full text-slate-100 flex flex-col items-center">
+    <div className="w-screen h-full text-slate-100 flex flex-col items-center">
       <h2 className="text-center font-bold text-3xl mt-4">Your informations</h2>
       <div className="w-1/2 ml-4 mt-10 border border-emerald-400 rounded-xl min-h-[200px] p-6 flex flex-col justify-center">
         <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
           <div className="flex items-center ">
             <FaUser className="mr-2" />
-            <label htmlFor="email">Identity:</label>
+            <label htmlFor="email">First name:</label>
           </div>
           <input
             id="email"
             type="email"
-            value={userName}
-            readOnly
+            value={userFirstName}
+            className="border rounded p-1 w-1/2 text-black"
+          />
+        </div>
+        <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
+          <div className="flex items-center ">
+            <FaUser className="mr-2" />
+            <label htmlFor="email">Last name:</label>
+          </div>
+          <input
+            id="email"
+            type="email"
+            value={userLastName}
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
@@ -85,7 +117,6 @@ export default function Page() {
             id="company"
             type="company"
             value={userCompany}
-            readOnly
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
@@ -98,7 +129,6 @@ export default function Page() {
             id="job"
             type="job"
             value={userJob}
-            readOnly
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
@@ -115,7 +145,10 @@ export default function Page() {
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
-        <button className="w-1/5 mx-auto mt-8 rounded-xl border border-emerald-400 px-2 py-1 hover:text-emerald-400">
+        <button
+          className="w-1/5 mx-auto mt-8 rounded-xl border border-emerald-400 px-2 py-1 hover:text-emerald-400"
+          onClick={handleSubmit}
+        >
           Save
         </button>{" "}
       </div>
