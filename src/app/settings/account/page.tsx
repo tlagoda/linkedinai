@@ -14,13 +14,14 @@ import { getAuth } from "firebase/auth";
 import { UsersService } from "@/services/users.service";
 
 export default function Page() {
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userCompany, setUserCompany] = useState("AppName");
-  const [userJob, setUserJob] = useState("Product Owner");
-  const [userApiKey, setUserApiKey] = useState("");
-  const [userHasApiKey, setUserHasApiKey] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    company: "AppName",
+    email: "",
+    job: "Product Owner",
+    apiKey: "",
+  });
 
   const auth = getAuth(app);
 
@@ -29,26 +30,36 @@ export default function Page() {
       if (!auth.currentUser) {
         return;
       }
+
       const docRef: any = doc(db, "users", auth.currentUser.uid);
       const myDoc: any = await getDoc(docRef);
-      console.log(myDoc);
+
+      console.log(myDoc)
+
       if (myDoc.exists) {
-        setUserFirstName(
-          myDoc.data().firstName ? myDoc.data().firstName : "Unknown"
-        );
-        setUserLastName(
-          myDoc.data().firstName ? myDoc.data().lastName : "Unknown"
-        );
-        setUserEmail(myDoc.data().email);
+        setFormData({
+          firstName: myDoc.data().firstName
+            ? myDoc.data().firstName
+            : "Unknown",
+          lastName: myDoc.data().firstName ? myDoc.data().lastName : "Unknown",
+          email: myDoc.data().email ? myDoc.data().email : "Unknown",
+          company: myDoc.data().company ? myDoc.data().company : "Unknown",
+          job: myDoc.data().job ? myDoc.data().job : "Unknown",
+          apiKey: myDoc.data().apiKey ? myDoc.data().apiKey : "Unknown",
+        });
       }
     };
     fetchUserInformations();
   }, [auth]);
 
-  const handleApiKeyChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setUserApiKey(event.target.value);
+  const handleInputChange = (event: { target: { name: any; value: any } }) => {
+    const { name, value } = event.target;
+    console.log(name)
+    console.log(value)
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async () => {
@@ -57,11 +68,11 @@ export default function Page() {
     }
 
     const data = {
-      apiKey: userApiKey,
-      firstName: userFirstName,
-      lastName: userLastName,
-      job: userJob,
-      company: userCompany,
+      apiKey: formData.apiKey,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      job: formData.job,
+      company: formData.company,
     };
 
     await UsersService.updateUser(auth.currentUser?.uid, data);
@@ -74,24 +85,28 @@ export default function Page() {
         <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
           <div className="flex items-center ">
             <FaUser className="mr-2" />
-            <label htmlFor="email">First name:</label>
+            <label htmlFor="firstName">First name:</label>
           </div>
           <input
-            id="email"
-            type="email"
-            value={userFirstName}
+            id="firstName"
+            type="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
         <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
           <div className="flex items-center ">
             <FaUser className="mr-2" />
-            <label htmlFor="email">Last name:</label>
+            <label htmlFor="lastName">Last name:</label>
           </div>
           <input
-            id="email"
-            type="email"
-            value={userLastName}
+            id="lastName"
+            type="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
@@ -103,7 +118,7 @@ export default function Page() {
           <input
             id="email"
             type="email"
-            value={userEmail}
+            value={formData.email}
             readOnly
             className="border rounded p-1 w-1/2 text-black"
           />
@@ -116,7 +131,9 @@ export default function Page() {
           <input
             id="company"
             type="company"
-            value={userCompany}
+            name="company"
+            value={formData.company}
+            onChange={handleInputChange}
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
@@ -128,7 +145,9 @@ export default function Page() {
           <input
             id="job"
             type="job"
-            value={userJob}
+            name="job"
+            value={formData.job}
+            onChange={handleInputChange}
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>
@@ -140,8 +159,9 @@ export default function Page() {
           <input
             id="apiKey"
             type="apiKey"
-            value={userApiKey}
-            onChange={handleApiKeyChange}
+            name="apiKey"
+            value={formData.apiKey}
+            onChange={handleInputChange}
             className="border rounded p-1 w-1/2 text-black"
           />
         </div>

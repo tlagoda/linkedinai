@@ -6,7 +6,7 @@ type MediaPreviewProps = {
   video: File | undefined;
   images: File[] | undefined;
   onVideoRemove: () => void; 
-  onImageRemove: () => void;
+  onImageRemove: (index: number) => void;
 };
 
 const MediaPreview: React.FC<MediaPreviewProps> = ({

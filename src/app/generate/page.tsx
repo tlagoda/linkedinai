@@ -159,12 +159,14 @@ export default function Page() {
                 displayLoader={displayLoader}
                 linkedInProfilePicUrl={user.linkedInProfilePicUrl}
                 nameOfUser={getFormattedName()}
+                job={user.job}
+                company={user.company}
               />{" "}
               <MediaPreview
                 video={postVideo}
                 images={postImages}
                 onVideoRemove={() => setPostVideo(undefined)}
-                onImageRemove={(imageIndex) => {
+                onImageRemove={(imageIndex: number) => {
                   setPostImages(
                     postImages?.filter((_, index) => index !== imageIndex)
                   );

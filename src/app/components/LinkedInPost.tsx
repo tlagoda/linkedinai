@@ -9,6 +9,8 @@ export default function LinkedInPost({
   linkedInProfilePicUrl,
   nameOfUser,
   width,
+  job,
+  company,
 }: {
   content: string;
   setContent: any;
@@ -16,6 +18,8 @@ export default function LinkedInPost({
   linkedInProfilePicUrl: string;
   nameOfUser: string;
   width?: string;
+  job: string;
+  company: string;
 }) {
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -44,7 +48,7 @@ export default function LinkedInPost({
               <div className="w-[3px] h-[3px] bg-gray-500 rounded-full mx-1"></div>
               <p className="text-xs text-gray-500">2nd</p>
             </div>
-            <p className="text-xs text-gray-500">Product Owner | AppName</p>
+            <p className="text-xs text-gray-500">{job} | {company}</p>
             <div className="flex items-center">
               <p className="text-xs text-gray-500">17h</p>
               <div className="w-[3px] h-[3px] bg-gray-500 rounded-full mx-1"></div>

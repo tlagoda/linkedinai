@@ -12,6 +12,8 @@ interface UserState {
   linkedInProfilePicUrl: string;
   firstName: string;
   lastName: string;
+  job: string;
+  company: string;
 }
 
 const initialState: UserState = {
@@ -21,6 +23,8 @@ const initialState: UserState = {
   linkedInProfilePicUrl: "",
   firstName: "John",
   lastName: "Doe",
+  job: "Product Owner",
+  company: "Apple"
 };
 
 const userSlice = createSlice({
@@ -60,6 +64,8 @@ export const initializeAuthListener = (): AppThunk => (dispatch) => {
           email: userData.email,
           firstName: userData.firstName,
           lastName: userData.lastName,
+          job: userData.job,
+          company: userData.company
         };
         dispatch(updateUser(userProfileData));
       }
