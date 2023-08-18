@@ -22,6 +22,7 @@ export default function Page() {
     job: "Product Owner",
     apiKey: "",
   });
+  const [useOwnApiKey, setUseOwnApiKey] = useState(false);
 
   const auth = getAuth(app);
 
@@ -34,7 +35,7 @@ export default function Page() {
       const docRef: any = doc(db, "users", auth.currentUser.uid);
       const myDoc: any = await getDoc(docRef);
 
-      console.log(myDoc)
+      console.log(myDoc);
 
       if (myDoc.exists) {
         setFormData({
@@ -46,6 +47,7 @@ export default function Page() {
           company: myDoc.data().company ? myDoc.data().company : "Unknown",
           job: myDoc.data().job ? myDoc.data().job : "Unknown",
           apiKey: myDoc.data().apiKey ? myDoc.data().apiKey : "Unknown",
+
         });
       }
     };
@@ -54,12 +56,16 @@ export default function Page() {
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    console.log(name)
-    console.log(value)
+    console.log(name);
+    console.log(value);
     setFormData({
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleUseOwnApiKeyChange = (event: { target: { value: string } }) => {
+    setUseOwnApiKey(event.target.value === "yes");
   };
 
   const handleSubmit = async () => {
@@ -73,6 +79,7 @@ export default function Page() {
       lastName: formData.lastName,
       job: formData.job,
       company: formData.company,
+      useOwnApiKey
     };
 
     await UsersService.updateUser(auth.currentUser?.uid, data);
@@ -164,6 +171,19 @@ export default function Page() {
             onChange={handleInputChange}
             className="border rounded p-1 w-1/2 text-black"
           />
+        </div>
+        <div className="flex items-center justify-between w-4/5 mx-auto mb-4">
+          <label htmlFor="useOwnApiKey">Use your own API Key:</label>
+          <select
+            id="useOwnApiKey"
+            name="useOwnApiKey"
+            value={useOwnApiKey ? "yes" : "no"}
+            onChange={handleUseOwnApiKeyChange}
+            className="border rounded p-1 w-1/2 text-black"
+          >
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
         </div>
         <button
           className="w-1/5 mx-auto mt-8 rounded-xl border border-emerald-400 px-2 py-1 hover:text-emerald-400"
