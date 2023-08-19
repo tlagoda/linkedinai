@@ -92,7 +92,7 @@ const CustomSelect = ({
 
   return (
     <div
-      className="flex items-center justify-between text-black w-4/5 mx-auto h-20 2xl:h-24"
+      className="flex items-center justify-between text-black w-4/5 mx-auto h-20 md:h-16"
       style={dtoKey === "additionalInfo" ? { minHeight: "10rem" } : {}}
     >
       {" "}
@@ -103,7 +103,7 @@ const CustomSelect = ({
             value={customValue || selectedOption}
             onChange={handleTextareaChange}
             placeholder={placeholder}
-            className="text-s rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+            className="text-sm rounded-md py-2 px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
             style={{ paddingRight: "2rem", resize: "none", minHeight: "7rem" }}
           />
         ) : (
@@ -112,7 +112,7 @@ const CustomSelect = ({
             value={customValue || selectedOption}
             onChange={handleInputChange}
             placeholder={placeholder}
-            className="text-m rounded-md py-2 text-m px-4 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+            className="text-sm rounded-md py-2 pl-4 pr-16 border w-full border-gray-300 bg-white focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-gray-900"
           />
         )}
         {dtoKey !== "additionalInfo" && (
