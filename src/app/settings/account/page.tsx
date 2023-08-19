@@ -14,6 +14,10 @@ import { getAuth } from "firebase/auth";
 import { UsersService } from "@/services/users.service";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AppDispatch, RootState } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { initializeAuthListener } from "../../redux/features/user/userSlice";
+
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -25,6 +29,13 @@ export default function Page() {
     apiKey: "",
   });
   const [useOwnApiKey, setUseOwnApiKey] = useState(false);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.user);
+
+  useEffect(() => {
+    dispatch(initializeAuthListener());
+  }, [dispatch]);
 
   const auth = getAuth(app);
 
@@ -48,6 +59,7 @@ export default function Page() {
           job: myDoc.data().job ? myDoc.data().job : "Unknown",
           apiKey: myDoc.data().apiKey ? myDoc.data().apiKey : "Unknown",
         });
+        setUseOwnApiKey(myDoc.data().useOwnApiKey ? myDoc.data().useOwnApiKey : false)
       }
     };
     fetchUserInformations();
