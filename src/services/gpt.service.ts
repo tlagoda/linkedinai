@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import "firebase/auth";
 
 export class GptService {
-  static async generate(options: Record<string, string | number>) {
+  static async generate(options: Record<string, string | number | boolean>) {
     const baseApiUrl =
       process.env.NODE_ENV === "production"
         ? config.production.apiUrl
@@ -15,17 +15,11 @@ export class GptService {
     const token = await auth.currentUser?.getIdToken(); // firebase auto mangaes cache
 
     try {
-      const requestOptions = { ...options, free: false };
-
-      const response = await axios.post(
-        apiUrl,
-        requestOptions,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(apiUrl, options, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       return response.data.text;
     } catch (error) {

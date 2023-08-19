@@ -50,6 +50,7 @@ export default function Page() {
     });
     setUseOwnApiKey(user.useOwnApiKey ? user.useOwnApiKey : false)
   }, [user]);
+
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
 
@@ -74,7 +75,7 @@ export default function Page() {
       lastName: formData.lastName,
       job: formData.job,
       company: formData.company,
-      useOwnApiKey,
+      useOwnApiKey: useOwnApiKey,
     };
 
     try {

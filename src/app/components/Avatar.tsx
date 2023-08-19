@@ -35,7 +35,7 @@ const Avatar = ({
       }
       const docRef: any = doc(db, "users", auth.currentUser.uid);
       const myDoc: any = await getDoc(docRef);
-      console.log(myDoc.data())
+
       if (myDoc.exists) {
         setHasAuthorizedLinkedIn(myDoc.data().hasAuthorizedLinkedIn);
       } else {

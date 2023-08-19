@@ -44,7 +44,7 @@ export default function Page() {
       setTailwindMd(window.innerWidth >= 768);
     };
 
-    handleResize(); // Call the function once initially
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -140,6 +140,7 @@ export default function Page() {
                       setDisplayLoader={setDisplayLoader}
                       notifyError={notifyError}
                       generationOptions={generationOptions}
+                      useOwnApiKey={user.useOwnApiKey}
                     />
                   </div>
                 )}
@@ -228,6 +229,7 @@ export default function Page() {
                         setDisplayLoader={setDisplayLoader}
                         notifyError={notifyError}
                         generationOptions={generationOptions}
+                        useOwnApiKey={user.useOwnApiKey}
                       />
                       <PublishButton
                         content={content}

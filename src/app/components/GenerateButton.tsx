@@ -7,16 +7,21 @@ const GenerateButton = ({
   setDisplayLoader,
   notifyError,
   generationOptions,
+  useOwnApiKey,
 }: {
   handleSendMessage: any;
   setDisplayLoader: any;
   notifyError: any;
   generationOptions: Record<string, string | number>;
+  useOwnApiKey: boolean;
 }) => {
   const generatePost = async () => {
     setDisplayLoader(true);
     try {
-      const linkedInPost = await GptService.generate(generationOptions);
+      const linkedInPost = await GptService.generate({
+        ...generationOptions,
+        free: useOwnApiKey,
+      });
       if (!linkedInPost) {
         throw new Error();
       }
