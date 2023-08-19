@@ -15,6 +15,7 @@ interface UserState {
   job: string;
   company: string;
   useOwnApiKey: boolean;
+  apiKey: string;
 }
 
 const initialState: UserState = {
@@ -26,7 +27,8 @@ const initialState: UserState = {
   lastName: "Doe",
   job: "Product Owner",
   company: "Apple",
-  useOwnApiKey: false
+  useOwnApiKey: false,
+  apiKey: "",
 };
 
 const userSlice = createSlice({
@@ -68,7 +70,8 @@ export const initializeAuthListener = (): AppThunk => (dispatch) => {
           lastName: userData.lastName,
           job: userData.job,
           company: userData.company,
-          useOwnApiKey: userData.useOwnApiKey
+          useOwnApiKey: userData.useOwnApiKey,
+          apiKey: userData.apiKey
         };
         dispatch(updateUser(userProfileData));
       }

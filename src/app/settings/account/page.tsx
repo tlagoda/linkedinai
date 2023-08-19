@@ -40,35 +40,19 @@ export default function Page() {
   const auth = getAuth(app);
 
   useEffect(() => {
-    const fetchUserInformations = async () => {
-      if (!auth.currentUser) {
-        return;
-      }
-
-      const docRef: any = doc(db, "users", auth.currentUser.uid);
-      const myDoc: any = await getDoc(docRef);
-
-      if (myDoc.exists) {
-        setFormData({
-          firstName: myDoc.data().firstName
-            ? myDoc.data().firstName
-            : "Unknown",
-          lastName: myDoc.data().firstName ? myDoc.data().lastName : "Unknown",
-          email: myDoc.data().email ? myDoc.data().email : "Unknown",
-          company: myDoc.data().company ? myDoc.data().company : "Unknown",
-          job: myDoc.data().job ? myDoc.data().job : "Unknown",
-          apiKey: myDoc.data().apiKey ? myDoc.data().apiKey : "Unknown",
-        });
-        setUseOwnApiKey(myDoc.data().useOwnApiKey ? myDoc.data().useOwnApiKey : false)
-      }
-    };
-    fetchUserInformations();
-  }, [auth]);
-
+    setFormData({
+      firstName: user.firstName ? user.firstName : "",
+      lastName: user.lastName ? user.lastName : "",
+      email: user.email ? user.email : "",
+      company: user.company ? user.company : "",
+      job: user.job ? user.job : "",
+      apiKey: user.apiKey ? user.apiKey : "",
+    });
+    setUseOwnApiKey(user.useOwnApiKey ? user.useOwnApiKey : false)
+  }, [user]);
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
+
     setFormData({
       ...formData,
       [name]: value,
