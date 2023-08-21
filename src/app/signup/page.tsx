@@ -64,17 +64,17 @@ export default function SignUp() {
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
         hasAuthorizedLinkedIn: false,
-        firstName: "",
-        lastName: "",
-        company: "",
-        job: "",
+        firstName: "John",
+        lastName: "Doe",
+        company: "Company",
+        job: "Job",
         linkedInPP: "",
         linkedInId: "",
         linkedInToken: "",
         linkedInTokenExpiresAt: "",
         personUrn: "",
         canGenerate: false,
-        useOwnApiKey: "",
+        useOwnApiKey: false,
         apiKey: "",
       });
 
