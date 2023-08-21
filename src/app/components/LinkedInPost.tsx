@@ -31,7 +31,7 @@ export default function LinkedInPost({
         width ? `md:${width}` : "md:w-5/12"
       }`}
     >
-      <div className="p-4 h-full flex flex-col">
+      <div className="p-4 h-full flex flex-col min-h-[400px]">
         <div className="flex items-center">
           <Image
             className="w-12 rounded-full mr-2"
@@ -57,16 +57,16 @@ export default function LinkedInPost({
           </div>
         </div>
         {displayLoader ? (
-          <div className="flex justify-center items-center h-full">
-            <Loader />
-          </div>
-        ) : (
-          <textarea
-            className="text-black resize-none whitespace-pre-line text-xs mt-4 w-full h-full focus:outline-none"
-            value={content.replace(/^\n+/g, "")}
-            onChange={handleContentChange}
-          />
-        )}
+    <div className="flex justify-center items-center flex-grow">
+      <Loader />
+    </div>
+  ) : (
+    <textarea
+      className="text-black resize-none whitespace-pre-line text-xs mt-4 w-full flex-grow focus:outline-none"
+      value={content.replace(/^\n+/g, "")}
+      onChange={handleContentChange}
+    />
+  )}
       </div>
     </div>
   );

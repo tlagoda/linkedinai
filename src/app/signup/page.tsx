@@ -64,6 +64,18 @@ export default function SignUp() {
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
         hasAuthorizedLinkedIn: false,
+        firstName: "",
+        lastName: "",
+        company: "",
+        job: "",
+        linkedInPP: "",
+        linkedInId: "",
+        linkedInToken: "",
+        linkedInTokenExpiresAt: "",
+        personUrn: "",
+        canGenerate: false,
+        useOwnApiKey: "",
+        apiKey: "",
       });
 
       router.push("/generate");
