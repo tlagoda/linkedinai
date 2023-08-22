@@ -31,6 +31,10 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({
           updateOptions={updateOptions}
         />
       ))}
+      <div className="flex items-center justify-between text-black w-4/5 mx-auto h-20 md:h-16">
+        <label >Language</label>
+        <select name="" id=""></select>
+      </div>
     </>
   );
 };

@@ -85,6 +85,8 @@ export default function Home() {
               nameOfUser="John Doe"
               width="w-4/5"
               setContent={() => null}
+              job="CTO"
+              company="Apple"
             />
           </div>
         </div>
@@ -123,7 +125,10 @@ export default function Home() {
           </span>
           <ul>
             {saasAdvantages.map((advantage, index) => (
-              <li key={index} className="flex items-center justify-between mb-4">
+              <li
+                key={index}
+                className="flex items-center justify-between mb-4"
+              >
                 <FaCheckCircle size={20} className="text-emerald-400 mr-2" />
                 <p className="w-5/6 md:w-full">{advantage}</p>
               </li>
